@@ -38,7 +38,7 @@ uint32_t gDropCount = 0;
 /*****************************************************************/
 void setupCom()
 {
-    Serial.begin(115200);
+    Serial.begin(38400);
     Serial.setTimeout(1);
     
     printText("Communication... done.\n");
