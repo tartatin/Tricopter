@@ -1,0 +1,312 @@
+#headerWrapper{
+	min-width: 960px;
+	min-heightheight: 160px;
+	background: #fafafa;
+}
+
+#globalNavigationWrapper{
+	width: 100%;
+	min-height: 30px;
+	background: url('images/globalNavBG.png') repeat-x 0 bottom;
+}
+
+#globalNavigationWrapper.wiki{
+	background: #fcfcfc;
+	position: relative;
+}
+
+#globalNavigationWrapper.wiki #globalNavigation{
+	position: relative;
+	font: bold 14px "Lucida Grande", Lucida, Verdana, sans-serif;
+	list-style: none;
+	width: 950px;
+	padding: 0;
+	margin: 0 auto;
+	z-index: 5;
+	
+}
+
+#globalNavigationWrapper.wiki #toolBoxWrapper{
+	display: none;
+	width: 950px !important;
+	width: 950px;
+	margin: 0 auto !important;
+}
+
+
+#globalNavigationWrapper.wiki #toolbox{
+	position: relative;
+	padding-bottom: 30px;
+}
+
+#globalNavigationWrapper.wiki .bg{
+	height: 30px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 0;
+	background: url('images/globalNavBG.png') 0 bottom;
+}
+
+
+#globalNavigation{
+	position: relative;
+	font: bold 14px "Lucida Grande", Lucida, Verdana, sans-serif;
+	list-style: none;
+	width: 950px;
+	padding: 0;
+	margin: 0 auto;
+}
+
+
+#globalNavigationRight{
+	position: absolute;
+	text-align: right;
+	right: 0;
+	top: 0;
+	font: bold 14px "Lucida Grande", Lucida, Verdana, sans-serif;
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+}
+
+#globalNavigation li{
+	display: inline;
+	color: #333;
+	font-size: 13px;
+	line-height: 30px;
+	margin-right: 20px;
+	font-weight: normal;
+}
+
+#globalNavigationRight li{
+	display: inline;
+	color: #333;
+	font-size: 13px;
+	line-height: 30px;
+	margin-left: 20px;
+	margin-right: 0;
+	font-weight: normal;
+}
+
+
+#globalNavigation .toolBox{
+	position: absolute;
+	right: 0;
+	margin-right: 0px;
+}
+
+
+#globalNavigation li a,
+#globalNavigationRight li a{
+	color: #6B7B95;
+	font-weight: normal;
+}
+
+
+#header, #actionBar{
+	position: relative;
+	width: 950px;
+	margin: 0 auto;
+}
+
+#mainLogo{
+	margin-left: -4px;
+	display: block;
+	width: 246px;
+	height: 116px;
+	background-position: no-repeat;
+}
+
+
+#mainLogo.blog{
+	background: url('images/blog.png') center no-repeat;	
+}
+
+#mainLogo.home{
+	background: url('images/home.png') center no-repeat;	
+}
+
+#mainLogo.forum{
+	background: url('images/forum.png') center no-repeat;	
+}
+
+#mainLogo.wiki{
+	background: url('images/wiki.png') center no-repeat;	
+}
+
+#mainLogo.code{
+	background: url('images/code.png') center no-repeat;	
+}
+
+
+
+
+
+
+#headSearch{
+	width: 180px;
+	position: absolute;
+	top: 20px;
+	right: -1px;
+	height: 27px !important;
+}
+
+
+
+#searchInput{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 27px;
+	width: 135px;
+	background: url('images/search.png') no-repeat 0 0;
+	border: none;
+	outline: none;
+	padding: 0 40px 0 5px;
+}
+
+#searchInput:focus{
+	background-position: 0 -27px;
+}
+
+
+#searchChoices{
+	position: absolute;
+	top: 0;
+	right: 25px;
+	width: 13px;
+	height: 27px;
+	background: url('images/searchMore.png') center -27px no-repeat;
+}
+
+#searchsubmit{
+	position: absolute;
+	top: 0px;
+	right: 3px;
+	height: 27px;
+	width: 22px;
+	background: url('images/searchIcon.png') center -27px no-repeat;
+	text-indent: -9999px;
+	border: none;
+}
+
+
+.overTxtLabel{
+	font-size: 12px;
+	color: #999;
+	width: 130px;
+	padding: 0 5px;
+	height: 27px;
+	line-height: 23px !important;
+}
+
+
+#searchButton{
+	display: none;
+}
+
+#user{
+	font-size: 12px;
+	position: absolute;
+	right: 0;
+	bottom: 15px;
+}
+
+
+#actionWrapper{
+	min-width: 960px;
+	height: 28px;
+	background: #ECECEC;
+	border-bottom: solid 1px #ddd;
+	border-top: solid 1px #ddd;
+}
+
+#actions{
+	position: relative;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 28px;
+	line-height: 28px;
+}
+
+
+#actions li{
+	list-style: none;
+}
+
+
+#actions li a{
+	font-size: 12px;
+	text-transform: lowercase;
+	float: left;
+	padding: 0 13px;
+	margin-left: 5px;
+	border-left: solid 1px #ECECEC;
+	border-right: solid 1px #ECECEC;
+}
+
+#actions li a:hover{
+	background: #F4F5F5;
+	text-decoration: none;
+	border-left: solid 1px #ddd;
+	border-right: solid 1px #ddd;
+	border-bottom: solid 1px #F4F5F5;
+}
+
+
+#actions li.selected a{
+	background: #F4F5F5;
+	border-left: solid 1px #ddd;
+	border-right: solid 1px #ddd;
+	border-bottom: solid 1px #F4F5F5;
+}
+
+#searchMenu{
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	top: 25px;
+	right: 24px;
+	z-index: 101;
+	width: 100px;
+	background: white;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border: solid 1px #bbb;
+	border-top: none;
+	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0,.2);
+	-moz-box-shadow: 0px 2px 5px rgba(0,0,0,.2);
+	box-shadow: 0px 2px 5px rgba(0,0,0,.2);
+	padding: 5px 0;
+}
+
+#searchMenu a{
+	font-size: 10px;
+	font-weight: normal;
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	padding: 0 5px;
+	color: #333;
+}
+
+#searchMenu a:hover{
+	background: #333;
+	color: white;
+}
+#hoverbg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	background: transparent;
+	width: 100%;
+	height: 100%;
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0059)http://wiring.org.co/learning/libraries/tmp102sparkfun.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>tmp102sparkfun \ Learning \ Wiring</title>
+		
+		<link rel="icon" href="http://wiring.org.co/img/wiring-1.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="http://wiring.org.co/img/wiring-1.ico" type="image/x-icon">
+		
+		
+		<meta name="Author" content="Hernando Barrag�n">
+		<meta name="Publisher" content="Wiring">
+		<meta name="Keywords" content="Wiring, Processing, Interactive Media, Electronic Arts, Programming, C, C++, Hernando Barrag�n">
+		<meta name="Description" content="Wiring is an electronic sketchbook and hardware electronics for developing 
+				ideas. It is a context for learning fundamentals of computer programming and prototyping with electronics
+				within the context of the electronic arts.">
+		<meta name="Copyright" content="All contents copyright Hernando Barrag�n">
+		
+		<script src="./tmp102sparkfun   Learning   Wiring_files/MM_functions.js" type="text/javascript"></script>
+	
+		<link href="./tmp102sparkfun   Learning   Wiring_files/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body id="Library" onload="">
+		
+		<!-- ==================================== PAGE ============================ --> 
+		<div id="container">
+	
+			<!-- ==================================== HEADER ============================ --> 
+			<div id="header">
+				<a href="http://wiring.org.co/"><img src="./tmp102sparkfun   Learning   Wiring_files/wiring.gif" alt="Wiring cover" title="Back to the cover."></a>
+				<form name="search" method="get" action="http://www.google.com/search">
+				<label>Search wiring.org.co:</label> 
+				       <p><input type="hidden" name="as_sitesearch" value="wiring.org.co">
+				       <input type="text" name="as_q" value="" size="20" class="text"> 
+						<input type="image" src="./tmp102sparkfun   Learning   Wiring_files/search_button.gif" value="Submit" alt="Submit"></p>
+				</form>
+			</div> 
+						<div id="navigation">
+				<div class="navBar" id="mainnav">
+					<a href="http://wiring.org.co/">Cover</a> \
+					<a href="http://wiring.org.co/exhibition/">Exhibition</a> \
+					<a href="http://wiring.org.co/reference/">Reference</a> \
+					<a href="http://wiring.org.co/learning/tutorials" class="active">Learning</a> \
+					<a href="http://wiring.org.co/hardware/">Hardware</a> \
+					<a href="http://wiring.org.co/download/">Download</a> \
+					<a href="http://wiring.org.co/about.html" class="about">About</a>
+					<a href="http://feed.wiring.co/" class="feed">»Feed</a>
+					<a href="http://forum.wiring.co/" class="forum">»Forum</a>
+					<a href="http://wiki.wiring.co/" class="wiki">»Wiki</a>
+					<a href="http://wiring.uniandes.edu.co/source/trunk/wiring/" class="codesvn">»Code</a>
+				</div>
+				<div class="navBar learning" id="subNav">
+					<a href="http://wiring.org.co/learning/tutorials//">Tutorials</a>: <select name="tutnav" size="1" class="tutnav" onchange="javascript:gogo(this)">
+		<option value="http://wiring.org.co/learning/tutorials/">English</option>
+		<option value="http://wiring.org.co/learning/tutorials/es/">Español</option>
+	</select> \
+					 
+ Examples: 					<a href="http://wiring.org.co/learning/basics/">Basics</a>, 
+					<a href="http://wiring.org.co/learning/libraries/" class="active">Library</a>, 
+					<a href="http://wiring.org.co/learning/topics/">Topics</a> \
+					<a href="http://wiring.org.co/learning/books/">Books</a> 
+				</div>
+			</div>
+
+		
+			<a id="TOP" name="TOP"></a>
+            
+            
+			
+			<!-- ==================================== CONTENT - Headers ============================ -->
+			<div class="content">
+			
+			 
+<div class="examples-nav-div">
+<table width="480" border="0"><tbody><tr><td align="left"><table>
+<tbody><tr><td><a href="http://wiring.org.co/learning/libraries/bmp085.html">
+				<img src="./tmp102sparkfun   Learning   Wiring_files/back_off.gif" alt="Temperature and barometric pressure: Sparkfun BOSCH BMP085"></a></td><td>
+<select name="nav" size="1" class="inputnav" onchange="javascript:gogo(this)">
+	<optgroup label="Wire">
+		<option value="digitalpotentiometer.html">Digital potentiometer: AD5171</option>
+		<option value="masterreader.html">Master reader</option>
+		<option value="masterwriter.html">Master writer</option>
+		<option value="slavereceiver.html">Slave receiver</option>
+		<option value="slavesender.html">Slave sender</option>
+		<option value="ultrasonicsfr.html">Ultrasonic ranger: SFR08/SFR10</option>
+		<option value="hmc6352sparkfun.html">Compass heading: HMC6352 sparkfun</option>
+		<option value="hmc6343sparkfun.html">Compass heading with tilt compensation: HMC6352 sparkfun</option>
+		<option value="realtimeclock.html">Real time clock: DS1307 sparkfun</option>
+		<option value="bmp085.html">Temperature and barometric pressure: Sparkfun BOSCH BMP085</option>
+		<option value="tmp102sparkfun.html" selected="selected">Temperature: Sparkfun tmp102</option>
+	</optgroup>
+	<optgroup label="SPI">
+		<option value="barometricpressuresensor.html">Barometric pressure: SCP1000</option>
+		<option value="gyromlx90609.html">MLX90609 Gyroscope: Sparkfun</option>
+	</optgroup>
+	<optgroup label="Servo">
+		<option value="servomotor.html">Servo moving</option>
+		<option value="servomultiple.html">Multiple servos</option>
+		<option value="servoanaloginput.html">Servo &amp; potentiometer</option>
+	</optgroup>
+	<optgroup label="Matrix">
+		<option value="hellomatrix.html">Hello Matrix</option>
+		<option value="spriteanimation.html">Sprite animation</option>
+	</optgroup>
+	<optgroup label="LiquidCrystal">
+		<option value="printdata.html">Printing data to parallel LCD display</option>
+	</optgroup>
+	<optgroup label="Encoder">
+		<option value="encoderread.html">Encoder read</option>
+	</optgroup>
+	<optgroup label="EEPROM">
+		<option value="storedata.html">Storing data</option>
+	</optgroup>
+	<optgroup label="EEPROMVar">
+		<option value="helloeepromvar.html">EEPROM data variables</option>
+	</optgroup>
+	<optgroup label="Firmata">
+		<option value="allinputsfirmata.html">All inputs</option>
+		<option value="analogfirmata.html">Analog inputs</option>
+		<option value="echostring.html">Strings accept and echoing</option>
+		<option value="i2cfirmata.html">Wire &amp; Firmata</option>
+		<option value="oldstandardfirmata.html">Old Standard protocol</option>
+		<option value="servofirmata.html">Servo &amp; Firmata</option>
+		<option value="simpleanalogfirmata.html">Analog input/output pins</option>
+		<option value="simpledigitalfirmata.html">Digital input/output pins</option>
+		<option value="standardfirmata.html">Standard protocol</option>
+	</optgroup>
+	<optgroup label="NewSoftSerial">
+		<option value="newsoftserialtest.html">Software serial port test</option>
+		<option value="twonsstest.html">Two ports</option>
+	</optgroup>
+	<optgroup label="Stepper">
+		<option value="steppermove.html">Stepper move</option>
+	</optgroup>
+	<optgroup label="NMEA">
+		<option value="basicpositioning.html">Basic positioning</option>
+		<option value="coursetodestination.html">Course to destination</option>
+		<option value="determiningspeed.html">Determining speed</option>
+		<option value="distancetodestination.html">Distance to destination</option>
+		<option value="nmeasentence.html">NMEA Sentence</option>
+	</optgroup>
+	<optgroup label="Button">
+		<option value="button.html">Button object</option>
+		<option value="eventbutton.html">Event API for buttons</option>
+		<option value="pollingcomplexbutton.html">Button polling technique</option>
+	</optgroup>
+	<optgroup label="Constrain">
+		<option value="simpleconstrain.html">Constrained variables</option>
+	</optgroup>
+	<optgroup label="FluentPrint">
+		<option value="hellofluentprint.html">Hello fluent print</option>
+	</optgroup>
+	<optgroup label="FSM">
+		<option value="ledstatemachine.html">LED state machine</option>
+	</optgroup>
+	<optgroup label="HashMap">
+		<option value="hellohashmap.html">Hello Hashmap</option>
+	</optgroup>
+	<optgroup label="Keypad">
+		<option value="customkeypad.html">Custom Keypad</option>
+		<option value="dynamickeypad.html">Dynamic Keypad</option>
+		<option value="eventkeypad.html">Event Keypad</option>
+		<option value="hellokeypad.html">Hello Keypad</option>
+	</optgroup>
+	<optgroup label="LED">
+		<option value="blink.html">Blink</option>
+		<option value="loop.html">Loop</option>
+	</optgroup>
+	<optgroup label="MenuBackend">
+		<option value="hellomenu.html">Hello Menu</option>
+	</optgroup>
+	<optgroup label="OSC">
+		<option value="helloosc.html">Hello OSC (Open Sound Control)</option>
+	</optgroup>
+	<optgroup label="Messenger">
+		<option value="basic_communication.html">Basic communication</option>
+		<option value="checkstring.html">Check string</option>
+		<option value="copystring.html">Copy string</option>
+	</optgroup>
+	<optgroup label="Password">
+		<option value="hellopassword.html">Hello Password</option>
+		<option value="passwordkeypad.html">Password Keypad</option>
+		<option value="serialmonitor.html">Serial Monitor</option>
+	</optgroup>
+	<optgroup label="Potentiometer">
+		<option value="potcontrol_led.html">PotControl LED</option>
+		<option value="potdemo.html">Pot Demo</option>
+	</optgroup>
+	<optgroup label="Scheduler">
+		<option value="delayedsignal.html">Delayed Signal</option>
+	</optgroup>
+	<optgroup label="Supervisor">
+		<option value="hellosupervisor.html">Hello Supervisor</option>
+	</optgroup>
+	<optgroup label="TimedAction">
+		<option value="hellotimedaction.html">Hello Timed Action</option>
+		<option value="threeexamplesatonce.html">Three Examples At Once</option>
+	</optgroup>
+</select>
+
+</td><td><a class="next" href="http://wiring.org.co/learning/libraries/barometricpressuresensor.html">
+				<img src="./tmp102sparkfun   Learning   Wiring_files/next_off.gif" alt="Barometric pressure: SCP1000"></a></td></tr></tbody></table></td></tr></tbody></table></div>
+
+<p class="ref-notice">This example is for Wiring version 1.0 build 0100+. If you have a previous version, use the examples included with your software. <em>If you see any errors or have comments, please <a href="http://forum.wiring.co/index.php/board,13.0.html">let us know</a>.</em></p>
+
+
+<div class="example">tmp102 temperature sensor by BARRAGAN (http://barraganstudio.com) <br>
+<br>
+ Demonstrates use of the Wire library reading data from the tmp102 temperature sensor On Wiring v1 boards the SCL and SDA pins are: 0 and 1 On Wiring S board the SCL and SDA pins are: 8 and 9<p></p>
+<p></p>
+
+<div class="applet">
+	<img src="./tmp102sparkfun   Learning   Wiring_files/tmp102sparkfun.png">
+</div>
+<p class="doc">
+</p><pre class="code">#<span class="keyword1">include</span> &lt;Wire.h&gt;
+
+<span class="comment">// From the datasheet the BMP module address LSB distinguishes</span>
+<span class="comment">// between <span class="keyword2">read</span> (1) and <span class="keyword2">write</span> (0) operations, corresponding to </span>
+<span class="comment">// address 0x91 (<span class="keyword2">read</span>) and 0x90 (<span class="keyword2">write</span>).</span>
+<span class="comment">// shift the address 1 <span class="keyword2">bit</span> right (0x91 or 0x90), the Wire library only needs the 7</span>
+<span class="comment">// most significant bits <span class="keyword1">for</span> the address 0x91 &gt;&gt; 1 = 0x48</span>
+<span class="comment">// 0x90 &gt;&gt; 1 = 0x48 (72)</span>
+
+<span class="keyword1">int</span> sensorAddress = 0x91 &gt;&gt; 1;  <span class="comment">// From datasheet sensor address is 0x91</span>
+                                <span class="comment">// shift the address 1 <span class="keyword2">bit</span> right, the Wire library only needs the 7</span>
+                                <span class="comment">// most significant bits <span class="keyword1">for</span> the address</span>
+<span class="keyword1">byte</span> msb;
+<span class="keyword1">byte</span> lsb;
+<span class="keyword1">int</span> temperature;
+
+<span class="keyword1">void</span> <span class="keyword2">setup</span>()
+{
+  <span class="keyword1">Serial</span>.<span class="keyword2">begin</span>(9600);  <span class="comment">// start serial communication at 9600bps</span>
+  Wire.<span class="keyword2">begin</span>();        <span class="comment">// join i2c bus (address optional <span class="keyword1">for</span> master) </span>
+}
+
+<span class="keyword1">void</span> <span class="keyword2">loop</span>()
+{
+  <span class="comment">// step 1: request reading from sensor </span>
+  Wire.requestFrom(sensorAddress,2); 
+  <span class="keyword1">if</span> (2 &lt;= Wire.<span class="keyword2">available</span>())  <span class="comment">// <span class="keyword1">if</span> two bytes were received </span>
+  {
+    msb = Wire.<span class="keyword2">read</span>();  <span class="comment">// receive high <span class="keyword1">byte</span> (full <span class="keyword2">degrees</span>)</span>
+    lsb = Wire.<span class="keyword2">read</span>();  <span class="comment">// receive low <span class="keyword1">byte</span> (fraction <span class="keyword2">degrees</span>) </span>
+    temperature = ((msb) &lt;&lt; 4);  <span class="comment">// MSB</span>
+    temperature |= (lsb &gt;&gt; 4);   <span class="comment">// LSB</span>
+    <span class="keyword1">Serial</span>.<span class="keyword2">print</span>(<span class="literal">"Temperature: "</span>);
+    <span class="keyword1">Serial</span>.<span class="keyword2">println</span>(temperature*0.0625);
+  }
+  <span class="keyword2">delay</span>(500);  <span class="comment">// wait <span class="keyword1">for</span> half a second</span>
+}
+</pre>
+
+
+</div>
+
+
+			
+			</div>
+
+			<!-- ==================================== FOOTER ============================ --> 
+  			<div id="footer">
+    			<div id="copyright">Wiring is an open project initiated by <a href="http://barraganstudio.com/" target="_blank">Hernando Barragán</a>. It is developed by a <a href="http://wiring.org.co/about.html">small team of volunteers</a>.</div> 
+  <div id="colophon">
+
+                    <a href="http://wiring.org.co/copyright.html">© Info</a>, Processing <a href="http://processing.org/copyright.html">© Info</a></div>
+		  </div>
+  			
+		</div>
+	
+
+</body></html>

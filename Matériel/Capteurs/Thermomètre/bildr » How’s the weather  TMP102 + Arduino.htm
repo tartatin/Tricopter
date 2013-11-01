@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0040)http://bildr.org/2011/01/tmp102-arduino/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta property="fb:page_id" content="246262332260">
+	<meta property="og:type" content="athlete">
+	<meta property="fb:admins" value="USER_ID1,USER_ID2">
+	
+	<script type="text/javascript" async="" src="./bildr » How’s the weather  TMP102 + Arduino_files/ga.js"></script><script src="./bildr » How’s the weather  TMP102 + Arduino_files/moo_core.js" type="text/javascript"></script>
+	<script src="./bildr » How’s the weather  TMP102 + Arduino_files/moo_more.js" type="text/javascript"></script>
+	<script src="./bildr » How’s the weather  TMP102 + Arduino_files/common.js" type="text/javascript"></script>
+	<script src="./bildr » How’s the weather  TMP102 + Arduino_files/MooClip.js" type="text/javascript"></script>
+	
+	<script type="text/javascript">
+	//copy functions
+	window.addEvent("domready",function(){var a=$$(".codesnip-container .copy");var b=new MooClip(a,{moviePath:"/common/js/MooClip/ZeroClipboard.swf",dataSource:function(c){return c.getParent(".codesnip-container").getElement(".codesnip").get("text").tidy()},onCopy:function(d,c){c.set("text","Copied");c.highlight();(function(){c.set("text","Copy Code")}).delay(3000)}})});		
+	</script>
+
+
+
+	 <title>bildr  » How’s the weather? TMP102 + Arduino</title>
+	
+	
+	<!-- <title>How’s the weather? TMP102 + Arduino </title> -->
+	
+	<!-- <title>How’s the weather? TMP102 + Arduino </title> -->
+ 
+	
+	<meta name="generator" content="WordPress 3.2">
+	
+	
+	
+	<meta property="fb:admins" content="12502024">
+	<meta property="og:site_name" content="bildr">
+	<meta property="og:type" content="article">
+	
+	
+	<link rel="stylesheet" href="./bildr » How’s the weather  TMP102 + Arduino_files/style.css" type="text/css" media="screen">
+	
+	<link rel="stylesheet" href="./bildr » How’s the weather  TMP102 + Arduino_files/codesnippet.css" type="text/css" media="screen">
+	
+	<link rel="stylesheet" href="./bildr » How’s the weather  TMP102 + Arduino_files/common.css" type="text/css" media="screen">
+	<link rel="alternate" type="application/rss+xml" title="bildr RSS Feed" href="http://bildr.org/feed/">
+	<link rel="pingback" href="http://bildr.org/blog/xmlrpc.php">
+
+	
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4050921-8']);
+  _gaq.push(['_setDomainName', '.bildr.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+
+
+<body>
+	<div id="headerWrapper">
+		<div id="globalNavigationWrapper">
+			
+			
+			
+			
+			<ul id="globalNavigation">
+				<li>Home</li>
+				<li><a href="http://forum.bildr.org/">Forum</a></li>
+				<li><a href="http://wiki.bildr.org/">Wiki</a></li>
+				<li><a href="http://code.bildr.org/">Code</a></li>
+				
+				<ul id="globalNavigationRight">
+					<li><a href="http://bildr.org/feed/">RSS</a></li>
+					<li><a href="http://twitter.com/bildr">Twitter</a></li>
+					<li><a href="http://www.facebook.com/bildr.DIY">Facebook</a></li>
+				</ul>
+				
+			</ul>
+			
+			
+			
+			
+			
+		</div>
+	
+	
+	
+		<div id="header">
+			<a id="mainLogo" class="blog" href="http://bildr.org/"></a>
+			
+			<div id="headSearch">
+				<form method="get" id="searchform" action="http://bildr.org/">
+				<input type="text" size="18" value="" name="s" id="searchInput"><label class="overTxtLabel" style="line-height: normal; cursor: text; position: absolute; left: 4px; top: 2px; " for="searchInput">search blog...</label>
+				<a id="searchChoices" data-searchtext="search blog..." href="http://bildr.org/2011/01/tmp102-arduino/#"></a>
+				
+				<div id="searchMenu">
+					<a class="wiki" href="http://bildr.org/2011/01/tmp102-arduino/#">Search Wiki</a>
+				<!-- <a class="code" href="#">Search Code</a> -->
+					<a class="forum" href="http://bildr.org/2011/01/tmp102-arduino/#">Search Forum</a>
+					<a class="blog" href="http://bildr.org/2011/01/tmp102-arduino/#">Search Blog</a>
+				</div>
+				
+				
+				<input type="submit" id="searchsubmit" value="Search" class="btn">
+				</form>
+			</div>
+			
+			<div id="user">		
+				<a href="http://forum.bildr.org/ucp.php?mode=login" title="Login" accesskey="l">Login</a>
+		 / <a href="http://forum.bildr.org/ucp.php?mode=register">Register</a>			</div>
+			
+		</div>
+	</div>
+	
+	<div id="actionWrapper">
+		<div id="actionBar">
+		
+		
+		<ul id="actions">
+			<li class="page_item page-item-2"><a href="http://bildr.org/about/" title="About">About</a></li>
+<li class="page_item page-item-1070"><a href="http://bildr.org/write-for-us/" title="Write For Us">Write For Us</a></li>
+		</ul>
+		
+				
+		
+		</div>
+	</div>
+	
+	<div class="content">
+	
+
+
+
+		
+		<div class="post">
+		
+			<h2>
+				<a href="./bildr » How’s the weather  TMP102 + Arduino_files/bildr » How’s the weather  TMP102 + Arduino.htm">
+					How’s the weather? TMP102 + Arduino				</a>
+			</h2>
+			
+			<div class="date">
+				Thursday, January 20	<sup class="super">th</sup>
+	, 2011			</div>
+			
+			<div class="postContent">
+				<p><img class="noFrame" src="./bildr » How’s the weather  TMP102 + Arduino_files/tmp102.jpg"></p>
+<div class="columnBody">
+<div class="leftColumn">
+The <a href="http://wiki.bildr.org/index.php/TMP102">TMP102</a> is a very simple, yet accurate, ambient temperature sensor which is capable of detecting .0625ºC changes between -25 and +85°C, with an accuracy of 0.5°C. And the real kicker… It does all of this while only consuming 10µA (10 millionths of an <a href="http://wiki.bildr.org/index.php/amp">amp</a>). The thing is quite tiny, so <a href="http://www.sparkfun.com/">SparkFun</a> has put it on a <a href="http://www.sparkfun.com/products/9418">breakout board</a> to make things easier.<p></p>
+<p>Naturally, you probably already ordered a few of these for your room-to-room sensor-network to prove to your landlord that the heat is dropping below the agreed temperature. Wait… That’s just me? You just want to know how to hook one up to your Arduino? Ok… I can help with that.</p>
+<p>The TMP102 is an <a href="http://wiki.bildr.org/index.php/I2C">I2C</a> device, so when we are done with it, it will actually tell you the temperature, not send an analog signal that you then need to interpret. But that also means it is a little harder (code-wise) than just using an <a href="http://wiki.bildr.org/index.php/ADC">ADC</a> and reading an <a href="http://wiki.bildr.org/index.php/analog">analog</a> <a href="http://wiki.bildr.org/index.php/voltage">voltage</a>. But, in return for the added complexity, It is also more accurate then any analog reading the Arduino is capable of. So, if you actually care what the ambient temperature is, and not just checking to see if the temperature has changed, this is your guy.  I say ambient temperature because it would be a little hard to connect this to anything, and it doesn’t support a <a href="http://wiki.bildr.org/index.php/thermocouple">thermocouple</a>.</p>
+</div>
+<div class="rightColumn">
+<a href="./bildr » How’s the weather  TMP102 + Arduino_files/tmp102.png"><img src="./bildr » How’s the weather  TMP102 + Arduino_files/tmp102.png" class="noFrame"></a>
+</div>
+</div>
+<p>For this, and all other I2C devices connected to your arduino, all you need to know is that I2C is a 2-wire <a href="http://wiki.bildr.org/index.php/serial">serial</a> connection, SDA (Data) and SCL (Clock) – On your Arduino (everything but the <a href="http://wiki.bildr.org/index.php/Arduino%20Mega">mega</a>) SDA is on analog pin 4, and SCL is on analog pin 5. On an arduino mega, SDA is digital 20, and SCL is digital 21. Like most I2C devices, when communicating with one on an Arduino, we will be using the <a href="http://arduino.cc/en/Reference/Wire">Wire library</a> to do so.</p>
+<p>The sensor has an address pin (ADD0) that is used to change the address the sensor is located at. This is useful if you need more than one of these hooked up to one Arduino, you can still call them independently even on the same bus. We are grounding this pin so that the sensor will use the address of 72 (0×48 in <a href="http://wiki.bildr.org/index.php/hex">hex</a>). Connecting this pin to V+ (3.3v on the arduino) would set the address to 73 (0×49 in <a href="http://wiki.bildr.org/index.php/hex">hex</a>), and you would just need to change that address at the top of the code ( int tmp102Address = 0×49; ).</p>
+<p>The code for the TMP102 is the easiest I2C device I have yet run across, and accessing the value from it is just a few lines of code. To please the greatest ammount of people, we are going to output the values in both Celsius and Fahrenheit. But if you wanted to do the math, and had your reasons, you could output <a href="http://en.wikipedia.org/wiki/R%C3%A9aumur_scale">Réaumur</a> or even <a href="http://en.wikipedia.org/wiki/Delisle_scale">Delisle</a>.</p>
+<div class="codesnip-container">
+<div class="codeHead">
+				<a class="copy" href="http://bildr.org/2011/01/tmp102-arduino/#">Copy Code</a>
+			</div>
+<pre class="arduino codesnip" style="font-family:monospace;"><span class="co1">//////////////////////////////////////////////////////////////////</span>
+<span class="co1">//©2011 bildr</span>
+<span class="co1">//Released under the MIT License - Please reuse change and share</span>
+<span class="co1">//Simple code for the TMP102, simply prints temperature via serial</span>
+<span class="co1">//////////////////////////////////////////////////////////////////</span>
+
+<span class="co2">#include &lt;Wire.h&gt;</span>
+<span class="kw4">int</span> tmp102Address <span class="sy0">=</span> <span class="nu12">0x48</span><span class="sy0">;</span>
+<span class="kw4">byte</span> res<span class="sy0">;</span>
+<span class="kw4">int</span> val<span class="sy0">;</span>
+
+<span class="kw4">void</span> setup<span class="br0">(</span><span class="br0">)</span><span class="br0">{</span>
+  <span class="kw3">Serial</span>.<span class="me1">begin</span><span class="br0">(</span>9600<span class="br0">)</span><span class="sy0">;</span>
+  Wire.<span class="me1">begin</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+
+<span class="kw4">void</span> loop<span class="br0">(</span><span class="br0">)</span><span class="br0">{</span>
+  Wire.<span class="me1">requestFrom</span><span class="br0">(</span>tmp102Address<span class="sy0">,</span>2<span class="br0">)</span><span class="sy0">;</span> 
+
+  <span class="kw4">byte</span> MSB <span class="sy0">=</span> Wire.<span class="me1">receive</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw4">byte</span> LSB <span class="sy0">=</span> Wire.<span class="me1">receive</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+
+  <span class="kw4">int</span> TemperatureSum <span class="sy0">=</span> <span class="br0">(</span><span class="br0">(</span>MSB <span class="sy0">&lt;&lt;</span> 8<span class="br0">)</span> <span class="sy0">|</span> LSB<span class="br0">)</span> <span class="sy0">&gt;&gt;</span> <span class="nu0">4</span><span class="sy0">;</span> <span class="co1">//it's a 12bit int, using two's compliment for negative</span>
+
+  <span class="kw4">float</span> celsius <span class="sy0">=</span> TemperatureSum<span class="sy0">*</span><span class="nu16">0.0625</span><span class="sy0">;</span>
+  <span class="kw4">float</span> fahrenheit <span class="sy0">=</span> <span class="br0">(</span>TemperatureSum<span class="sy0">*</span>0.1125<span class="br0">)</span> <span class="sy0">+</span> <span class="nu0">32</span><span class="sy0">;</span>  
+
+  <span class="kw3">Serial</span>.<span class="me1">print</span><span class="br0">(</span><span class="st0">"Celsius: "</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw3">Serial</span>.<span class="me1">println</span><span class="br0">(</span>celsius<span class="br0">)</span><span class="sy0">;</span>
+
+  <span class="kw3">Serial</span>.<span class="me1">print</span><span class="br0">(</span><span class="st0">"Fahrenheit: "</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw3">Serial</span>.<span class="me1">println</span><span class="br0">(</span>fahrenheit<span class="br0">)</span><span class="sy0">;</span>
+
+  <span class="kw3">delay</span><span class="br0">(</span>1000<span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span></pre>
+<div class="codeFoot">
+				Unless otherwise stated, this code is released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a> – Please use, change and share it.
+			</div>
+<p></p></div>
+<h3>Conclusion</h3>
+<p>So, there you have it: Connecting the TMP102 digital thermometer to your Arduino. I hope this was helpful, and make sure to keep checking the site for more tutorials.</p>
+<p>As always, if you have questions, comments, concerns, or know of a way to improve this article, please let us know in the discussion area.</p>
+<h3>We want you to blog with us</h3>
+<p>bildr is looking for anyone interested in writing any sort of blog post for bildr. If you think you would like to help bildr by writing something, or have an idea for a post you think should be written, please contact us at blog@bildr.org or let us know in the forum.</p>
+			</div>
+			
+			
+			<div class="network">
+				
+	<span class="reTweet">
+		<script src="./bildr » How’s the weather  TMP102 + Arduino_files/widgets.js" type="text/javascript"></script>
+		<a href="http://twitter.com/share?url=http%3A%2F%2Fbildr.org%2F2011%2F01%2Ftmp102-arduino%2F&via=&count=horizontal&text=RT%20@bildr%20-%20How%E2%80%99s%20the%20weather?%20TMP102%20+%20Arduino" class="twitter-share-button">Tweet</a>
+	</span>				
+	<span class="facebook">				
+		<iframe src="./bildr » How’s the weather  TMP102 + Arduino_files/like.htm" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowtransparency="true"></iframe>
+	</span>				<a class="forumDiscussion" href="http://forum.bildr.org/viewtopic.php?p=2644"><span class="count">15</span> Comments</a>			</div>
+			<div class="clear"></div>
+			
+		</div>
+		
+		
+	
+	
+	<div class="alignleft"></div>
+	<div class="alignright"></div>
+	
+	
+	
+	</div>
+
+<div id="footerWrapper">
+	<div id="footerLine"></div>	
+	
+	<div id="footer">
+		
+		<div id="footerLinks">
+		<div id="footer1">
+							<h3>Archives</h3>
+				
+				<ul>
+						<li><a href="http://bildr.org/2011/09/" title="September 2011">September 2011</a></li>
+	<li><a href="http://bildr.org/2011/08/" title="August 2011">August 2011</a></li>
+	<li><a href="http://bildr.org/2011/07/" title="July 2011">July 2011</a></li>
+	<li><a href="http://bildr.org/2011/06/" title="June 2011">June 2011</a></li>
+	<li><a href="http://bildr.org/2011/05/" title="May 2011">May 2011</a></li>
+	<li><a href="http://bildr.org/2011/04/" title="April 2011">April 2011</a></li>
+	<li><a href="http://bildr.org/2011/03/" title="March 2011">March 2011</a></li>
+	<li><a href="http://bildr.org/2011/02/" title="February 2011">February 2011</a></li>
+	<li><a href="http://bildr.org/2011/01/" title="January 2011">January 2011</a></li>
+	<li><a href="http://bildr.org/2010/12/" title="December 2010">December 2010</a></li>
+	<li><a href="http://bildr.org/2010/11/" title="November 2010">November 2010</a></li>
+	<li><a href="http://bildr.org/2010/10/" title="October 2010">October 2010</a></li>
+	<li><a href="http://bildr.org/2010/09/" title="September 2010">September 2010</a></li>
+				</ul>
+					</div>
+	
+		<div id="footer2">
+							<h3>Categories</h3>
+				<ul>
+						<li class="cat-item cat-item-5"><a href="http://bildr.org/category/funded-projects/" title="View all posts filed under funded projects">funded projects</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://bildr.org/category/promotions/" title="View all posts filed under Promotions">Promotions</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://bildr.org/category/review/" title="View all posts filed under Review">Review</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://bildr.org/category/site/" title="View all posts filed under Site">Site</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://bildr.org/category/tutorials/" title="View all posts filed under Tutorials">Tutorials</a>
+</li>
+	<li class="cat-item cat-item-55"><a href="http://bildr.org/category/user-contributed-articles/" title="View all posts filed under User Contributed Articles">User Contributed Articles</a>
+</li>
+	<li class="cat-item cat-item-102"><a href="http://bildr.org/category/user-project/" title="View all posts filed under User Project">User Project</a>
+</li>
+				</ul>
+					</div>
+		
+		
+		
+		<div id="footer3">
+			<h3>about</h3>
+			
+			<ul>									
+				<li id="copyright">Content available under: <br><a href="http://creativecommons.org/licenses/by-sa/3.0/" class="external ">Attribution-Share Alike 3.0 Unported</a></li> 						
+				<li>Proudly powered by <a href="http://wordpress.org/">WordPress</a>, <strong><a href="http://www.themelab.com/" title="Theme Lab">Free WordPress Themes</a>, and <a href="http://www.websiteoffice.com/">Search Marketing</a></strong></li>
+			</ul>
+		</div>
+		</div>
+		
+		
+		<div class="clearDiv"></div>
+	
+	
+	</div>
+	<div id="footerGrad"></div>
+</div>	
+		
+
+<div id="MooClipContainer92685546" style="position: absolute; overflow-x: hidden; overflow-y: hidden; height: 1px; width: 1px; "><object id="MooClip92685546" height="500" width="500" type="application/x-shockwave-flash" data="http://bildr.org/common/js/MooClip/ZeroClipboard.swf"><param name="quality" value="best"><param name="allowScriptAccess" value="always"><param name="wMode" value="transparent"><param name="swLiveConnect" value="true"><param name="loop" value="false"><param name="menu" value="false"><param name="allowFullScreen" value="false"><param name="wmode" value="transparent"><param name="flashVars" value="id=MooClip92685546&amp;width=500&amp;height=500"></object></div></body></html>

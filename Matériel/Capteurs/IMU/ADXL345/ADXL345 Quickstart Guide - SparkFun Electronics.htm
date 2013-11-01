@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.sparkfun.com/tutorials/240 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    
+    <meta name="google-site-verification" content="XUb2UlchrvwCWWyhXksBlqQy1STYtTEN_M0-tgQRHRs">
+    <meta name="google-site-verification" content="gRUAvzBJ_533b-AGTmldOJfByU6TkojfUbWovB2wKJo">
+    <title>ADXL345 Quickstart Guide - SparkFun Electronics</title>
+    <link rel="stylesheet" href="./ADXL345 Quickstart Guide - SparkFun Electronics_files/screen.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="./ADXL345 Quickstart Guide - SparkFun Electronics_files/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="./ADXL345 Quickstart Guide - SparkFun Electronics_files/lightbox.css" type="text/css" media="screen">
+    <!-- IE is the bane of my existence. -->
+    <!--[if IE]><link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen" /><![endif]-->
+    <!--[if lte IE 7]><link rel="stylesheet" href="/css/ie7.css" type="text/css" media="screen" /><![endif]-->
+    <link rel="alternate" type="application/rss+xml" title="All News" href="http://www.sparkfun.com/feeds/news/">
+    <link rel="alternate" type="application/rss+xml" title="New Products" href="http://www.sparkfun.com/feeds/products/">
+    <link rel="alternate" type="application/rss+xml" title="All Product Changes" href="http://www.sparkfun.com/feeds/changes/">
+    <link rel="alternate" type="application/rss+xml" title="All Comments" href="http://www.sparkfun.com/feeds/comments/">
+    <link rel="alternate" type="application/rss+xml" title="Videos" href="http://gdata.youtube.com/feeds/base/users/sparkfun/uploads?alt=rss&v=2&orderby=published">
+     
+    <link rel="apple-touch-icon" href="http://www.sparkfun.com/fanboy.png">
+    <link rev="canonical" type="text/html" href="http://sprkfn.com/t240"> 
+    <script type="text/javascript" async="" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/ga.js"></script><script type="text/javascript">
+      var HTTP_SERVER = 'http://www.sparkfun.com',
+          HTTPS_SERVER = 'https://www.sparkfun.com',
+          HTTP_STATIC = 'http://dlnmh9ip6v2uc.cloudfront.net',
+          FULL_LAYOUT = true,
+          AUTHENTICATED = true;
+    </script>
+    <script type="text/javascript" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/prototype.js"></script>
+    <script type="text/javascript" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/scriptaculous.js"></script><script type="text/javascript" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/effects.js"></script><script type="text/javascript" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/builder.js"></script>
+    <!-- turns out  that IE7 chokes if you don't load these separately. -->
+    <!--[if lte IE 7]>
+    <script type="text/javascript" src="/js/effects.js"></script>
+    <script type="text/javascript" src="/js/builder.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/lightbox.js"></script>
+  </head>
+  <body>
+    <div id="airlock" class="clearfix">
+
+      
+<div id="header">
+  <a href="http://www.sparkfun.com/"><img width="188" height="105" class="logo" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/logo-aapl.gif" title="Thanks, Steve." alt="SparkFun Electronics"></a>
+  <a href="http://www.sparkfun.com/tutorials/240#products_menu" class="skip">Skip to menu</a>
+  <a href="http://www.sparkfun.com/tutorials/240#content" class="skip">Skip to content</a>
+
+  <script>BANNER_ID=68</script>
+    <div id="banner-nav" style="display: none;">
+    <img id="banner-goprev" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/banner_left.png" height="23" width="23">
+    <img id="banner-all" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/banner_all.png" height="23" width="23">
+    <img id="banner-gonext" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/banner_right.png" height="23" width="23">
+  </div>
+  <a id="banner-link" href="http://www.sparkfun.com/project_calls" onclick="SFE.track_link(this,&#39;Banners&#39;,&#39;clicked&#39;,&#39;banner-68&#39;);return false;"><img width="978" height="105" id="banner" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/SFE03.0003.GenericProjectCall-02.jpg" alt=""></a>
+
+  <div id="header-menu">
+    <ul>
+      <li><a href="http://www.sparkfun.com/index">Home</a></li>
+      <li><a href="http://www.sparkfun.com/static/customer_service">Customer Service</a></li>
+      <li class="active"><a href="http://www.sparkfun.com/tutorials">Tutorials</a></li>
+      <li><a href="http://forum.sparkfun.com/">Forum</a></li>
+      <li><a href="http://www.sparkfun.com/distributors">Distributors</a></li>
+      <li><a href="http://www.sparkfun.com/static/about">About Us</a></li>
+      <li class="last"><a href="http://www.sparkfun.com/static/contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+      <div id="left">
+        <h2 class="sidebar sidebar-top" id="search_menu">Search</h2>
+        <form class="sidebar sidebar-bottom search" style="display: block" action="http://www.sparkfun.com/search/results" id="search_form" method="get">
+  <input id="search_field" name="term" type="text" value="">
+  <input type="submit" value="Go" class="button">
+  <br>
+  <input id="products_search" type="radio" name="what" value="products" checked="">
+  <label for="products_search">Products</label>
+  <br>
+  <input id="news_search" type="radio" name="what" value="news">
+  <label for="news_search">News</label>
+  <br>
+  <input id="tutorials_search" type="radio" name="what" value="tutorials">
+  <label for="tutorials_search">Tutorials</label>
+  <br>
+  <input id="comments_search" type="radio" name="what" value="comments">
+  <label for="comments_search">Comments</label>
+</form>
+        <br>
+
+          <h2 class="sidebar sidebar-bottom" id="products_menu"><a href="http://www.sparkfun.com/categories">Products</a></h2>
+        
+<ul id="category_menu_list" class="sidebar sidebar-bottom" style="display: block">
+  <li id="menu_category_new_products"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/new_products">New Products</a></li>
+  <li id="menu_category_top"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/top">Top Sellers</a></li>
+  <li id="menu_category_featured"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/featured">Staff Picks</a></li>
+  <li id="menu_category_gift_certificates"><span class="arrow"></span><a href="https://www.sparkfun.com/gift_certificates">Gift Certificates</a></li>
+  <li><hr></li>
+  <li id="menu_category_176"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/176">Books</a></li><li id="menu_category_20"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/20">Breakout Boards</a></li><li id="menu_category_70"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/70">Cables</a><ul style="display:none;"><li id="menu_category_140"><a href="http://www.sparkfun.com/categories/140">Audio</a></li><li id="menu_category_150"><a href="http://www.sparkfun.com/categories/150">Ethernet</a></li><li id="menu_category_72"><a href="http://www.sparkfun.com/categories/72">Hook Up</a></li><li id="menu_category_75"><a href="http://www.sparkfun.com/categories/75">Parallel</a></li><li id="menu_category_74"><a href="http://www.sparkfun.com/categories/74">Serial</a></li><li id="menu_category_71"><a href="http://www.sparkfun.com/categories/71">USB</a></li></ul></li><li id="menu_category_66"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/66">Cellular</a><ul style="display:none;"><li id="menu_category_67"><a href="http://www.sparkfun.com/categories/67">Antennas</a></li><li id="menu_category_69"><a href="http://www.sparkfun.com/categories/69">Eval Boards</a></li><li id="menu_category_68"><a href="http://www.sparkfun.com/categories/68">Modules</a></li></ul></li><li id="menu_category_154"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/154">Classes</a></li><li id="menu_category_51"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/51">Components</a><ul style="display:none;"><li id="menu_category_87"><a href="http://www.sparkfun.com/categories/87">ARM Microcontrollers</a></li><li id="menu_category_21"><a href="http://www.sparkfun.com/categories/21">AVR Microcontrollers</a></li><li id="menu_category_145"><a href="http://www.sparkfun.com/categories/145">Buttons/Switches</a></li><li id="menu_category_226"><a href="http://www.sparkfun.com/categories/226">EL</a></li><li id="menu_category_60"><a href="http://www.sparkfun.com/categories/60">General</a></li><li id="menu_category_90"><a href="http://www.sparkfun.com/categories/90">General ICs</a></li><li id="menu_category_89"><a href="http://www.sparkfun.com/categories/89">LEDs</a><ul><li id="menu_category_173"><a href="http://www.sparkfun.com/categories/173">10mm</a></li><li id="menu_category_171"><a href="http://www.sparkfun.com/categories/171">3mm</a></li><li id="menu_category_172"><a href="http://www.sparkfun.com/categories/172">5mm</a></li><li id="menu_category_170"><a href="http://www.sparkfun.com/categories/170">7-Segment</a></li><li id="menu_category_175"><a href="http://www.sparkfun.com/categories/175">Other</a></li><li id="menu_category_174"><a href="http://www.sparkfun.com/categories/174">SMD</a></li></ul></li><li id="menu_category_88"><a href="http://www.sparkfun.com/categories/88">Oscillators</a></li><li id="menu_category_22"><a href="http://www.sparkfun.com/categories/22">PIC Microcontrollers</a></li><li id="menu_category_124"><a href="http://www.sparkfun.com/categories/124">PICAXE Microcontrollers</a></li><li id="menu_category_132"><a href="http://www.sparkfun.com/categories/132">PSoC Microcontrollers</a></li><li id="menu_category_29"><a href="http://www.sparkfun.com/categories/29">SMD ICs</a></li></ul></li><li id="menu_category_2"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/2">Development Tools</a><ul style="display:none;"><li id="menu_category_184"><a href="http://www.sparkfun.com/categories/184">.NET</a></li><li id="menu_category_93"><a href="http://www.sparkfun.com/categories/93">ADuC</a></li><li id="menu_category_218"><a href="http://www.sparkfun.com/categories/218">Android</a></li><li id="menu_category_103"><a href="http://www.sparkfun.com/categories/103">Arduino</a></li><li id="menu_category_219"><a href="http://www.sparkfun.com/categories/219">ARM</a></li><li id="menu_category_10"><a href="http://www.sparkfun.com/categories/10">AVR</a></li><li id="menu_category_164"><a href="http://www.sparkfun.com/categories/164">Beagle</a></li><li id="menu_category_187"><a href="http://www.sparkfun.com/categories/187">Chumby</a></li><li id="menu_category_109"><a href="http://www.sparkfun.com/categories/109">Coridium</a></li><li id="menu_category_136"><a href="http://www.sparkfun.com/categories/136">FPGA</a></li><li id="menu_category_101"><a href="http://www.sparkfun.com/categories/101">iPod</a></li><li id="menu_category_25"><a href="http://www.sparkfun.com/categories/25">LPC</a></li><li id="menu_category_11"><a href="http://www.sparkfun.com/categories/11">MSP</a></li><li id="menu_category_9"><a href="http://www.sparkfun.com/categories/9">PIC</a></li><li id="menu_category_125"><a href="http://www.sparkfun.com/categories/125">PICAXE</a></li><li id="menu_category_137"><a href="http://www.sparkfun.com/categories/137">PSoC</a></li><li id="menu_category_104"><a href="http://www.sparkfun.com/categories/104">Roomba</a></li><li id="menu_category_94"><a href="http://www.sparkfun.com/categories/94">SAM</a></li><li id="menu_category_95"><a href="http://www.sparkfun.com/categories/95">ST</a></li><li id="menu_category_167"><a href="http://www.sparkfun.com/categories/167">STAMP</a></li><li id="menu_category_107"><a href="http://www.sparkfun.com/categories/107">Wiring</a></li><li id="menu_category_169"><a href="http://www.sparkfun.com/categories/169">WIZnet</a></li><li id="menu_category_166"><a href="http://www.sparkfun.com/categories/166">XMOS</a></li><li id="menu_category_142"><a href="http://www.sparkfun.com/categories/142">Zune</a></li></ul></li><li id="menu_category_100"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/100">Dings and Dents</a></li><li id="menu_category_204"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/204">E-Textiles</a><ul style="display:none;"><li id="menu_category_205"><a href="http://www.sparkfun.com/categories/205">Aniomagic</a></li><li id="menu_category_210"><a href="http://www.sparkfun.com/categories/210">fabrickit</a></li><li id="menu_category_135"><a href="http://www.sparkfun.com/categories/135">LilyPad</a></li><li id="menu_category_206"><a href="http://www.sparkfun.com/categories/206">Materials</a></li></ul></li><li id="menu_category_4"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/4">GPS</a><ul style="display:none;"><li id="menu_category_18"><a href="http://www.sparkfun.com/categories/18">Antennas</a></li><li id="menu_category_86"><a href="http://www.sparkfun.com/categories/86">Eval Boards</a></li><li id="menu_category_17"><a href="http://www.sparkfun.com/categories/17">Modules</a></li></ul></li><li id="menu_category_157"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/157">Kits</a></li><li id="menu_category_76"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/76">LCDs</a><ul style="display:none;"><li id="menu_category_147"><a href="http://www.sparkfun.com/categories/147">Color</a></li><li id="menu_category_148"><a href="http://www.sparkfun.com/categories/148">Monochrome</a></li></ul></li><li id="menu_category_96"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/96">Port-O-Rotary</a></li><li id="menu_category_1"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/1">Programmers</a><ul style="display:none;"><li id="menu_category_26"><a href="http://www.sparkfun.com/categories/26">ARM</a></li><li id="menu_category_7"><a href="http://www.sparkfun.com/categories/7">AVR</a></li><li id="menu_category_37"><a href="http://www.sparkfun.com/categories/37">MAXQ</a></li><li id="menu_category_8"><a href="http://www.sparkfun.com/categories/8">MSP</a></li><li id="menu_category_6"><a href="http://www.sparkfun.com/categories/6">PIC</a></li><li id="menu_category_126"><a href="http://www.sparkfun.com/categories/126">PICAXE</a></li><li id="menu_category_168"><a href="http://www.sparkfun.com/categories/168">XMOS</a></li></ul></li><li id="menu_category_53"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/53">Prototyping</a><ul style="display:none;"><li id="menu_category_54"><a href="http://www.sparkfun.com/categories/54">Batteries</a></li><li id="menu_category_149"><a href="http://www.sparkfun.com/categories/149">Boards</a></li><li id="menu_category_91"><a href="http://www.sparkfun.com/categories/91">Connectors</a></li><li id="menu_category_182"><a href="http://www.sparkfun.com/categories/182">Enclosures</a></li><li id="menu_category_55"><a href="http://www.sparkfun.com/categories/55">General</a></li><li id="menu_category_155"><a href="http://www.sparkfun.com/categories/155">Hardware</a></li><li id="menu_category_92"><a href="http://www.sparkfun.com/categories/92">Sockets</a></li><li id="menu_category_116"><a href="http://www.sparkfun.com/categories/116">Solar</a></li><li id="menu_category_141"><a href="http://www.sparkfun.com/categories/141">Wire</a></li></ul></li><li id="menu_category_207"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/207">Retail</a><ul style="display:none;"><li id="menu_category_212"><a href="http://www.sparkfun.com/categories/212">Arduino</a></li><li id="menu_category_216"><a href="http://www.sparkfun.com/categories/216">Components</a></li><li id="menu_category_213"><a href="http://www.sparkfun.com/categories/213">Kits</a></li><li id="menu_category_211"><a href="http://www.sparkfun.com/categories/211">Materials</a></li><li id="menu_category_215"><a href="http://www.sparkfun.com/categories/215">Prototyping</a></li><li id="menu_category_214"><a href="http://www.sparkfun.com/categories/214">Sensors</a></li><li id="menu_category_217"><a href="http://www.sparkfun.com/categories/217">Tools</a></li><li id="menu_category_220"><a href="http://www.sparkfun.com/categories/220">Wireless</a></li></ul></li><li id="menu_category_134"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/134">Retired</a><ul style="display:none;"><li id="menu_category_194"><a href="http://www.sparkfun.com/categories/194">Breakout Boards</a></li><li id="menu_category_203"><a href="http://www.sparkfun.com/categories/203">Cables</a></li><li id="menu_category_200"><a href="http://www.sparkfun.com/categories/200">Classes</a></li><li id="menu_category_192"><a href="http://www.sparkfun.com/categories/192">Components</a></li><li id="menu_category_191"><a href="http://www.sparkfun.com/categories/191">Development Tools</a></li><li id="menu_category_225"><a href="http://www.sparkfun.com/categories/225">Ding and Dent</a></li><li id="menu_category_188"><a href="http://www.sparkfun.com/categories/188">GPS</a></li><li id="menu_category_190"><a href="http://www.sparkfun.com/categories/190">Kits</a></li><li id="menu_category_196"><a href="http://www.sparkfun.com/categories/196">LCD</a></li><li id="menu_category_201"><a href="http://www.sparkfun.com/categories/201">Programmers</a></li><li id="menu_category_195"><a href="http://www.sparkfun.com/categories/195">Prototyping</a></li><li id="menu_category_197"><a href="http://www.sparkfun.com/categories/197">Robotics</a></li><li id="menu_category_189"><a href="http://www.sparkfun.com/categories/189">Sensors</a></li><li id="menu_category_208"><a href="http://www.sparkfun.com/categories/208">SFE Widgets</a></li><li id="menu_category_198"><a href="http://www.sparkfun.com/categories/198">Swag</a></li><li id="menu_category_193"><a href="http://www.sparkfun.com/categories/193">Tools</a></li><li id="menu_category_199"><a href="http://www.sparkfun.com/categories/199">Wireless</a></li></ul></li><li id="menu_category_31"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/31">Robotics</a><ul style="display:none;"><li id="menu_category_179"><a href="http://www.sparkfun.com/categories/179">Drivers</a></li><li id="menu_category_181"><a href="http://www.sparkfun.com/categories/181">Kits</a></li><li id="menu_category_178"><a href="http://www.sparkfun.com/categories/178">Motors</a></li><li id="menu_category_202"><a href="http://www.sparkfun.com/categories/202">Other</a></li><li id="menu_category_180"><a href="http://www.sparkfun.com/categories/180">Wheels</a></li></ul></li><li id="menu_category_185"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/185">Sale</a></li><li id="menu_category_23"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/23">Sensors</a><ul style="display:none;"><li id="menu_category_80"><a href="http://www.sparkfun.com/categories/80">Accelerometers</a><ul><li id="menu_category_161"><a href="http://www.sparkfun.com/categories/161">1-axis</a></li><li id="menu_category_162"><a href="http://www.sparkfun.com/categories/162">2-axis</a></li><li id="menu_category_163"><a href="http://www.sparkfun.com/categories/163">3-axis</a></li></ul></li><li id="menu_category_146"><a href="http://www.sparkfun.com/categories/146">Biometrics</a></li><li id="menu_category_117"><a href="http://www.sparkfun.com/categories/117">Capacitive</a></li><li id="menu_category_151"><a href="http://www.sparkfun.com/categories/151">Current</a></li><li id="menu_category_143"><a href="http://www.sparkfun.com/categories/143">Flex / Force</a></li><li id="menu_category_85"><a href="http://www.sparkfun.com/categories/85">Gyros</a><ul><li id="menu_category_158"><a href="http://www.sparkfun.com/categories/158">1-axis</a></li><li id="menu_category_159"><a href="http://www.sparkfun.com/categories/159">2-axis</a></li><li id="menu_category_183"><a href="http://www.sparkfun.com/categories/183">3-axis</a></li></ul></li><li id="menu_category_144"><a href="http://www.sparkfun.com/categories/144">ID</a></li><li id="menu_category_160"><a href="http://www.sparkfun.com/categories/160">IMU</a></li><li id="menu_category_139"><a href="http://www.sparkfun.com/categories/139">Infrared</a></li><li id="menu_category_102"><a href="http://www.sparkfun.com/categories/102">Light / Imaging</a></li><li id="menu_category_83"><a href="http://www.sparkfun.com/categories/83">Magneto</a></li><li id="menu_category_84"><a href="http://www.sparkfun.com/categories/84">Proximity</a></li><li id="menu_category_165"><a href="http://www.sparkfun.com/categories/165">Radiation</a></li><li id="menu_category_186"><a href="http://www.sparkfun.com/categories/186">Sound</a></li><li id="menu_category_82"><a href="http://www.sparkfun.com/categories/82">Temperature</a></li><li id="menu_category_152"><a href="http://www.sparkfun.com/categories/152">Weather</a></li></ul></li><li id="menu_category_97"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/97">SFE Widgets</a></li><li id="menu_category_130"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/130">Swag</a></li><li id="menu_category_46"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/46">Tools</a><ul style="display:none;"><li id="menu_category_47"><a href="http://www.sparkfun.com/categories/47">Hand Tools</a></li><li id="menu_category_48"><a href="http://www.sparkfun.com/categories/48">Hot-Air Rework</a></li><li id="menu_category_177"><a href="http://www.sparkfun.com/categories/177">Instruments</a></li><li id="menu_category_221"><a href="http://www.sparkfun.com/categories/221">Organization</a></li><li id="menu_category_28"><a href="http://www.sparkfun.com/categories/28">Power Supplies</a></li><li id="menu_category_49"><a href="http://www.sparkfun.com/categories/49">Soldering</a></li></ul></li><li id="menu_category_138"><span class="arrow"></span><a href="http://www.sparkfun.com/categories/138">Tracking</a></li><li id="menu_category_16"><span class="arrow">&#9658;</span><a href="http://www.sparkfun.com/categories/16">Wireless</a><ul style="display:none;"><li id="menu_category_78"><a href="http://www.sparkfun.com/categories/78">Antennas</a></li><li id="menu_category_115"><a href="http://www.sparkfun.com/categories/115">Bluetooth</a></li><li id="menu_category_79"><a href="http://www.sparkfun.com/categories/79">General</a></li><li id="menu_category_113"><a href="http://www.sparkfun.com/categories/113">Modem</a></li><li id="menu_category_114"><a href="http://www.sparkfun.com/categories/114">Nordic</a></li><li id="menu_category_112"><a href="http://www.sparkfun.com/categories/112">WiFi</a></li><li id="menu_category_111"><a href="http://www.sparkfun.com/categories/111">Zigbee/802.15.4</a><ul><li id="menu_category_222"><a href="http://www.sparkfun.com/categories/222">900MHz</a></li><li id="menu_category_223"><a href="http://www.sparkfun.com/categories/223">Series 1</a></li><li id="menu_category_224"><a href="http://www.sparkfun.com/categories/224">Series 2 (ZB)</a></li></ul></li></ul></li>  <li><hr></li>
+  <li>
+    <img style="float: left" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/pdf.gif">
+    <a href="http://sparkfun.com/download/PDFs/catalog.pdf">Full catalog</a>
+  </li>
+</ul>
+        <br>
+      </div>
+
+      <div id="right">
+        <div class="collapsible user">
+<p><a title="My Account" href="https://www.sparkfun.com/account">Member #216722</a> [<a href="https://www.sparkfun.com/account/logout">logout</a>]</p>  <p><a href="https://www.sparkfun.com/orders">Order History</a></p>
+  <p><a href="http://www.sparkfun.com/wish_lists">Wish Lists</a></p>
+    <p>
+    <img height="19" width="19" alt="" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_shoppingcart.gif">
+    <a href="http://www.sparkfun.com/cart"><span id="items_in_cart">1</span> item in your cart</a>  </p>
+</div>
+<br>
+
+        <h2 id="resources_menu" class="collapsible"><span class="arrow visible">&#9660; </span>Resources</h2>
+        <ul class="collapsible resources" style="display: block">
+  <li>
+    <a title="RSS Feeds" href="http://www.sparkfun.com/feeds">Feeds</a>    <img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/rss-noborder.png">
+  </li>
+  <li><a href="http://www.sparkfun.com/news/263">SparkFun IRC Channel</a></li>
+  <li><a href="http://www.batchpcb.com/" title="Custom PCB fabrication">BatchPCB</a></li>
+  <li><a href="http://www.opencircuits.com/">Open Circuits</a></li>
+  <li><a href="http://www.ponoko.com/make-and-sell/electronics">Ponoko - Your Personal Factory</a></li>
+  <li><a href="http://www.sparkfun.com/jobs">Jobs @ SparkFun</a></li>
+  <li><a href="http://www.sparkfun.com/tutorials/92">Sell Your Widget on SparkFun</a></li>
+  <li><a href="http://www.sparkfun.com/quiz">Take the SparkFun Quiz</a></li>
+</ul>
+        <br>
+
+        <h2 id="currency_menu_head" class="collapsible"><span class="arrow visible">&#9660; </span>Currency</h2>
+        
+<div class="collapsible" id="currency_menu">
+  Display prices in
+  <input type="hidden" id="preferred_currency" value="EUR">
+  <ul id="currency_menu_list" class="currency">
+          <li>
+        <a id="currency_USD" onclick="SFE.change_currency(&#39;USD&#39;); return(false);" href="http://www.sparkfun.com/tutorials/240#">
+                  <img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_radio_unchecked.gif">
+                US Dollar        </a>
+    </li>
+          <li>
+        <a id="currency_CAD" onclick="SFE.change_currency(&#39;CAD&#39;); return(false);" href="http://www.sparkfun.com/tutorials/240#">
+                  <img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_radio_unchecked.gif">
+                Canadian Dollar        </a>
+    </li>
+          <li>
+        <a id="currency_AUD" onclick="SFE.change_currency(&#39;AUD&#39;); return(false);" href="http://www.sparkfun.com/tutorials/240#">
+                  <img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_radio_unchecked.gif">
+                Australian Dollar        </a>
+    </li>
+          <li>
+        <a id="currency_GBP" onclick="SFE.change_currency(&#39;GBP&#39;); return(false);" href="http://www.sparkfun.com/tutorials/240#">
+                  <img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_radio_unchecked.gif">
+                British Pound        </a>
+    </li>
+          <li>
+        <a id="currency_EUR" onclick="SFE.change_currency(&#39;EUR&#39;); return(false);" href="http://www.sparkfun.com/tutorials/240#">
+                  <img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_radio_checked.gif">
+                Euro        </a>
+    </li>
+      </ul>
+    <br>
+  <span class="more clearfix"><a href="https://www.sparkfun.com/account/currencies">More Currencies</a></span>
+  <br class="clearfix">
+  </div>
+
+<script language="javascript">
+var CURRENCIES = {"USD":{"code":"USD","title":"US Dollar","symbol_left":"$","symbol_right":"","decimal_point":".","thousands_point":",","decimal_places":"2","value":"1.0000"},"CAD":{"code":"CAD","title":"Canadian Dollar","symbol_left":"$","symbol_right":null,"decimal_point":".","thousands_point":",","decimal_places":"2","value":"1.0433"},"AUD":{"code":"AUD","title":"Australian Dollar","symbol_left":"$","symbol_right":null,"decimal_point":".","thousands_point":",","decimal_places":"2","value":"1.0368"},"GBP":{"code":"GBP","title":"British Pound","symbol_left":"&pound;","symbol_right":null,"decimal_point":".","thousands_point":",","decimal_places":"2","value":"0.6489"},"EUR":{"code":"EUR","title":"Euro","symbol_left":"&euro;","symbol_right":null,"decimal_point":".","thousands_point":",","decimal_places":"2","value":"0.7504"}}</script>
+        <br>
+
+        <h2 id="feedback_menu" class="collapsible"><span class="arrow visible">&#9660; </span>Feedback</h2>
+        <form id="feedback" class="collapsible" style="display: block">
+  <div class="error" id="error_feedback" style="display: none; color: #F03528; font-weight: bold; margin-bottom: 5px;"></div>
+  <label for="feedback_textarea" style="font-weight: bold">What's on your mind?</label>
+  <br>
+  <textarea id="feedback_textarea" name="feedback_text"></textarea>
+  <div class="error" id="error_feedback_text" style="display: none; color: #F03528; font-weight: bold; padding-left: 2px;"></div>
+  <br>
+  <label for="dest">For which department?</label><br>
+  <select name="dest" id="feedback_dest" style="width: 99%">
+    <option value="general">General</option>
+    <option value="cust">Customer Service</option>
+    <option value="tech">Tech Support</option>
+  </select>
+  <br><br>
+  <label for="feedback_email">Please include your email address if you'd like us to respond to a specific question.</label>
+  <br>
+  <br>
+  <input type="text" id="feedback_email" name="email">
+  <div class="error" id="error_feedback_email" style="display: none; color: #F03528; font-weight: bold; padding-left: 2px; margin-bottom: 5px;"></div>
+  <input onclick="SFE.mind_feedback(); return(false);" type="button" class="button" value="Submit"> 
+</form>
+      </div>
+
+      <div id="center">
+        <a name="content" id="content"></a>
+        
+<h1 class="red-header">
+    <span class="link"><a href="http://www.sparkfun.com/">Home</a> |</span><span class="link"><a href="http://www.sparkfun.com/tutorials/">Tutorials</a>|</span>  ADXL345 Quickstart Guide 
+</h1>
+
+<div class="news">
+  <p class="header">
+    <img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/8e4405bec7e3185a46b92d6c38eab034" height="30" width="30">
+    <a class="title" href="./ADXL345 Quickstart Guide - SparkFun Electronics_files/ADXL345 Quickstart Guide - SparkFun Electronics.htm">ADXL345 Quickstart Guide</a>
+    <br>
+    by <a href="http://www.sparkfun.com/users/26876">zagGrad</a> | January 10, 2011 | <i><a style="cursor: pointer" onclick="javascript: if(!$(&#39;comments&#39;).visible()) { SFE.toggle_collapsible($(&#39;comments_header&#39;)); } $(&#39;comments_header&#39;).scrollTo();">12 comments</a></i>
+    <span class="skill">
+      Skill Level: 
+              <img class="star" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_skill_beginner.gif">
+        Beginner
+          </span>
+  </p>
+  <hr>
+  <h2>
+	<strong>Description:</strong></h2>
+<p>
+	The ADXL345 is a small, thin, low power, 3-axis accelerometer with high resolution (13-bit) measurement at up to ±16 g. Digital output data is formatted as 16-bit twos complement and is accessible through either a SPI (3- or 4-wire) or I2C digital interface. The ADXL345 is well suited to measure the static acceleration of gravity in tilt-sensing applications, as well as dynamic acceleration resulting from motion or shock. Its high resolution (4 mg/LSB) enables measurement of inclination changes less than 1.0°. Several special sensing functions are provided. Activity and inactivity sensing detect the presence or lack of motion and if the acceleration on any axis exceeds a user-set level. Tap sensing detects single and double taps. Free-fall sensing detects if the device is falling. These functions can be mapped to one of two interrupt output pins. An integrated, patent pending 32-level first in, first out (FIFO) buffer can be used to store data to minimize host processor intervention. Low power modes enable intelligent motion-based power management with threshold sensing and active acceleration measurement at extremely low power dissipation.</p>
+<h2>
+	<strong>Features:</strong></h2>
+<ul>
+	<li>
+		&nbsp;&nbsp;&nbsp; 2.0-3.6VDC Supply Voltage</li>
+	<li>
+		&nbsp;&nbsp;&nbsp; Ultra Low Power: 40uA in measurement mode, 0.1uA in standby@ 2.5V</li>
+	<li>
+		&nbsp;&nbsp;&nbsp; Tap/Double Tap Detection</li>
+	<li>
+		&nbsp;&nbsp;&nbsp; Free-Fall Detection</li>
+	<li>
+		&nbsp;&nbsp;&nbsp; SPI and I2C interfaces</li>
+</ul>
+<h2>
+	<strong>Downloads:</strong></h2>
+<ul>
+	<li>
+		<a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Basic.pde" target="_blank">ADXL345 Basic Arduino Code</a></li>
+	<li>
+		<a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Advanced_Arduino.zip" target="_blank">ADXL345 Advanced Arduino Code</a></li>
+	<li>
+		<a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Advanced.zip" target="_blank">ADXL345 Advanced Processing Code</a></li>
+</ul>
+<h2>
+	<strong>Hooking it Up:</strong></h2>
+<p>
+	This section of the guide illustrates how to connect an Arduino to the ADXL345 breakout board. The following is a table describing which pins on the Arduino should be connected to the pins on the accelerometer:</p>
+<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 200px; height: 148px;">
+	<tbody>
+		<tr>
+			<td style="text-align: center;">
+				<strong>Arduino Pin</strong></td>
+			<td style="text-align: center;">
+				<strong>ADXL345 Pin</strong></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				10</td>
+			<td style="text-align: center;">
+				CS</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				11</td>
+			<td style="text-align: center;">
+				SDA</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				12</td>
+			<td style="text-align: center;">
+				SDO</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				13</td>
+			<td style="text-align: center;">
+				SCL</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				3V3</td>
+			<td style="text-align: center;">
+				VCC</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				Gnd</td>
+			<td>
+				<p style="text-align: center;">
+					GND</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Here is a diagram in case you like pictures!</p>
+<p style="text-align: center;">
+	<img alt="http://sparkfun.com/tutorial/ADXL/ADXL_Hookup.png" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/ADXL_Hookup.png"></p>
+<h2>
+	<strong>Beginner Sample Code:</strong></h2>
+<p>
+	Let's look at a sketch to get the ADXL345 up and running with an Arduino. You can download the sketch in its entirety <a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Basic.pde" target="_blank">here</a>. Below we'll examine what the different sections of this code does.</p>
+<center>
+	<div style="text-align: left; width: 500px; height: 300px; overflow: auto; background: none repeat scroll 0% 0% rgb(204, 204, 204); border: 2px outset black;">
+<!--Arduino HTML goes here-->		<pre>		<span style="color: rgb(126, 126, 126);">//Add&nbsp;the&nbsp;SPI&nbsp;library&nbsp;so&nbsp;we&nbsp;can&nbsp;communicate&nbsp;with&nbsp;the&nbsp;ADXL345&nbsp;sensor</span>
+#include&nbsp;&lt;<span style="color: rgb(204, 102, 0);">SPI</span>.h&gt;
+
+<span style="color: rgb(126, 126, 126);">//Assign&nbsp;the&nbsp;Chip&nbsp;Select&nbsp;signal&nbsp;to&nbsp;pin&nbsp;10.</span>
+<span style="color: rgb(204, 102, 0);">int</span> CS=10;
+
+<span style="color: rgb(126, 126, 126);">//This&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;some&nbsp;of&nbsp;the&nbsp;registers&nbsp;available&nbsp;on&nbsp;the&nbsp;ADXL345.</span>
+<span style="color: rgb(126, 126, 126);">//To&nbsp;learn&nbsp;more&nbsp;about&nbsp;these&nbsp;and&nbsp;the&nbsp;rest&nbsp;of&nbsp;the&nbsp;registers&nbsp;on&nbsp;the&nbsp;ADXL345,&nbsp;read&nbsp;the&nbsp;datasheet!</span>
+<span style="color: rgb(204, 102, 0);">char</span> POWER_CTL = 0x2D;	<span style="color: rgb(126, 126, 126);">//Power Control Register</span>
+<span style="color: rgb(204, 102, 0);">char</span> DATA_FORMAT = 0x31;
+<span style="color: rgb(204, 102, 0);">char</span> DATAX0 = 0x32;	<span style="color: rgb(126, 126, 126);">//X-Axis Data 0</span>
+<span style="color: rgb(204, 102, 0);">char</span> DATAX1 = 0x33;	<span style="color: rgb(126, 126, 126);">//X-Axis Data 1</span>
+<span style="color: rgb(204, 102, 0);">char</span> DATAY0 = 0x34;	<span style="color: rgb(126, 126, 126);">//Y-Axis Data 0</span>
+<span style="color: rgb(204, 102, 0);">char</span> DATAY1 = 0x35;	<span style="color: rgb(126, 126, 126);">//Y-Axis Data 1</span>
+<span style="color: rgb(204, 102, 0);">char</span> DATAZ0 = 0x36;	<span style="color: rgb(126, 126, 126);">//Z-Axis Data 0</span>
+<span style="color: rgb(204, 102, 0);">char</span> DATAZ1 = 0x37;	<span style="color: rgb(126, 126, 126);">//Z-Axis Data 1</span>
+
+<span style="color: rgb(126, 126, 126);">//This&nbsp;buffer&nbsp;will&nbsp;hold&nbsp;values&nbsp;read&nbsp;from&nbsp;the&nbsp;ADXL345&nbsp;registers.</span>
+<span style="color: rgb(204, 102, 0);">char</span> values[10];
+<span style="color: rgb(126, 126, 126);">//These&nbsp;variables&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;hold&nbsp;the&nbsp;x,y&nbsp;and&nbsp;z&nbsp;axis&nbsp;accelerometer&nbsp;values.</span>
+<span style="color: rgb(204, 102, 0);">int</span> x,y,z;
+</pre>
+	</div>
+</center>
+<p>
+	This is the initialization section of the sketch. It's pretty basic really. Here's what's happening.</p>
+<ol>
+	<li>
+		The SPI.h library is added to the sketch. SPI is a communication protocol used by Arduino to communicate to the ADLX345.</li>
+	<li>
+		A variable named CS is created to store the pin number of the Chip Select signal.</li>
+	<li>
+		Variables are created for several of the ADXL345 registers. These variables store the address of the indicated registers and are used to set and retrieve values from the accelerometer. The <a href="http://www.sparkfun.com/datasheets/Sensors/Accelerometer/ADXL345.pdf" target="_blank">datasheet </a>shows all of the registers available on the ADXL345 and their addresses.</li>
+	<li>
+		Variables are created that will hold information that has been retrieved from the accelerometer.</li>
+</ol>
+<center>
+	<div style="text-align: left; width: 500px; height: 300px; overflow: auto; background: none repeat scroll 0% 0% rgb(204, 204, 204); border: 2px outset black;">
+		<pre>		<span style="color: rgb(204, 102, 0);">void</span> <span style="color: rgb(204, 102, 0);"><b>setup</b></span>(){ 
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Initiate an SPI communication instance.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">SPI</span>.<span style="color: rgb(204, 102, 0);">begin</span>();
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Configure the SPI connection for the ADXL345.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">SPI</span>.<span style="color: rgb(204, 102, 0);">setDataMode</span>(<span style="color: rgb(0, 102, 153);">SPI_MODE3</span>);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Create a serial connection to display the data on the terminal.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">begin</span>(9600);
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Set up the Chip Select pin to be an output from the Arduino.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">pinMode</span>(CS, <span style="color: rgb(0, 102, 153);">OUTPUT</span>);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Before communication starts, the Chip Select pin needs to be set high.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">digitalWrite</span>(CS, <span style="color: rgb(0, 102, 153);">HIGH</span>);
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Put the ADXL345 into +/- 4G range by writing the value 0x01 to the DATA_FORMAT register.</span>
+&nbsp;&nbsp;writeRegister(DATA_FORMAT,&nbsp;0x01);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Put the ADXL345 into Measurement Mode by writing 0x08 to the POWER_CTL register.</span>
+&nbsp;&nbsp;writeRegister(POWER_CTL,&nbsp;0x08);&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Measurement mode  </span>
+}
+
+<span style="color: rgb(204, 102, 0);">void</span> <span style="color: rgb(204, 102, 0);"><b>loop</b></span>(){
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Reading 6 bytes of data starting at register DATAX0 will retrieve the x,y and z acceleration values from the ADXL345.</span>
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//The results of the read operation will get stored to the values[] buffer.</span>
+&nbsp;&nbsp;readRegister(DATAX0,&nbsp;6,&nbsp;values);
+
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//The ADXL345 gives 10-bit acceleration values, but they are stored as bytes (8-bits). To get the full value, two bytes must be combined for each axis.</span>
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//The X value is stored in values[0] and values[1].</span>
+&nbsp;&nbsp;x&nbsp;=&nbsp;((<span style="color: rgb(204, 102, 0);">int</span>)values[1]&lt;&lt;8)|(<span style="color: rgb(204, 102, 0);">int</span>)values[0];
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//The Y value is stored in values[2] and values[3].</span>
+&nbsp;&nbsp;y&nbsp;=&nbsp;((<span style="color: rgb(204, 102, 0);">int</span>)values[3]&lt;&lt;8)|(<span style="color: rgb(204, 102, 0);">int</span>)values[2];
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//The Z value is stored in values[4] and values[5].</span>
+&nbsp;&nbsp;z&nbsp;=&nbsp;((<span style="color: rgb(204, 102, 0);">int</span>)values[5]&lt;&lt;8)|(<span style="color: rgb(204, 102, 0);">int</span>)values[4];
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Print the results to the terminal.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(x, <span style="color: rgb(0, 102, 153);">DEC</span>);
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(<span style="color: rgb(0, 102, 153);">','</span>);
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(y, <span style="color: rgb(0, 102, 153);">DEC</span>);
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(<span style="color: rgb(0, 102, 153);">','</span>);
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">println</span>(z, <span style="color: rgb(0, 102, 153);">DEC</span>);      
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">delay</span>(10); 
+}
+
+</pre>
+	</div>
+</center>
+<p>
+	The main section of the sketch is split into two parts: the setup and the loop. The setup section is used to configure different aspects of the Arduino to communicate with the ADXL345. At the end of the setup section two functions are used to put the accelerometer into the mode we want to use (+/-4g detection, and enable measurement mode). The functions will be discussed in the next section of the sketch.</p>
+<p>
+	The loop does most of the work in the sketch. Here's what's going on in the loop:</p>
+<ol>
+	<li>
+		Arduino reads 6 register values from the ADXL345 using the readRegister function. This command reads the x, y and z acceleration values from the accelerometer and stores them in the buffer named "values" that was created in the initialization section of the sketch.</li>
+	<li>
+		When values are read from the accelerometer they are returned in bytes. A byte is only 8 bits, but the accelerometer reports acceleration with up to 10 bits! In order to see the correct acceleration value we have to concatenate two bytes together. The x, y and z acceleration values are determined by concatenating the bytes from the values buffer.</li>
+	<li>
+		The acceleration values are printed to the serial terminal</li>
+	<li>
+		The sketch waits for 10ms before executing the loop again. This will allow the loop to run at roughly 100 hz.</li>
+</ol>
+<center>
+	<div style="text-align: left; width: 500px; height: 300px; overflow: auto; background: none repeat scroll 0% 0% rgb(204, 204, 204); border: 2px outset black;">
+		<pre>		<span style="color: rgb(126, 126, 126);">//This&nbsp;function&nbsp;will&nbsp;write&nbsp;a&nbsp;value&nbsp;to&nbsp;a&nbsp;register&nbsp;on&nbsp;the&nbsp;ADXL345.</span>
+<span style="color: rgb(126, 126, 126);">//Parameters:</span>
+<span style="color: rgb(126, 126, 126);">//&nbsp;&nbsp;char&nbsp;registerAddress&nbsp;-&nbsp;The&nbsp;register&nbsp;to&nbsp;write&nbsp;a&nbsp;value&nbsp;to</span>
+<span style="color: rgb(126, 126, 126);">//&nbsp;&nbsp;char&nbsp;value&nbsp;-&nbsp;The&nbsp;value&nbsp;to&nbsp;be&nbsp;written&nbsp;to&nbsp;the&nbsp;specified&nbsp;register.</span>
+<span style="color: rgb(204, 102, 0);">void</span> writeRegister(<span style="color: rgb(204, 102, 0);">char</span> registerAddress, <span style="color: rgb(204, 102, 0);">char</span> value){
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Set Chip Select pin low to signal the beginning of an SPI packet.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">digitalWrite</span>(CS, <span style="color: rgb(0, 102, 153);">LOW</span>);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Transfer the register address over SPI.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">SPI</span>.<span style="color: rgb(204, 102, 0);">transfer</span>(registerAddress);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Transfer the desired register value over SPI.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">SPI</span>.<span style="color: rgb(204, 102, 0);">transfer</span>(value);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Set the Chip Select pin high to signal the end of an SPI packet.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">digitalWrite</span>(CS, <span style="color: rgb(0, 102, 153);">HIGH</span>);
+}
+
+<span style="color: rgb(126, 126, 126);">//This&nbsp;function&nbsp;will&nbsp;read&nbsp;a&nbsp;certain&nbsp;number&nbsp;of&nbsp;registers&nbsp;starting&nbsp;from&nbsp;a&nbsp;specified&nbsp;address&nbsp;and&nbsp;store&nbsp;their&nbsp;values&nbsp;in&nbsp;a&nbsp;buffer.</span>
+<span style="color: rgb(126, 126, 126);">//Parameters:</span>
+<span style="color: rgb(126, 126, 126);">//&nbsp;&nbsp;char&nbsp;registerAddress&nbsp;-&nbsp;The&nbsp;register&nbsp;addresse&nbsp;to&nbsp;start&nbsp;the&nbsp;read&nbsp;sequence&nbsp;from.</span>
+<span style="color: rgb(126, 126, 126);">//&nbsp;&nbsp;int&nbsp;numBytes&nbsp;-&nbsp;The&nbsp;number&nbsp;of&nbsp;registers&nbsp;that&nbsp;should&nbsp;be&nbsp;read.</span>
+<span style="color: rgb(126, 126, 126);">//&nbsp;&nbsp;char&nbsp;*&nbsp;values&nbsp;-&nbsp;A&nbsp;pointer&nbsp;to&nbsp;a&nbsp;buffer&nbsp;where&nbsp;the&nbsp;results&nbsp;of&nbsp;the&nbsp;operation&nbsp;should&nbsp;be&nbsp;stored.</span>
+<span style="color: rgb(204, 102, 0);">void</span> readRegister(<span style="color: rgb(204, 102, 0);">char</span> registerAddress, <span style="color: rgb(204, 102, 0);">int</span> numBytes, <span style="color: rgb(204, 102, 0);">char</span> * values){
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Since we're performing a read operation, the most significant bit of the register address should be set.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">char</span> address = 0x80 | registerAddress;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//If we're doing a multi-byte read, bit 6 needs to be set as well.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">if</span>(numBytes &gt; 1)address = address | 0x40;
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Set the Chip select pin low to start an SPI packet.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">digitalWrite</span>(CS, <span style="color: rgb(0, 102, 153);">LOW</span>);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Transfer the starting register address that needs to be read.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">SPI</span>.<span style="color: rgb(204, 102, 0);">transfer</span>(address);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Continue to read registers until we've read the number specified, storing the results to the input buffer.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">for</span>(<span style="color: rgb(204, 102, 0);">int</span> &nbsp;<i=0; style="color: rgb(204, 102, 0);">SPI.<span style="color: rgb(204, 102, 0);">transfer</span>(0x00);
+&nbsp;&nbsp;}
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Set the Chips Select pin high to end the SPI packet.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">digitalWrite</span>(CS, <span style="color: rgb(0, 102, 153);">HIGH</span>);
+}
+
+</i=0;></pre>
+	</div>
+</center>
+<p>
+	The readRegister command is used to read values from the ADXL345. When using the readRegister function three variables must be given to the function: the registerAddress where reading should start from, the number of registers that should be read in sequence, and the buffer where the values should be stored. When reading a register from the ADXL345 the address must be modified so that the 8th bit is set high. If more than 1 register is to be read the 7th bit must also be set high. The function accomplishes this task in the first two lines. After that the function is very similar to the writeRegister function. The CS pin is set low to start an SPI sequence, then the address is transferred. After that a loop is used to read the specified number of registers from the accelerometer and the values are stored in the specified buffer. Finally the CS pin is set high to end the SPI sequence and the function is complete.</p>
+<p>
+	<span end="" high="" pin="" select="" set="" span="" spi="" style="" the="" to="">Once you've hooked the ADXL345 up to an Arduino as specified in the Hook Up section of the guide, download the <a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Basic.pde" target="_blank">sketch</a>. After opening the sketch in the Arduino IDE just load it to your board and open the terminal from Arduino. You'll see the X,Y and Z acceleration values start scrolling in the terminal window.</span></p>
+<h2>
+	<strong>Advanced Sample Code:</strong></h2>
+<p>
+	Once you understand how to read and write from registers to the ADXL345 there are some really cool functions that you might want to experiment with. In this section we'll look at a sketch that can detect single and double taps, and will convert the x,y and z acceleration values to Gs (a unit of measurement corresponding to 1g). This project will use both an <a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Advanced_Arduino.zip" target="_blank">Arduino sketch</a> to interface with the ADXL345 and a <a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Advanced.zip" target="_blank">Processing sketch</a> so that we can interpret the data. You can download the Arduino sketch <a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Advanced_Arduino.zip" target="_blank">here</a> and the Processing sketch <a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Advanced.zip" target="_blank">here</a>.<strong> In order for the sketch to work properly you'll need to add a wire from the INT1 pin on the ADXL345 to pin D2 on the Arduino.</strong> Let's look at some of the special parts of this sketch.</p>
+<center>
+	<div style="text-align: left; width: 500px; height: 300px; overflow: auto; background: none repeat scroll 0% 0% rgb(204, 204, 204); border: 2px outset black;">
+		<pre>		&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Create an interrupt that will trigger when a tap is detected.</span>
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">attachInterrupt</span>(0, tap, <span style="color: rgb(0, 102, 153);">RISING</span>);
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Put the ADXL345 into +/- 4G range by writing the value 0x01 to the DATA_FORMAT register.</span>
+&nbsp;&nbsp;writeRegister(DATA_FORMAT,&nbsp;0x01);
+
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Send the Tap and Double Tap Interrupts to INT1 pin</span>
+&nbsp;&nbsp;writeRegister(INT_MAP,&nbsp;0x9F);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Look for taps on the Z axis only.</span>
+&nbsp;&nbsp;writeRegister(TAP_AXES,&nbsp;0x01);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Set the Tap Threshold to 3g</span>
+&nbsp;&nbsp;writeRegister(THRESH_TAP,&nbsp;0x38);
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Set the Tap Duration that must be reached</span>
+&nbsp;&nbsp;writeRegister(DURATION,&nbsp;0x10);
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//100ms Latency before the second tap can occur.</span>
+&nbsp;&nbsp;writeRegister(LATENT,&nbsp;0x50);
+&nbsp;&nbsp;writeRegister(WINDOW,&nbsp;0xFF);
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Enable the Single and Double Taps.</span>
+&nbsp;&nbsp;writeRegister(INT_ENABLE,&nbsp;0xE0);&nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Put the ADXL345 into Measurement Mode by writing 0x08 to the POWER_CTL register.</span>
+&nbsp;&nbsp;writeRegister(POWER_CTL,&nbsp;0x08);&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Measurement mode</span>
+&nbsp;&nbsp;readRegister(INT_SOURCE,&nbsp;1,&nbsp;values);&nbsp;<span style="color: rgb(126, 126, 126);">//Clear the interrupts from the INT_SOURCE register.</span>
+</pre>
+	</div>
+</center>
+<p>
+	This code has been added to the setup() section of the sketch. It's a bit different from the setup() section of the ADXL345_Basic example because we're setting the ADXL345 up to detect a single and double tap event. When the accelerometer detects a tap or a double tap we want the INT1 pin to go high, then when the event is handled the INT1 pin will go back low.</p>
+<p>
+	When the INT1 pin goes high on the ADXL345 we want to the Arduino to generate an interrupt. In order to do this we use the attachInterrupt() function; we tell the function that we want an interrupt to occur on the Arduino Interrupt 0 (pin D2) when the pin goes from low to high, and we want the Arduino to execute the tap function when this occurs. We'll look at the tap() function later on.</p>
+<p>
+	After the interrupt is created we need to configure the ADXL345 to recognize single and double tap events. In order to make this configuration we must change the values in the following registers: INT_MAP, TAP_AXES, THRESH_TAP, DURATION, LATENT and WINDOW. You can read the 'TAP DETECTION' section of the datasheet to see why these values were assigned to their registers. Basically, though, the ADXL345 has been configured so that if a single or double tap is detected the INT1 pin will go from low to high; once the interrupt is handled the INT1 pin will go back low.</p>
+<center>
+	<div style="text-align: left; width: 500px; height: 300px; overflow: auto; background: none repeat scroll 0% 0% rgb(204, 204, 204); border: 2px outset black;">
+		<pre>		&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Convert the accelerometer value to G's. </span>
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//With 10 bits measuring over a +/-4g range we can find how to convert by using the equation:</span>
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">// Gs = Measurement Value * (G-range/(2^10)) or Gs = Measurement Value * (8/1024)</span>
+&nbsp;&nbsp;xg&nbsp;=&nbsp;x&nbsp;*&nbsp;0.0078;
+&nbsp;&nbsp;yg&nbsp;=&nbsp;y&nbsp;*&nbsp;0.0078;
+&nbsp;&nbsp;zg&nbsp;=&nbsp;z&nbsp;*&nbsp;0.0078;
+
+</pre>
+	</div>
+</center>
+<p>
+	In the final project we'll want two types of outputs. If a single tap is detected the Arduino will output the raw accelerometer values for x,y and z; just like in the ADXL345_Basic example. However if the ADXL345 detects a double tap we want the Arduino to output the actual G values of the x,y and z axis. In order to find the G values from the raw accelerometer data we must scale the original values. To find the scale we need to know two things: the number of bits used to represent the original values and the range of acceleration values that can be represented. The ADXL345 is set up to measure the values with 10 bits. We've set the range to +/- 4 g, or an 8g range. The scale is found by dividing the total range by the number that can be represented in 10 bits.</p>
+<p style="text-align: center;">
+	<img alt="http://sparkfun.com/tutorial/ADXL/ADXLScale.jpg" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/ADXLScale.jpg"></p>
+<p>
+	Once we know the scale all we have to do is multiply the raw accelerometer data by the scale to find the number of gs. The variables xg, yg and zg are float variables so that they can hold decimal numbers.</p>
+<center>
+	<div style="text-align: left; width: 500px; height: 300px; overflow: auto; background: none repeat scroll 0% 0% rgb(204, 204, 204); border: 2px outset black;">
+		<pre>		&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">if</span>(tapType &gt; 0)
+&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">if</span>(tapType == 1){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">println</span>(<span style="color: rgb(0, 102, 153);">"SINGLE"</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(x);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(<span style="color: rgb(0, 102, 153);">','</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(y);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(<span style="color: rgb(0, 102, 153);">','</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">println</span>(z);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">else</span>{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">println</span>(<span style="color: rgb(0, 102, 153);">"DOUBLE"</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>((<span style="color: rgb(204, 102, 0);">float</span>)xg,2);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(<span style="color: rgb(0, 102, 153);">"g,"</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>((<span style="color: rgb(204, 102, 0);">float</span>)yg,2);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>(<span style="color: rgb(0, 102, 153);">"g,"</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">print</span>((<span style="color: rgb(204, 102, 0);">float</span>)zg,2);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);"><b>Serial</b></span>.<span style="color: rgb(204, 102, 0);">println</span>(<span style="color: rgb(0, 102, 153);">"g"</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">detachInterrupt</span>(0);
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">delay</span>(500);
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">attachInterrupt</span>(0, tap, <span style="color: rgb(0, 102, 153);">RISING</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;intType=0;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;}
+
+</pre>
+	</div>
+</center>
+<p>
+	When the tap() interrupt function runs (we'll cover this next) it assigns a value to the tagType variable. The variable is assigned '1' if a single tap was detected and '2' if a double tap was detected. If a single tap was detected the Arduino will write the word "SINGLE" to the terminal followed by the x,y and z accelerometer values. If a double tap was detected Arduino will write the word "DOUBLE" to the terminal followed by the g values for the x,y and z axis. After printing the values to the terminal we disable the interrupt for a little while; this prevents the Arduino from detecting any 'echoed' interrupts that may occur while the ADXL345 is still vibrating from the tap event.</p>
+<center>
+	<div style="text-align: left; width: 500px; height: 300px; overflow: auto; background: none repeat scroll 0% 0% rgb(204, 204, 204); border: 2px outset black;">
+		<pre>		<span style="color: rgb(204, 102, 0);">void</span> tap(<span style="color: rgb(204, 102, 0);">void</span>){
+&nbsp;&nbsp;<span style="color: rgb(126, 126, 126);">//Clear the interrupts on the ADXL345</span>
+&nbsp;&nbsp;readRegister(INT_SOURCE,&nbsp;1,&nbsp;values);&nbsp;
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">if</span>(values[0] &amp; (1&lt;&lt;5))tapType=2;
+&nbsp;&nbsp;<span style="color: rgb(204, 102, 0);">else</span> tapType=1;;
+}
+</pre>
+	</div>
+</center>
+<p>
+	Because of the way the attachInterrupt() function was called the tap() function will be used whenever Arduino sees an interrupt occur on pin D2. This function is fairly straightforward: Arduino reads the INT_SOURCE register on the ADXL345 and stores the value in the 'values' buffer. The INT_SOURCE register tells us if the interrupt came from a single tap or a double tap event. Depending on which kind of tap set of the interrupt we assign the tapType variable with a 1 or a 2.</p>
+<p>
+	Download the <a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Advanced_Arduino.zip" target="_blank">Arduino sketch</a> and the <a href="http://sparkfun.com/tutorial/ADXL/ADXL345_Advanced.zip" target="_blank">Processing sketch</a>. After you've connected the ADXL345 to the Arduino as specified in the Hooking It Up section, and added a wire from the INT1 pin on the ADXL345 to pin D2 on the Arduino, open Arduino and download the sketch to your board. Then open processing and run the ADXL345_Advanced processing sketch. You may have to change the serial port in the sketch to reflect which port your Arduino is plugged into. If everything has been done correctly the Processing window will output the words "Single Tap" to the screen along with the raw accelerometer values when you tap the ADXL345; likewise "Double Tap" and the G values will be displayed when you double tap the ADXL345.</p></div>
+
+<div id="comments_container">
+  <h2 id="comments_header" class="collapsible grey big">
+  <span class="arrow visible">&#9660; </span>Comments
+  <span class="count">
+    12 comments      </span>
+</h2>
+<div id="comments" class="collapsible white">
+  <div style="padding: 20px">  <form id="comment_form" action="http://www.sparkfun.com/comment/post/">
+    <input type="hidden" id="comment_entity" name="entity" value="tutorials">
+    <input type="hidden" id="comment_entity_id" name="entity_id" value="240">
+    <input type="hidden" id="comment_parent_id" name="parent_id" value="0">
+    <input type="hidden" id="referrer" name="referrer" value="">
+    <div class="left">
+      Alias: 
+      <br>
+      <label for="comment_textarea">Comment:</label>
+    </div>
+    <div class="right">
+      <span class="alias">Member #216722</span>
+      <br>
+      <textarea id="comment_textarea" name="text" maxlength="10000"></textarea>
+    </div>
+    <div class="reply-buttons">
+      <a id="formatting_help_link" class="help" href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.toggle_format_help(-1); return(false);">formatting help</a>
+      <input type="submit" value="Submit" class="button" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Comment&#39;, &#39;post&#39;, &#39;tutorials&#39;, 240]);">
+    </div>
+    <div id="formatting_help" class="clearfix help formatting-help" style="display: none">
+      <!-- thanks reddit! -->
+      <table>
+        <tbody>
+          <tr>
+            <td><b><i>what you type:</i></b></td>
+            <td><b><i>what you get:</i></b></td>
+          </tr>
+          <tr>
+            <td>*italic*</td>
+            <td><em>italic</em></td>
+          </tr>
+          <tr>
+            <td>**BOLD!**</td><td><b>BOLD!</b></td>
+          </tr>
+          <tr>
+            <td>[example](http://www.example.com)</td><td><a href="http://www.example.com/">example</a></td>
+          </tr>
+          <tr>
+            <td>* one<br>* two<br>* three</td><td><ul><li>one</li><li>two</li><li>three</li></ul></td>
+          </tr>
+          <tr>
+            <td>&gt; quoted text</td>
+            <td><blockquote>quoted text</blockquote></td>
+          </tr>
+          <tr>
+            <td>Start code with four spaces:<br><br><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>if(true)<br><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>pinMode(13, OUTPUT);<br></td>
+            <td>Start code with four spaces:<br><pre>if(true)<br>&nbsp;&nbsp;&nbsp;&nbsp;pinMode(13, OUTPUT);</pre></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+  <script type="text/javascript">Event.observe('airlock', 'SFE:LOADED', function() { $('comment_form').observe('submit', SFE.post_comment); })</script>
+  <br>
+</div>
+  <div class="comment" id="comment_30797"><span class="header"><a href="http://www.sparkfun.com/users/142843" class="bold">Duke3k</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_30797" class="comment-permalink">February 27, 2011 at  2:21 PM</a></b><span id="rate_30797" class="rate"><a href="" onclick="SFE.rate_comment(30797, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_30797" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(30797, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_30797">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_30797" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(30797);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(30797); return(false);">report</a></span><div class="body"><p>I notice your not doing any logic level conversion ( 3.3v to 5v ) for the SDA,SCL,SDO pins between the sensor and the Arduino pins.</p>
+
+<p>Is this because in your example you are using a 3.3v Arduino or because it's not neccessary for an SPI interface?</p>
+
+<p>Thanks Marcus </p>
+</div><div class="comments"><div class="comment-arrow"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_commentarrow_top.gif"></div><div class="comment" id="comment_32220"><img class="avatar" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/8e4405bec7e3185a46b92d6c38eab034" width="30" height="30"><span class="header"><img class="employee" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/comment_is_internal.gif" title="SparkFun Employee" alt="SparkFun Employee"> <a href="http://www.sparkfun.com/users/26876" class="bold">zagGrad</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_32220" class="comment-permalink">March 16, 2011 at  9:47 AM</a></b><span id="rate_32220" class="rate"><a href="" onclick="SFE.rate_comment(32220, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_32220" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(32220, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_32220">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_32220" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(32220);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(32220); return(false);">report</a></span><div class="body"><p>I actually used a 5V Arduino in the example. Though this is 'bad engineering' it works fine. In the long run it may end up damaging the pins on the ADXL345, but I've yet to have this happen to me. If you're nervous about using 5V signals to communicate with a 3.3V device you can certainly use the logic level shifter board to interface the two boards.</p>
+</div></div></div></div><div class="comment" id="comment_31508"><span class="header"><a href="http://www.sparkfun.com/users/208802" class="bold">collin5022</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_31508" class="comment-permalink">March  8, 2011 at  1:28 PM</a></b><span id="rate_31508" class="rate"><a href="" onclick="SFE.rate_comment(31508, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_31508" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(31508, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_31508">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_31508" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(31508);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(31508); return(false);">report</a></span><div class="body"><p>Hey there. Would you mind helping me with displaying the three axis on a graph using Processing? The single and double tap stuff is cool, but I want to see these accelerations on a graph, instead of the serial monitor. I'm a newbee, so I'm not sure how to use Processing to accomplish this.</p>
+
+<p>Any help would be greatly appreciated. Thanks!</p>
+</div></div><div class="comment" id="comment_32624"><span class="header"><a href="http://www.sparkfun.com/users/128671" class="bold">jbeale</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_32624" class="comment-permalink">March 21, 2011 at  1:13 PM</a></b><span id="rate_32624" class="rate"><a href="" onclick="SFE.rate_comment(32624, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_32624" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(32624, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_32624">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_32624" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(32624);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(32624); return(false);">report</a></span><div class="body"><p>ADXL345 Datasheet: Digital I/O: 3.6V "ABSOLUTE MAXIMUM". Stresses above those listed under Absolute Maximum Ratings may cause permanent damage to the device.</p>
+
+<p>A 5V Arduino output pin can drive 40 mA current, which is putting stress on the I/O pin internal protection diodes on the ADXL345. Why not at least use a 1k series resistor to limit the current on the 5V outputs from Arduino to about 2 mA. It might save you the cost of another ADXL345 board.</p>
+</div></div><div class="comment" id="comment_32640"><span class="header"><a href="http://www.sparkfun.com/users/128671" class="bold">jbeale</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_32640" class="comment-permalink">March 21, 2011 at  4:28 PM</a></b><span id="rate_32640" class="rate"><a href="" onclick="SFE.rate_comment(32640, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_32640" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(32640, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_32640">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_32640" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(32640);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(32640); return(false);">report</a></span><div class="body"><p>Your "basic Arduino code" at http://sparkfun.com/tutorial/ADXL/ADXL345_Basic.pde 
+has a bug. </p>
+
+<p>You want the values[] array to be of type UNSIGNED CHAR, meaning you must change two declarations as below:</p>
+
+<pre>unsigned char values[10];
+void readRegister(char registerAddress, int numBytes, unsigned char * values){
+</pre>
+
+<p>otherwise, you are getting the low-order 8 bits interpreted as a signed char (byte) (incorrect) as well as the high-order bits (which are in fact signed). Combining those two gives you garbage whenever the low byte value is greater than 127.  </p>
+</div></div><div class="comment" id="comment_34034"><span class="header"><a href="http://www.sparkfun.com/users/206692" class="bold">Member206692</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_34034" class="comment-permalink">April  5, 2011 at  2:27 PM</a></b><span id="rate_34034" class="rate"><a href="" onclick="SFE.rate_comment(34034, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_34034" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(34034, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_34034">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_34034" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(34034);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(34034); return(false);">report</a></span><div class="body"><p>I have been trying to work with the ADXL345 and Arduino Uno to create some type of "fall detection device". I have been trying to look at the codes here and I can't find a program to open them. </p>
+
+<p>What i am trying to do is have the arduino read the data from the ADXL345 and add an algorithm (like a sum vector algorithm svm= sqrt((ax^2)+(ay^2)+(az^2))). With that in mind I wanted to have thresholds set so once the threshold is reached, I would have a piezo transducer sound for a few seconds, and then turn off. </p>
+
+<p>I feel the advanced arduino code would help using the tap and double tap features. I was wondering if anyone could help me with this as soon as possible.</p>
+
+<p>Thanks</p>
+</div></div><div class="comment" id="comment_38488"><span class="header"><a href="http://www.sparkfun.com/users/185279" class="bold">Nick</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_38488" class="comment-permalink">May 28, 2011 at 11:28 AM</a></b><span id="rate_38488" class="rate"><a href="" onclick="SFE.rate_comment(38488, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_38488" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(38488, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_38488">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_38488" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(38488);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(38488); return(false);">report</a></span><div class="body"><p>Can you list some example values that should be printing out in the Basic Code example?  I want to make sure I am receiving the values correctly.</p>
+</div></div><div class="comment" id="comment_42424"><span class="header"><a href="http://www.sparkfun.com/users/166126" class="bold">Member166126</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_42424" class="comment-permalink">July 18, 2011 at  4:34 AM</a></b><span id="rate_42424" class="rate"><a href="" onclick="SFE.rate_comment(42424, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_42424" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(42424, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_42424">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_42424" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(42424);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(42424); return(false);">report</a></span><div class="body"><p>OK, nice!
+How will the G formula look if the Acc is set to full range? Then a feedback for the range is needed?</p>
+</div></div><div class="comment" id="comment_43576"><span class="header"><a href="http://www.sparkfun.com/users/225388" class="bold">Member225388</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_43576" class="comment-permalink">August  1, 2011 at 12:31 PM</a></b><span id="rate_43576" class="rate"><a href="" onclick="SFE.rate_comment(43576, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_43576" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(43576, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_43576">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_43576" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(43576);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(43576); return(false);">report</a></span><div class="body"><p>Hi,</p>
+
+<p>I've used both example. The basic one runs very fast.
+But the advance one is MUCH more longer. Is there any way to detect a tap at the same speed than the reading of basic example? otherwise i can't use that...too long.</p>
+
+<p>Thanks</p>
+
+<p>Fred</p>
+</div></div><div class="comment" id="comment_44257"><span class="header"><a href="http://www.sparkfun.com/users/244232" class="bold">jtacquaiii</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_44257" class="comment-permalink">August 11, 2011 at  3:38 PM</a></b><span id="rate_44257" class="rate"><a href="" onclick="SFE.rate_comment(44257, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_44257" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(44257, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_44257">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_44257" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(44257);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(44257); return(false);">report</a></span><div class="body"><p>Is this in c or c++?</p>
+</div><div class="comments"><div class="comment-arrow"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_commentarrow_top.gif"></div><div class="comment" id="comment_44314"><img class="avatar" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/8e4405bec7e3185a46b92d6c38eab034" width="30" height="30"><span class="header"><img class="employee" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/comment_is_internal.gif" title="SparkFun Employee" alt="SparkFun Employee"> <a href="http://www.sparkfun.com/users/26876" class="bold">zagGrad</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_44314" class="comment-permalink">August 12, 2011 at 10:34 AM</a></b><span id="rate_44314" class="rate"><a href="" onclick="SFE.rate_comment(44314, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_44314" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(44314, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_44314">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_44314" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(44314);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(44314); return(false);">report</a></span><div class="body"><p>The Arduino sketch is C++, but since it was written using the Arduino IDE there are some Arduino specific commands that are included by the IDE at compile time.</p>
+
+<p>The processing sketch is written in...processing. Processing is it's own open source programming language.</p>
+</div></div></div></div><div class="comment" id="comment_47840"><span class="header"><a href="http://www.sparkfun.com/users/123304" class="bold">Member123304</a> <span class="wide">|</span> <b><a href="http://www.sparkfun.com/tutorials/240#comment_47840" class="comment-permalink">October  6, 2011 at  3:42 AM</a></b><span id="rate_47840" class="rate"><a href="" onclick="SFE.rate_comment(47840, 1); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_dark.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark.gif&#39;"></a></span><span id="rated_47840" class="rate" style="display: none"><a href="" onclick="SFE.rate_comment(47840, 0); return(false);"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_star_red_plus.gif" onmouseover="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_dark_minus.gif&#39;" onmouseout="this.src=&#39;http://dlnmh9ip6v2uc.cloudfront.net/images/framework/icon_star_red_plus.gif&#39;"></a></span><strong><span id="comment_rating_47840">1</span></strong></span><br><span class="reply"><img class="comment-reply-img" id="reply_img_47840" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/icon_reply.gif"><a href="http://www.sparkfun.com/tutorials/240#" onclick="return SFE.show_comment_form(47840);">reply</a><span class="wide">|</span><a href="http://www.sparkfun.com/tutorials/240#" onclick="SFE.report_comment(47840); return(false);">report</a></span><div class="body"><p>Do you have any i2c code examples for the ADXL345?</p>
+</div></div></div>
+<br>
+</div>
+      </div>
+    </div>
+
+    <div id="footer">
+      SparkFun Electronics <a href="http://www.sparkfun.com/news/300">®</a>      <span class="wide">|</span>
+      <a href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=6175+Longbow+Dr,+Boulder,+CO+80301&sll=40.006234,-105.224915&sspn=0.012113,0.020192&ie=UTF8&hq=&hnear=6175+Longbow+Dr,+Boulder,+Colorado+80301&t=h&z=16">Boulder, Colorado</a>
+      <span class="wide">|</span>
+      <a href="http://www.sparkfun.com/static/customer_service">Customer Service</a>
+    </div>
+        <script type="text/javascript" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/cookiejar.js"></script>
+    <script type="text/javascript" src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/sparkfun.js"></script>
+    <!--[if lte IE 6]>
+    <script type="text/javascript">function autoFireLightbox(){setTimeout(function(){SFE.stab_eyes()},250)}Event.observe(window,"load",autoFireLightbox,false);</script>
+    <![endif]-->
+        <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-3404365-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+      
+
+<div id="overlay" style="display: none; "></div><div id="lightbox" style="display: none; "><div id="outerImageContainer" style="width: 250px; height: 250px; "><div id="imageContainer"><div id="lightboxFrame" scrolling="no"></div><img id="lightboxImage"><div id="hoverNav"><a id="prevLink" href="http://www.sparkfun.com/tutorials/240#"></a><a id="nextLink" href="http://www.sparkfun.com/tutorials/240#"></a></div><div id="loading"><a id="loadingLink" href="http://www.sparkfun.com/tutorials/240#"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/loading.gif"></a></div></div></div><div id="imageDataContainer"><div id="imageData"><div id="imageDetails"><span id="caption"></span><span id="numberDisplay"></span></div><div id="bottomNav"><a id="bottomNavClose" href="http://www.sparkfun.com/tutorials/240#"><img src="./ADXL345 Quickstart Guide - SparkFun Electronics_files/closelabel.gif"></a></div></div></div></div></body></html>
