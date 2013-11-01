@@ -23,8 +23,8 @@ namespace SimplestCmd
         private ConcurrentQueue<byte[]> sentMsg;
 
         // valeurs générales
-        private int comPort = 3;
-        private int comBaudrate = 115200;
+        private int comPort = 4;
+        private int comBaudrate = 38400;
         private Parity comParity = Parity.None;
         private int comDataBits = 8;
         private StopBits comStopBits = StopBits.One;

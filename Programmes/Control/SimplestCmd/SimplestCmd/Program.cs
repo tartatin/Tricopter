@@ -22,6 +22,25 @@ namespace SimplestCmd
     {
         static SerialCommunication com;
 
+        delegate void HandleKeyMethod(ConsoleKey pKey);
+
+        class HandledKey
+        {
+            public HandledKey(ConsoleKey pKey, HandleKeyMethod pMethod, string pName)
+            {
+                Method = pMethod;
+                Key = pKey;
+                Name = pName;
+            }
+
+            public HandleKeyMethod Method;
+            public ConsoleKey Key;
+            public string Name;
+        }
+
+        /*******************************************************************/
+        static List<HandledKey> _handledKeys = new List<HandledKey>();
+
         /*******************************************************************/
         static byte idNoop = 0x00;
         static byte idPing = 0x01;
@@ -380,44 +399,13 @@ namespace SimplestCmd
         {
             // Gestion des commandes entrées par l'utilisateur
 
-            // Changement de variable de vol
-            switch (key)
+            foreach (HandledKey lHandler in _handledKeys)
             {
-                case ConsoleKey.D0: setComPort(0); break;
-                case ConsoleKey.D1: setComPort(1); break;
-                case ConsoleKey.D2: setComPort(2); break;
-                case ConsoleKey.D3: setComPort(3); break;
-                case ConsoleKey.D4: setComPort(4); break;
-                case ConsoleKey.D5: setComPort(5); break;
-
-                case ConsoleKey.I: showParams(true); break;
-                case ConsoleKey.C: _changingCom = !_changingCom; break;
-
-                case ConsoleKey.S: start(); break;
-
-                // Arrêt d'urgence
-                case ConsoleKey.Spacebar: deadStop(); break;
-                
-                // Arrêt normal
-                case ConsoleKey.Escape:
-                case ConsoleKey.Q: stop(); break;
-
-                case ConsoleKey.F1: flightVariable = FlightVariable.Thrust; break;
-                case ConsoleKey.F2: flightVariable = FlightVariable.P; break;
-                case ConsoleKey.F3: flightVariable = FlightVariable.I; break;
-                case ConsoleKey.F4: flightVariable = FlightVariable.D; break;
-
-                case ConsoleKey.F8: saveParams(); break;
-                case ConsoleKey.F9: loadParams(); break;
-
-                case ConsoleKey.F12:
-                        Console.WriteLine();
-                        Console.WriteLine(">>> Connexion.");
-                        connect();
-                        break;
-
-                case ConsoleKey.Add: increase(_flightVariable); break;
-                case ConsoleKey.Subtract: decrease(_flightVariable); break;
+                if (lHandler.Key == key)
+                {
+                    lHandler.Method(key);
+                    break;
+                }
             }
         }
 
@@ -491,8 +479,132 @@ namespace SimplestCmd
         }
 
         /*******************************************************************/
+
+        static void RegisterCOMChanger(int i)
+        {
+            string lCOMString = "Sélectionne le port COM n°{0}.";
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.D0 + i,
+                delegate(ConsoleKey pKey) { setComPort(i); },
+                string.Format(lCOMString, i)));
+        }
+
+        static void RegisterHandledKeys()
+        {
+            // Active la sélection du port COM
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.C,
+                delegate(ConsoleKey pKey) { _changingCom = !_changingCom; },
+                "Active la sélection du port COM."));
+
+            // Touches permettant de changer de port COM
+            for (int i = 0; i <= 5; ++i)
+                RegisterCOMChanger(i);
+
+            // Affiche la liste des paramètres
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.I,
+                delegate(ConsoleKey pKey) { showParams(true); },
+                "Affiche la liste des paramètres."));
+
+            // Connexion
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F12,
+                delegate(ConsoleKey pKey)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(">>> Connexion.");
+                    connect();
+                },
+                "Connexion à l'hélicoptère."));
+
+            // Démarre les moteurs
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.S,
+                delegate(ConsoleKey pKey) { start(); },
+                "Démarre les moteurs."));
+
+            // Arrêt d'urgence
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.Spacebar,
+                delegate(ConsoleKey pKey) { deadStop(); },
+                "Arrêt d'urgence."));
+
+            // Arrêt normal
+            HandleKeyMethod lNormalStopDel = delegate(ConsoleKey pKey) { };
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.Escape,
+                lNormalStopDel,
+                "Arrêt des moteurs."));
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.Q,
+                lNormalStopDel,
+                "Arrêt des moteurs."));
+
+            // Paramètres de vol
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F1,
+                delegate(ConsoleKey pKey) {flightVariable = FlightVariable.Thrust;},
+                "Réglage de la poussée."));
+
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F2,
+                delegate(ConsoleKey pKey) { flightVariable = FlightVariable.P; },
+                "Réglage du paramètre P (proportionnel)."));
+
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F3,
+                delegate(ConsoleKey pKey) { flightVariable = FlightVariable.I; },
+                "Réglage du paramètre I (intégrateur)."));
+
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F4,
+                delegate(ConsoleKey pKey) { flightVariable = FlightVariable.D; },
+                "Réglage du paramètre D (dérivée)."));
+
+            // Modifie le paramètre de vol sélectionné
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.Add,
+                delegate(ConsoleKey pKey) { increase(_flightVariable); },
+                "Augmente le paramètre de vol sélectionné."));
+
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.Subtract,
+                delegate(ConsoleKey pKey) { decrease(_flightVariable); },
+                "Diminue le paramètre de vol sélectionné."));
+
+            // Chargement / enregistrement des paramètres
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F8,
+                delegate(ConsoleKey pKey) { saveParams(); },
+                "Enregistre les paramètres."));
+
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F9,
+                delegate(ConsoleKey pKey) { loadParams(); },
+                "Charge les paramètres."));
+        }
+
+        /*******************************************************************/
+        static void ShowHandledKeys()
+        {
+            Console.WriteLine(">>> Liste des commandes");
+            Console.WriteLine();
+
+            foreach (HandledKey lHandler in _handledKeys)
+            {
+                Console.WriteLine(string.Format("{0} : {1}", lHandler.Key, lHandler.Name));
+            }
+
+            Console.WriteLine();
+        }
+
+        /*******************************************************************/
         static void Main(string[] args)
         {
+            RegisterHandledKeys();
+            ShowHandledKeys();
+
             com = new SerialCommunication();
             plotAcceleration = new PlotRecorder("plot_acceleration.csv");
 
