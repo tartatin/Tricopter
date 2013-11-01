@@ -1,0 +1,45 @@
+Raccord au port parallele:
+
+Commun : 
+  18 a 25 (masse PC)
+
+Entrees "Statuts" : 
+  Pin 11 (BUSY)
+  Pin 10 (ACK)
+  Pin 12 (PAPER ERROR)
+  Pin 13 (SELECT)
+  Pin 15 (ERROR)
+
+Entrees "Données" (si port EPP seulement) :
+  Pin 2 (D0)
+  Pin 3 (D1)
+  Pin 4 (D2)
+  Pin 5 (D3)
+  Pin 6 (D4)
+  Pin 7 (D5)
+  Pin 8 (D6)
+  Pin 9 (D7)
+
+
+Cablage au port parallèle (LPT)
+
+Entrée  Pin                       Nom ligne port
+------  ---                       --------------
+Commun   18..25 ----------------+ Commun (Masse PC)
+  0       2 -o ------o_o--------¦ D0 *
+  1       3 -o ------o_o--------¦ D1 *
+  2       4 -o ------o_o--------¦ D2 *
+  3       5 -o ------o_o--------¦ D3 *
+  4       6 -o ------o_o--------¦ D4 *
+  5       7 -o ------o_o--------¦ D5 *
+  6       8 -o ------o_o--------¦ D6 *
+  7       9 -o ------o_o--------¦ D7 *
+  8      11 -o ------o_o--------¦ BUSY
+  9      10 -o ------o_o--------¦ ACK
+ 10      12 -o ------o_o--------¦ PAPER ERROR
+ 11      13 -o ------o_o--------¦ SELECT
+ 12      15 -o ------o_o--------¦ ERROR
+
+ --o_o--   =   Contact à surveiller
+
+* possible seulement si port EPP.

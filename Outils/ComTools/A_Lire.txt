@@ -1,0 +1,818 @@
+*****************************************************************************
+*  Remy MALLARD
+*  email: remy.mallard@wanadoo.fr
+*  Copyrights: Sonelec-Musique, Remy Mallard - 2002 - 2008
+*  FRANCE
+*****************************************************************************
+*  
+*  13/12/2009
+*  
+*  Version courante du logiciel ComTools: 
+*  V2.4.4.0
+*  
+*  Dernière mise à jour du logiciel ComTools.exe : 13/12/2009
+*  Dernière mise à jour de l'aide ComTools.hlp   : 17/03/2006
+*  
+*****************************************************************************
+*  FREEWARE 
+*  Voir conditions pour usage en contexte professionnel paragraphe 9
+*****************************************************************************
+
+Si vous lisez ce document avec Bloc-notes (NotePad en version francaise),
+vous le lirez plus confortablement avec le retour à la ligne automatique
+activé (menu Edition -> Renvoi à la ligne ou Renvoi à la ligne automatique).
+---------------------------------------------------------------------------
+
+
+0 - Infos de dernière minute
+1 - Presentation
+2 - Configuration requise
+3 - Installation
+4 - Mise à jour
+5 - Evolutions du logiciel
+6 - Historique
+7 - Evolutions demandées (en attente ou réalisées)
+8 - Bugs connus
+9 - Droits d'utilisation et copyrights
+
+
+0 - Infos de dernière minute
+----------------------------
+Important : 
+- Logiciel non testé intégralement !
+- Fichier d'aide non terminé !
+
+
+1 - Presentation
+----------------
+Le logiciel ComTools est un logiciel destiné à l'extraction et à la 
+surveillance de données sur une ou plusieures liaisons série RS232. 
+L'extraction des données peut être simultanément réalisée sur les lignes 
+TX et RX d'une liaison à surveiller, à condition bien sûr que le PC de 
+surveillance dispose de deux ports série RS232 valides.
+Il est possible d'accepter toutes données reçues, ou au contraire de 
+définir des conditions d'acceptation, permettant d'extraire des paquets 
+de données définis dans un flux continu, ce qui simplifie la recherche 
+d'élements bien précis.
+
+Depuis le 15/03/06, le logiciel est également en mesure de tracer les 
+changements d'état des lignes de statut d'un port parallèle. Cette fonction 
+requiert un PC avec des droits administrateur.
+
+Le fichier A_lire.txt que vous lisez actuellement, peut contenir des
+informations de dernière minute non incluses dans le fichier d'aide du 
+logiciel ComTools.
+Pour cette raison, il est fortement conseillé de le lire avant d'utiliser 
+le logiciel (autant pour une première installation que pour une mise à jour).
+
+Important : Fichier d'aide ComTools.hlp en cours de rédaction (non terminé).
+
+Copyrights: Sonelec-Musique, Remy Mallard - 2005
+
+
+2 - Configuration requise
+-------------------------
+
+Win98/SE, WinNT4SP6, Win2000, WinXP
+WinNT4SP5 : voir $ "Bugs connus".
+Souris fortement conseillée
+
+                          Minimum       Conseillé
+Espace disque dur :       10 MO         20 MO
+RAM :                     16 MO         64 MO
+Vitesse uP :              100 MHz       350 MHz
+Résolution écran :        800 x 600     1024 x 768
+Port série libres         1             -
+
+
+3 - Installation complète (pour une mise à jour, voir paragraphe 4)
+-------------------------------------------------------------------
+3.a - Installation depuis une archive ZIP
+-----------------------------------------
+Si vous disposez d'une archive Zip (ComTools.zip par exemple), commencez 
+par extraire tous les fichiers de l'archive, dans un répertoire temporaire
+de votre choix. Une fois les fichiers extraits, passez à l'étape 3.b.
+
+3.b - Installation depuis le programme d'installation.
+-----------------------------------------
+Lancer le programme setup.exe, puis suivez les instructions affichées à 
+l'écran.
+
+
+4 - Mise à jour (uniquement si l'installation complète a déjà été effectuée)
+---------------------------------------------------------------------------
+Vous pouvez mettre à jour la version de votre logiciel ComTools.exe
+si ce dernier possède un numéro de version anterieur au numéro de
+version de la dernière version disponible.
+La dernière version disponible est indiquée au début du paragraphe
+"8 - Historique" du fichier A_Lire.txt joint au programme.
+Pour connaitre la version actuellement installée sur votre PC, vous
+avez deux solutions:
+1 - Lancer le programme ComTools et consulter l'information de version donnée
+dans la boite de dialogue "A propos".
+2 - Dans le gestionnaire de fichier de Windows, cliquer une fois sur le
+fichier "ComTools.exe" avec le bouton gauche de la souris pour le 
+sélectionner, puis cliquer une fois avec le bouton droit de la souris
+et utiliser la commande "Propriétés" pour afficher les informations de
+version du fichier.
+Ces deux méthodes donnent la même information de version.
+
+La procédure d'installation de la mise à jour consiste simplement à remplacer 
+les anciens fichiers par les nouveaux fichiers quand ils portent le même nom.
+Par exemple, si les seuls fichiers ComTools.exe, ComTools.hlp et A_Lire.txt 
+vous ont été fournis pour effectuer la mise à jour, vous ne devrez remplacer 
+que ces fichiers.
+
+
+5 - Evolutions du logiciel
+--------------------------
+Toute demande d'évolution, de modification ou de correction, sera prise en 
+compte. Afin de gérer correctement l'évolution du logiciel ComTools, le 
+paragraphe "Evolutions demandées" du fichier A_lire.txt (celui que vous lisez 
+actuellement) comportera vos demandes. Les demandes traitées apparaitront dans
+le paragraphe "Historique" de ce même fichier A_lire.txt.
+
+Remarque : le suivi ne sera pas forcément assuré de façon systématique et dans 
+des délais courts.
+
+
+6 - Historique
+--------------
+13/12/2009 - V2.4.4.0
+- Ajout export au format texte brut (sans formatage des attributs texte).
+
+15/09/2009 - V2.4.3.4
+- Désormais, la longueur des chaines de caractères contenues dans des fichiers 
+envoyés par le générateur de trame, n'est plus limitée à 255 caractère mais 
+à 65000 caractères.
+
+12/09/2008 - V2.4.3.3
+- Correction bug mineur lié à la dernière mise à jour : la totalité du texte de 
+l'éditeur principal prennait les attributs dernièrement spécifiés si aucun texte
+n'était sélectionné dans l'éditeur. Je suis allé un peu vite dans mes tests ;-)
+
+11/09/2008 - V2.4.3.2
+- Correction bug mineur changement police de caractère dans éditeur principal.
+Auparavant, les modifications d'attributs de la police de caractère (nom, taille,
+couleur, gras, italique, etc) ne concernaient que le texte sélectionné dans 
+l'éditeur. Les valeurs spécifiées n'étaient pas prises en compte si aucun texte 
+n'était sélectionné. Désormais, les modifications effectuées par l'utilisateur 
+sont prises en compte qu'il y ait du texte séléctionné ou non, et affecte donc 
+tout nouveau texte inséré à partir du curseur de position.
+- Correction bug mineur dans le module Simulateur Equipement. Un message d'erreur
+pouvait survenir lors de l'insertion d'un premier item d'évenement.
+- Augmentation du nombre de messages possibles pour les évenements de suivi 
+insérés dans le fichier de log "ComTools_Log.txt". Pour rappel, le suivi des 
+évenements permet de tracer les actions effectuées au niveau des ports com, et 
+peut être activé via la fenêtre des options, onglet Général (désactivé par défaut).
+- Suppression du menu "Traitement par lots", qui faisait référence à une fonction 
+pas encore implémentée.
+
+20/10/2007 - V2.4.3.1
+- Ajout bouton permettant de rétablir les paramètres d'un port série à des 
+valeurs par défaut (9600, 8, 1, Sans parité), dans la fenêtre des options.
+- Ajout vitesse 230400 bauds. Non supportée officiellement par le driver com 
+de Windows (fonction du driver en place), mais parfois supporté par des drivers
+d'interface série externe (convertisseurs USB / RS232). A essayer donc, sans 
+aucune garantie de bon fonctionnement.
+
+21/08/2007 - V2.4.3.0
+- Ajout possibilité de spécifier le ou les caractères de fin de ligne à ajouter 
+à une commande texte effectuée depuis l'éditeur principal : Aucun caractère, 
+cartactère LF seul, caractère CR seul, caractères LF+CR, ou caractères CR+LF.
+Auparavant, les commandes étaient toujours terminées par le caractère CR (#13).
+
+05/05/2007 - V2.4.2.1
+- Correction bug envoi données dans module Générateur de trame. Les données 
+étaient envoyées mais aucune information n'était affichée dans l'éditeur 
+principal, quand les données envoyées provenaient de fichiers ASCII ou HEXA.
+
+05/04/2007 - V2.4.2.0
+- Correction bug formatage des données dans les fichiers enregistrés en
+temps réel : l'horodatage n'était pas inclus quand il était demandé.
+- Suppression message dans boite de dialogue informant de droits administratifs 
+insuffisant pour la reprise automatique d'enregistrements après arrêt inopiné 
+du logiciel. Le message est toujours inclus dans le l'éditeur principal du
+logiciel mais ne demande plus d'intervention de la part de l'utilisateur.
+
+09/12/2006 - V2.4.1.0
+- Ajout d'indicateurs visuels "Port Ouvert / Fermé", "TX" et "RX" pour les 
+seize ports, dans la barre de statut de la fenêtre principale du logiciel.
+Auparavant, on n'avait de visibilité directe que pour les ports 1 et 2.
+
+06/12/2006 - V2.4.0.1
+- Correction bug indexation numéro de port attribué aux configurations 
+sauvegardées à la demande sur disque, depuis la boite de dialogue des options.
+Même type de défaut que celui corrigé dans la version précédente, il m'avait 
+échappé (là aussi, défaut non apparent si ports coms réels et contigus).
+- Ajout d'un indicateur de progression pour la fonction de reset des ports.
+
+04/12/2006 - V2.4.0.0
+- Correction bug majeur dans indexation des numéros de port Com attribué à 
+chaque port (1 à 16) du logiciel. Ce défaut n'était pas visible pour des 
+configurations physiques standards où tous les numéros de port com se 
+suivaient sans discontinuité. Sur les PC possédant plusieurs ports com avec 
+des "trous" entre des numéros de port valide (par exemple sur un PC possédant 
+les ports valides Com1, Com4 et Com5), l'ouverture des derniers ports pouvait 
+poser problème (refus d'ouverture du port avec message du genre "Ouverture du 
+port impossible car déjà utilisé", ou "Port com spécifié actuellement 
+indisponible".
+- Correction bug majeur Test port com quand le numéro du port com à tester 
+était situé après un numéro de port inexistant (même problème que celui 
+ci-avant, tout était lié).
+- Ajout d'une fonction de reset dans la boite de dialogue des options, 
+permettant de réinitialiser les numéros de ports com à leur valeur par défaut, 
+pour chaque port du logiciel.
+
+10/08/2006 - V2.3.1.6
+- Correction bug majeur module Simulateur équipement. La détection de 
+chaines hexa ne s'effectuait pas correctement. C'est désormais corrigé.
+
+16/06/2006 - V2.3.1.5
+- Désormais, l'envoi direct de texte depuis l'éditeur principal permet 
+l'insertion de caractères de contrôle (non imprimables) en mode ASCII. 
+Exemple : 'Envoi texte simple'^J^M
+
+01/06/2006 - V2.3.1.4
+- Simulateur équipement : désormais, la fenêtre d'ajout d'un nouvel item 
+reprend les valeurs de l'item actuellement sélectionné, afin de permettre
+la saisie plus rapide d'items similaires.
+- Augmentation de la vitesse de chargement et de sauvegarde des fichiers du 
+simulateur d'équipement. Avec des fichiers de simulation bien remplis, la 
+sauvegarde (en particulier) prenait beaucoup de temps pour être écrite sur 
+disque.
+
+17/05/2006 - V2.3.1.3
+- Correction bug majeur dans module Simulateur d'équipement. Le simulateur ne 
+répondait pas toujours quand les données attendues se terminaient par un 
+caractère de contrôle, si l'option de formatage des données reçues était en 
+mode texte.
+
+06/05/2006 - V2.3.1.2
+- Correction problème de focalisation sur la fenêtre de ComTools. J'avais 
+fait l'erreur de surveiller la fenêtre principale de ComTools et non 
+l'application elle-même. Ce qui fait que les résultats obtenus dépendaient
+des autres fenêtres de Comtools affichées. Je pense que cette fois,
+c'est bon ;-).
+
+06/05/2006 - V2.3.1.1
+- Correction bug mineur (suite) : Annulation de la focalisation sur la fenêtre
+d'édition du logiciel ComTools lors de la réception de données, alors que le 
+logiciel est en arrière plan sur le bureau de Windows (activation d'une autre 
+application, qui passe en premier plan). Il restait encore une commande de 
+focalisation qui m'avait échappée. Désolé.
+- Correction bug majeur : Certaines données étaient ignorées avec le formatage
+des données reçues en mode Original. Ce problème était lié à une routine de 
+nettoyage des données reçues, qui supprimait les caractères de contrôles sités
+au début et à la fin de chaque trame de donnée réceptionnée. Cette routine 
+aurait dû être placée dans la section Formatage Texte, mais elle était placée 
+par erreur dès le début du traitement, avant formatage selon règle de 
+l'utilisateur. 
+
+02/05/2006 - V2.3.1.0
+- Ajout d'une fonction Pause, permettant d'arrêter le traitement des données 
+reçues sur l'ensemble des ports COM, sans avoir besoin de fermer les ports en 
+cours d'utilisation. En mode pause, les données reçues ne sont plus affichées 
+(ni placées dans le fichier d'enregistrement temps réel si ce dernier est 
+activé), mais continuent d'être traitées en interne au niveau des buffers de 
+réception, pour éviter que ne réapparaisse tout gros paquet inutile au moment 
+de la remise en service du traitement des données (arrêt fonction Pause).
+A noter que les données reçues quand le mode pause est activé, sont perdues.
+-Ajout message d'information "Port sélectionné indisponible" si le port 
+sélectionné pour le générateur de trame ne peut être utilisé. Auparavant, 
+l'appui sur la touche Start de la fenêtre Générateur de trame se traduisait 
+par une inactivité totale (pas de mise en route, pas de message d'erreur), si 
+le port spécifié n'était pas utilisable.
+- Correction bug mineur : Désormais, dans la fenêtre des options, onglet 
+Générateur de trames, l'information "Port sélectionné indisponible" est 
+correctement affichée si le port spécifié ne peut être utilisé. Auparavant, 
+cette information n'était affichée que si l'onglet Editeur principal avait été 
+consulté juste avant.
+- Correction bug mineur : Annulation de la focalisation sur la fenêtre
+d'édition du logiciel ComTools lors de la réception de données, alors que le 
+logiciel est en arrière plan sur le bureau de Windows (activation d'une autre 
+application, qui passe en premier plan). Auparavant, le logiciel ComTools 
+avait la facheuse tendance à vouloir se montrer alors qu'on voulait travailler
+avec une autre application.
+
+24/03/2006 - V2.3.0.0
+- Ajout Module Echo. Ce module permet de renvoyer directement sur la ligne TX
+de n'importe quel port Com, ce qui lui arrive sur la ligne RX (menu Outils).
+
+16/03/2006 - V2.2.0.1
+- Ajout possibilité d'inverser l'état logique de chaque ligne de statut du 
+port parallèle surveillé, de façon indépendante. Auparavant, il n'était
+possible que d'inverser l'état logique de l'ensemble de ces lignes.
+
+15/03/2006 - V2.2.0.0
+- Ajout Module analyseur logique des entrées d'un port parallèle. Ce module 
+permet le suivi des changements d'état des niveaux logiques présents sur les 
+broches d'entrée du port, chaque changement d'état est notifié dans l'éditeur 
+principal (entête ligne "PP", comme Port Parallèle). Les changements d'état 
+sont également consigné dans le fichier de l'enregistreur temps réel si ce
+dernier est activé. 
+ATTENTION : l'utilisation de ce module requiert des droits administrateurs 
+sur WinNT, Win2000 et WinXP !
+
+16/01/2006 - V2.1.0.16
+- Correction bug Generateur de trames. En mode Hexa, les données Hexa envoyées
+ne correspondaient pas aux données générées et qui étaient visibles dans 
+l'éditeur principal (décalage de 4 bits entre trame générée et trame réellement 
+envoyée). De plus, la trame générée était affichée dans l'éditeur principal
+après son envoi, ce qui en cas de bouclage du port com (direct ou au travers 
+d'un équipement très rapide) pouvait provoquer l'affichage de la trame émise 
+APRES l'affichage de la trame reçue. Ces deux problèmes sont désormais corrigés.
+- Ajout possibilité d'ajouter ou non le prefixe 'GT>' en début de ligne des 
+données émises par le générateur de trames, dans l'éditeur principal. En 
+pratique il est conseillé d'ajouter ce préfixe quand les sources de données
+d'émission de données sont multiples (automatisées et manuelles en même temps). 
+Pour un usage en "tout automatique" (générateur de trame seul), ce préfixe est 
+inutile et peut être désactivé.
+
+13/05/2005 - V2.1.0.15
+- Correction bug mineur en mode ASCII 437 : le caractère "ê" était affiché
+"a". Ceci est désormais corrigé.
+
+20/04/2005 - V2.1.0.14
+- Redefinition de l'interface utilisateur du module de test de la partie 
+"physique" d'un port com.
+
+18/04/2005 - V2.1.0.13
+- Correction bug mineur : le module de test de la partie "physique" d'un 
+port com ne s'effectuait pas correctement sur certains PC (pour des 
+raisons de vitesse processeur).
+
+01/04/2005 - V2.1.0.12
+- Ajout d'un module de test de la partie "physique" d'un port com.
+Cet ajout fait suite à la demande du 31/03/2005.
+
+23/03/2005 - V2.1.0.11
+- Correction bug mineur : la gestion des caractères étendus ASCII 437
+n'était pas fonctionnelle en mode réception Texte si l'option "Accepter 
+les caractères non imprimables" n'était pas activée.
+
+22/03/2005 - V2.1.0.10
+Ajout prise en compte réception caractères étendus codes ASCCII table 437
+(option "ASCII437" ajoutée dans la fenêtre des options). En temps normal, 
+cette option n'a pas besoin d'être activée. Ne l'activer que si vous 
+constatez des problèmes lors de l'affichage des caractères accentuées tels 
+que "é" ou "à".
+Cet ajout fait suite à la demande du 21/03/2005.
+
+08/03/2005 - V2.1.0.9
+- Correction bug majeur : désormais, l'enregistrement temps réel démarre 
+correctement même si les droits utilisateurs sont insuffisants et que 
+l'option de reprise automatique de l'enregistreur Temps réel est activée.
+- Ajout avertissement lorsque la fonction de reprise automatique de 
+l'enregistreur Temps réel est activée sur un PC ne possédant pas les droits 
+administratifs suffisant (cette fonction requiert d'etre logué en mode
+Administrateur).
+
+04/03/2005 - V2.1.0.8
+- Correction bug mineur : désormais, le compteur d'évenements enregistrés
+à l'aide du module Enregistreur temps réel, est remis à zéro lors d'un 
+changement de fichier d'enregistrement en cours d'acquisition. Le compteur 
+était correctement remis à zéro lorsque l'acquisition était arrêtée puis 
+redémarrée, mais n'était pas remis à zéro lors d'un changement de fichier 
+effectué avec acquisition active. Pour rappel, le changement de fichier est 
+permis pendant que l'enregistrement temps réel est actif, mais n'est pas 
+conseillé lorsque des données arrivent, ces dernières pouvant ne pas être 
+enregistrées.
+
+04/03/2005 - V2.1.0.7
+- Ajout reprise automatique d'un enregistrement temps réel sur disque après 
+interruption inattendue (lié à une coupure secteur par exemple). Cette option
+est activable ou désactivable via la fenêtre des options. Quand elle est 
+activée, le logiciel se lance automatiquement au démarrage de Windows, si une
+cession d'enregistrement temps réel a été interrompue de façon inattendue. 
+Quand elle est désactivée, le lancement du logiciel n'est plus automatique et 
+doit être lancé manuellement. A noter que cette reprise automatique ne peut 
+s'effectuer qu'avec un redémarrage de Windows. Tout plantage éventuel du 
+logiciel ne peut donner suite à une reprise automatique de l'enregistrement 
+temps réel.
+Cet ajout fait suite à la demande du 04/03/2005.
+- Ajout d'une fonction de tracage des erreurs internes (exceptions). Le 
+tracage est réalisé dans un fichier texte nommé "ComTools_Errors_Log.txt".
+- Ajout indicateur graphique (gauge) d'état de remplissage du disque utilisé 
+pour l'enregistrement temps réel. Le taux de remplissage concerne le disque ou
+la partition (volume logique) choisi pour placer le fichier d'enregistrement 
+temps réel.
+- Ajout demande de confirmation si l'enregistrement temps réel est activé lors
+de la demande de fermeture du logiciel. Bien que cette demande de confirmation 
+n'était pas implémentée auparavant, l'enregistrement temps réel était toujours 
+stoppé de façon "propre" (ie aucune donnée perdue) lors de la fermeture du 
+logiciel. A noter que comme la sauvegarde des données est effectuées en temps
+réel dans un fichier sur disque, il n'est pas possible de spécifier que l'on 
+ne souhaite pas sauver les dernières données acquises. Toutes les données sont
+donc TOUJOURS enregistrées.
+
+02/02/2005 - V2.1.0.6
+- Correction bug majeur : désormais, l'absence d'un port Com1 ne provoque
+plus d'erreur lors du lancement du logiciel. Par contre, ce cas n'est pas 
+encore géré par le logiciel, qui devra dans une version future prendre en 
+compte le décalage occasionné de façon naturelle par Windows (le port com2 
+s'appelle dans ce cas Com1). Notez cependant qu'il est très rare qu'un PC 
+ne possède pas de port Com1 s'il possède un port Com2... Donc pas de priorité
+pour adapter le logiciel dans ce sens pour le moment.
+- Correction Bug mineur : désormais, dans la fenetre des options, onglet 
+"Port / Analyseur données", les contrôles utilisateur liés à la concaténation 
+des blocs isolés sont désactivés quand le port est fermé.
+
+31/01/2005 - V2.1.0.5
+- Renforcement de la robustesse du logiciel face à des ports com spécifiques,
+tels ceux ajoutés via une carte PCMCIA (applications portables). Contrairement
+à ce que je pensais préalablement, le problème rencontré sur certains PC 
+portables n'était pas lié à l'OS, mais à la présence de ports com valides non 
+adjacents (par exemple port 1 valide, port 2 non valide, port 3 valide).
+Lors de l'initialisation, le logiciel Comtools analysait les ports pour 
+connaitre ceux qui étaient disponibles, mais s'arrêtait sur le premier port
+non valide, et ne tenait donc pas compte des ports éventuellement valides qui
+pouvaient se trouver à la suite. Les ports valides non adjacents sont donc
+désormais reconnus et utilisables.
+- Correction Bug mineur : désormais, le logiciel ne propose plus de sauvegarder
+le contenu de l'éditeur principal quand il est vide.
+- Mise à jour du fichier d'aide.
+
+21/01/2005 - V2.1.0.4
+- Ajout d'un mode Debug utilisable par l'utilisateur final, pouvant permettre 
+la localisation de problèmes potentiels lors de l'initialisation du programme, 
+notemment lors de l'analyse des ports com disponibles sur la machine et leur
+initialisation. L'activation du mode "Debug Utilisateur" se fait en créant un
+fichier texte qui porte le nom de "debug.dat", et qui sera placé dans le 
+répertoire principal de l'application. La suppression ou le renommage de ce 
+fichier désactivera le mode "Debug Utilisateur". La vérification de la 
+présence de ce fichier ne se fait qu'au lancement de l'application.
+
+18/01/2005 - Info
+- Problèmes constatés sur certains OS NT4SP5, le logiciel refuse de démarrer
+(pas de pb recensé sur NT4SP6). Recherche du problème en cours.
+
+28/04/2004 - V2.1.0.3
+- Ajout sauvegarde de la position de la fenêtre du module de transfert de 
+fichier lors de la sortie du logiciel.
+- Ajout sauvegarde du mode de transmission en mode manuel (ASCII ou HEXA) 
+pour les commandes envoyées directement depuis l'éditeur principal.
+- Ajout possibilité de choisir le port com sur lequel envoyer ou recevoir des 
+fichiers (via le module de transfert de fichiers).
+- Correction bug mineur lors de l'exécution du logiciel depuis un support en 
+lecture seule (CDRom par exemple). Le logiciel ne voulait pas se terminer si 
+l'écriture des préférences utilisateur (dans le fichier ComTools.ini) ne 
+pouvait pas se faire. Désormais, si le fichier ini n'est pas accessible en 
+écriture, le logiciel ne tente plus de sauvegarder les préférences utilisateur.
+
+14/04/2004 - V2.1.0.2
+- Ajout fonction de réception dans le module de transfert de fichier.
+Actuellement, la réception et l'envoi de fichier n'est pas possible de façon 
+simultanée (à moins d'ouvrir deux instances du logiciel ComTools : une 
+instance pour l'envoi, l'autre pour la réception).
+- Ajout informations de progression et statistiques concernant le ou les 
+transferts en cours, en émission comme en réception, directement sur l'écran
+du module de transfert de fichier. Auparavant, ces informations étaient 
+affichées dans une fenêtre à part.
+- Correction bug mineur dans le module de transfert de fichiers : le bouton 
+START restait enfoncé une fois le transfert terminé (celà n'empechait pas de 
+redemarrer un nouveau transfert).
+
+02/01/2004 - V2.1.0.1
+- Ajout commande "Accepter les commandes saisies au sein de l'éditeur 
+principal (style terminal)" directement depuis l'éditeur (menu principal, 
+menu popup et bouton barre d'outils). Plus besoin de passer par la fenetre 
+des options. A noter que l'activation n'agit que pour l'envoi des commandes 
+saisies directement au sein de l'éditeur principal. Même désactivé, l'envoi
+direct de données reste toujours actif dans la zone dédiée à cet effet (en 
+haut de l'éditeur principal).
+- Ajout fonction Retour à la ligne automatique pour l'éditeur principal. 
+Cette fonction peut-être activée ou désactivée via le menu Edition.
+- Modification comportement fenêtre Convertisseur de formats : désormais, 
+cette fenêtre peut rester ouverte. Il n'est plus nécessaire de la refermer 
+pour continuer à travailler dans l'éditeur principal.
+- Ajout indication du nom du fichier texte actuellement ouvert, dans la barre
+de titre de la fenêtre principale.
+- Correction bug vérification contenu de l'éditeur principal au moment de la 
+fermeture du logiciel, pour proposer la sauvegarde en cas de modification du 
+texte contenu dans ce dernier (la vérification n'était pas systématique).
+- Correction bug mineur enregistrement du choix du format d'affichage pour 
+les données recues : lors du lancement du logiciel, les données recues étaient
+toujours affichées en mode ASCII, même si le choix d'affichage spécifié était 
+le mode Original, Hexa ou Décimal. Désormais, le choix effectué pour chaque 
+port com est correctement sauvegardé et restauré.
+- Correction bug mineur dans la zone de saisie d'envoi direct de commandes en
+ASCII ou Hexa : les fonctions Couper, Copier et Coller étaient inopérantes et 
+s'effectuaient toujours dans l'éditeur principal.
+
+29/03/2004 - V2.1.0.0
+- Ajout d'un module de transfert de fichier (Xmodem, XmodemCRC, Xmodem1K,
+Xmodem1KG, Ymodem, YmodemG, Zmodem, Kermit, Ascii). Attention : aucun 
+paramètre de configuration n'est actuellement disponible pour les différents 
+protocoles supportés, les paramètres par défaut sont appliqués (gestion des 
+collisions de fichier, méthodes de contrôle de CRC, etc ne sont actuellement
+pas modifiables). Pour de plus amples détails, merci de contacter l'auteur.
+- Ajout fonction d'envoi direct de commandes en ASCII ou en Hexa, depuis la 
+fenêtre principale. Le port sur lequel est envoyé les données est celui qui
+est spécifié dans les options de l'éditeur principal.
+- Dans la fenetre des options, onglet Editeur Principal, ajout indication 
+"Port actuellement indisponible" quand le port spécifié pour l'émission de 
+données depuis l'éditeur principal n'est pas accessible, que ce dernier 
+n'existe pas ou qu'il soit simplement fermé.
+
+23/07/2003 - V2.0.0.6
+- Léger "relookage" de l'application.
+
+05/02/2003 - V2.0.0.5
+- Correction bug Option Insérer horodatage en début de ligne : il n'était plus 
+possible de spécifier le texte à insérer en début de ligne si on le supprimait 
+totalement.
+- Correction bug Option Insérer Port source en début de ligne : il n'était plus 
+possible de spécifier le texte à insérer en début de ligne si on le supprimait 
+totalement.
+- Désormais, les boutons permettant de spécifier le port en cours de sélection 
+ont la couleur dépendant de l'état du port (vert pour port ouvert ou rouge pour
+port fermé). Auparavant, seuls les deux premiers boutons (ports 1 et 2) étaient
+correctement "colorés", les autres boutons correspondant à des ports valides 
+restant en noir.
+- Désormais, le port #1 garde le statut Ouvert ou Fermé qu'il avait lors de la
+fermeture du logiciel. Il est donc maintenant possible de lancer le logiciel 
+avec tous les ports fermés. Auparavant, le port #1 était toujours ouvert lors 
+du lancement du logiciel, même si celui-ci était fermé lors de la fermeture.
+- Ajout libélé indicateur de port dans la fenêtre d'activité des ports, 
+permettant à tout instant de savoir quel port com est attribué à chaque port.
+Ceci permet d'etre moins "perturbé" quand le numéro de port com (port physique) 
+ne correspond pas au numéro du gestionnaire de port auquel ils est rattaché 
+(par exemple port physique com3 pour le gestionnaire de port #1).
+- Désormais, les libélés de la fenêtre d'activité des ports qui correspondent 
+à des ports non disponibles, sont grisés.
+- Désormais, il est possible d'ouvrir ou de fermer un port directement depuis 
+la fenêtre d'activité des ports, en cliquant sur le libélé du port souhaité.
+
+04/02/2003 - V2.0.0.4
+- Correction bug majeur occasionnant le plantage du logiciel lors de son 
+ouverture sous Win95 ou sous Win98/SE. Le problème était lié à l'abscence du 
+fichier d'initialisation comtools.ini, créé lors de la première utilisation 
+du logiciel. Ainsi, le logiciel ne démarrait bien que si lefichier comtools.ini 
+existait. Désormais, le logiciel démarre correctement, même en l'abscence du
+fichier comtools.ini.
+Ce défaut m'avait échappé du fait que le logiciel avait été utilisé sous XP 
+avant d'être testé sous Win98 (et donc avec un fichier ini déjà créé).
+
+10/01/2003 - V2.0.0.3
+- Ajout prise en charge des fichiers textes comportant des données hexadécimale, 
+pour utilisation dans le générateur de trames.
+- Ajout Option choix du préfixe à insérer en début de chaque ligne de données
+reçues, individuellement pour chaque port. Ce mode est particulièrement adapté 
+pour indiquer la source des données recues lors d'une surveillance simultanée 
+sur les lignes RX et TX d'un même port.
+- Ajout option permettant de spécifier le format de la date et/ou de l'heure 
+à insérer en début des lignes de données reçues, quand l'option d'affichage de 
+l'horodatage est activée.
+- Ajout possibilité de spécifier si la date et/ou l'heure doivent ou non
+apparaitre dans la liste des dernières données reçues dans l'enregistreur 
+temps réel.
+- Correction bug majeur affichage message d'erreur lors du lancement du 
+logiciel sur des PC équipés d'un seul port série. Dans certains cas, le 
+logiciel refusait simplement de se lancer ! Le même type de problème pouvait 
+survenir une fois le logiciel lancé, lors d'une tentative d'ouverture du port 
+#02 depuis l'indicateur de la barre de statut de la fenêtre principale ou 
+lors d'une tentative de modification des paramètres de ce même port #02 (dans 
+le cas toujours où la machine ne disposait que d'un seul port). Les tests 
+avaient toujours été effectués sur des PC disposant d'au moins deux ports 
+(je ne possède pas de machine disposant d'un seul port com), c'est la raison 
+pour laquelle ce bête défaut était passé inappercu !
+- Mise à jour de l'aide en ligne ComTools.hlp.
+
+07/01/2003 - V2.0.0.2
+- Amélioration du simulateur d'équipement. Désormais, il est possible de 
+classer par groupe différents évenements, pour une meilleur organisation des 
+fichiers volumineux. De plus, chaque évenement peut désormais être assigné à 
+un port précis, si nécessaire.
+- Ajout option permettant de désactiver l'insertion des messages reçus dans 
+l'éditeur principal lorsque l'enregistrement en temps réel est actif. Cela 
+est particulierement utile pour les enregistrements de longue durée, quand 
+la quantité de données reçues est importante et que l'ordinateur est doté de 
+peu de mémoire vive.
+- Correction bug mineur simulateur d'équipement : l'activation ou la 
+désactivation individuelle des élements de liste ne pouvait pas s'effectuer 
+depuis la liste si cette dernière contenait plus d'un élement. l'activation 
+ou la désactivation restait cependant possible via l'éditeur d'élement.
+- Correction bug mineur affichage en double des données reçues lorsque le 
+détecteur de packet n'est pas utilisé (option Voir tout activée). Celà ne se 
+produisait qu'après affichage et fermeture de la fenêtre des options. 
+
+06/01/2003 - V2.0.0.1
+- Ajout choix de la police de caractère de l'éditeur principal. Le choix de la
+police est sauvegardé dans les préférences utilisateur.
+- Ajout sauvegarde des paramètres de tous les ports reconnus, lors de la 
+fermeture du logiciel, et restauration au démarrage suivant du logiciel.
+- Ajout option permettant d'ignorer les lignes de texte reçues ne comportant 
+que des caratères Retour charriot ou Saut de ligne, afin d'éviter les ligne 
+blanches dans l'éditeur principal.
+- Générateur de trames : Ajout d'un délai de 200 ms avant envoi de la commande 
+suivante si une erreur est detectée lors de l'envoi de commandes à un rythme 
+très soutenu. Il peut arriver en effet que l'envoi d'une commande ne peut 
+aboutir quand l'intervalle de temps entre envoi de deux commandes est très 
+faible, par exemple 10 ms. Bien qu'en pratique celà ne soit pas très grave, 
+j'ai tout de même décidé de "nettoyer" le buffer de sortie du port com concerné
+et d'attendre quelques instants avant de continuer l'envoi.
+- Correction bug majeur Affichage message d'erreur lorsque le détecteur de 
+packet n'est pas utilisé (option Voir tout activée). Les données étaient 
+correctement traitées et affichées, mais au bout d'un temps égal à l'intervale 
+de concaténation, un message d'erreur de type 'Violation d'acces' était affiché.
+
+31/12/2002 - V2.0.0.0
+- Refonte totale du logiciel.
+- Prise en charge étendue des ports série. Désormais, le logiciel peut supporter 
+jusqu'à 16 ports simultanément, au lieu de 2 comme auparavant. Le logiciel 
+analyse la configuration matérielle du PC lors de son démarrage, et crée autant 
+de gestionnaires de ports qu'il en a détécté. Chaque port dispose désormais de 
+ses propres options d'analyse et de formatage des données recues.
+- Ajout fonction enregistrement temps réel des trames reçues.
+- Changement de nom : le Générateur aléatoire (de trames) s'appelle désormais 
+Générateur de trames.
+- Ajout fonction de lecture de données issues d'un fichier dans le générateur de
+trames. Actuellement seules des données de type ASCII (texte simple) peuvent 
+être utilisée par le générateur de trames.
+
+25/12/2002 - V1.5.0.4
+- Modification gestion enregistrement position et tailles des fenêtres (pour
+restauration à l'identique au lancement suivant).
+- Correction bug mineur Affichage message d'erreur lors de la fermeture du 
+logiciel (ce message d'erreur apparaissait sous certaines conditions et 
+n'était pas systématique).
+
+05/05/2002 - V1.5.0.3
+- Correction bug mineur Affichage message d'erreur lors de la fermeture du port 
+Com2 sur certains PC.
+
+13/12/2001 - V1.5.0.2
+- Ajout Option visualisation des dernier messages émis depuis le générateur 
+aléatoire seulement si un message est détecté en entrée par ComTools. Ainsi, 
+seul les messages susceptibles d'avoir occasionnés une réaction de la part de
+l'équipement récepteur sont visualisés, ce qui permet de limiter le nombre 
+de messages tracés (qui ne serviront à rien la plupart du temps).
+- Meilleur gestion de la position et de la taille des fenêtres, lors du 
+démarrage du logiciel. Désormais, une fenêtre qui était partiellement cachée 
+(hors écran Window) lors de la sortie du logiciel, sera automatiquement 
+déplacée de telle sorte qu'elle soit intégralement visible lors du démarrage
+suivant.
+
+12/12/2001 - V1.5.0.1
+- Ajout controle fonctionnement du générateur de trames aléatoire à la 
+fermeture du logiciel. Désormais, la fermeture du logiciel n'est plus 
+permise quand le générateur est en fonction.
+- Ajout Désactivation du suivi des messages envoyés par le générateur de 
+trames aléatoire, quand le délai entre messages émis est nul. Dans ce cas 
+en effet, un nombre très important de messages est émis, et leur suivi 
+encombre extremement rapidement le journal de suivi. Outre l'aspect quantité 
+des messages, il se peut que des problèmes surviennent sur des machine peu 
+puissantes et équipée de peu de mémoire vive (processeur 100MHz et 32 MO de 
+RAM par exemple). Par contre, la visualisation des messages émis reste toujours
+possible dans la barre de statut située en bas de la fenêtre du générateur 
+aléatoire (mais ne cherchez pas à lire ces message, vu la vitesses à laquelle 
+ils sont émis !).
+- Ajout Choix couleur des messages émis.
+
+11/12/2001 - V1.5.0.0
+- Ajout module Générateur aléatoire de trames. Ce module permet d'envoyer 
+à intervalles irréguliers, une trame dont la longueur et le contenu sont 
+totalement aléatoires. Il est possible de spécifier le délai minimum et 
+maximum entre l'envoi de deux trames, ainsi que la longueur minimum et 
+maximum de chaque trame. La trame émise peut être au format ASCII ou au 
+format binaire. Quand le format ASCII est sélectionné, il est possible de
+restreindre les caractères envoyés aux caractères imprimables seuls.
+
+09/10/2001 - V1.4.0.3
+- Modification ressources executable (TDF Cetec modifié en TDF DEM/SME).
+
+08/02/2000 - V1.2.0.0
+- Ajout possibilité de suivre le flux intégral des données arrivant, sans 
+condition de début/fin de paquet (désactivation fonction détection paquets).
+
+07/02/2000 - V1.2.0.0
+- Ajout d'une boite de dialogue pour l'envoi de commandes ASCII ou modbus 
+(mode RTU ou mode ASCII). Cette fonctionnalité ne doit pas être utilisée 
+lors de la surveillance simultannée de deux flux de données.
+
+17/01/2000 - V1.0.0.5
+- Ajout de la visualisation en ASCII (en plus de Hexa et Decimal) des données
+reçues, avec possibilité de filtrer les données ASCII non imprimables.
+
+21/10/1999 - V1.0.0.4
+- Ajout choix du type de boutons pour la barre d'outils (boutons pouvant 
+désormais etre du style "normal" ou "plat"). Sur remarque d'un utilisateur, 
+l'etat - enfoncé ou relaché - des boutons de type "commutateur" n'est pas
+très visible sur certains PC portables, quand ces boutons sont de style "plat".
+L'option qui permet de choisir le style des boutons de la barre d'outils 
+est située sur le nouvel onglet "IHM" de la boite de dialogue "Préférences". 
+Ce nouvel onglet a été ainsi nommé "IHM" (Interface Homme-Machine) pour faire
+la distinction avec les options influant directement sur le déroulement du 
+programme.
+
+19/10/1999 - V1.0.0.3
+- Ajout possibilité d'insertion Date/Heure au début de chaque trame détectée.
+Sauvegarde des couleurs du texte choisies par l'utilisateur.
+
+18/10/1999 - V1.0.0.1
+- Ajout de boutons dans la barre d'outils de la fenêtre principale permettant
+de modifier les paramètres de détection des paquets sur RX ou sur TX, sans 
+appeler la boite de dialogue des préférences (Boutons "1" et "2").
+
+15/10/1999 - V1.0.0.0
+Version initiale. 
+Toutes versions antérieures à la V1.0.0.0 non suivies.
+
+
+7 - Evolutions demandées (en attente ou réalisées)
+--------------------------------------------------
+10/05/2007
+- Demande confirmation et correction le cas échéant d'un bug message erreur 
+de type "Mémoire insuffisante" quand le module Enregistrement temps réel 
+est activé et que le fichier temps réel atteind une taille comprise entre 
+12 MO et 15 MO.
+EN ATTENTE DE CONFIRMATION / CORRECTION
+
+04/05/2007
+- Demande correction bug envoi données dans module Générateur de trames.
+CORRIGE le 05/05/2007 (V2.4.2.1)
+
+03/04/2007
+- Demande correction bug Absence horodatage dans fichiers enregistrements 
+temps réel.
+CORRIGE le 05/04/2007 (V2.4.2.0)
+
+31/03/2005
+- Demande ajout d'une fonction Vérification Port com, qui envoie des données
+sur la ligne TX et qui attend leur retour sur la ligne RX, via un bouclage 
+physique (strap) entre les deux lignes.
+IMPLEMENTE le 31/03/2005 (V2.1.0.12)
+- Demande ajout visualiseur changement d'état des lignes sur un port recevant
+des données non standards, avec indication du débit / fréquence des données
+reçues.
+EN ATTENTE DE REALISATION.
+
+21/03/2005
+- Demande prise en compte d'une conversion des caractères accentués : 
+remplacement des "é" et "è" par "e" par exemple.
+IMPLEMENTE le 22/03/2005 (V2.1.0.10)
+
+04/03/2005
+- Demande ajout reprise automatique d'un enregistrement temps réel sur disque 
+après interruption inattendue (lié à une coupure secteur par exemple).
+IMPLEMENTE le 04/03/2005
+
+10/12/2001
+- Demande Ajout module Générateur aléatoire de trames, pour analyse du 
+comportement d'équipements sur des trames non formatées.
+IMPLEMENTE le 11/12/2001 (V1.5.0.0)
+
+{
+EN ATTENTE DE REALISATION.
+IMPLEMENTE le xx/xx/xxxx.
+MODIFIE le xx/xx/xxxx.
+CORRIGE le xx/xx/xxxx.
+}
+
+
+8 - Bugs connus
+----------------
+- L'activation de la fonction de reprise automatique lors d'un 
+enregistrement temps réel se solde par un échec lorsque le logciel est 
+lancé sur une machine ne disposant pas des droits administratifs suffisants.
+- Refus de démarrage sur certains PC portables équipé de WinNT4SP5. 
+Le problème survient lors de l'initialisation des ports com, la raison 
+n'est pas encore connue.
+
+
+9 - Droits d'utilisation et copyrights
+--------------------------------------
+Le logiciel ComTools est distribué selon le principe du Freeware, ce qui 
+signifie que vous pouvez l'utiliser librement, et ceci dans le cadre d'une 
+utilisation personnelle, sans devoir acquitter une licence payante.
+Attention ! Pour un usage professionnel, et même si cet usage ne génére 
+aucun bénéfice direct ou indirect, une demande de licence est nécessaire
+(cette dernière reste gratuite).
+
+
+
+***************************************************************************
+*  
+*  Important !
+*  -----------
+*  Ce logiciel ne dispose pas de support technique. Il ne peut prétendre 
+*  à une utilisation professionnelle. Ce logiciel n'a en effet jamais été  
+*  testé intégralement, et le fichier d'aide n'est pas terminé !
+*  J'attire votre attention sur le fait que ce logiciel comporte peut-être
+*  des bugs (défauts de conception) pouvant gêner son utilisation. 
+*  Vous êtes seuls responsables de l'usage que vous en ferez !!!
+*  Ceci dit, il semble que jusqu'à maintenant il a rendu plus de services 
+*  qu'il n'a apporté d'ennui...
+*  
+***************************************************************************
+
+
+
+--------------
+
+Pour tout renseignements complémentaires, n'hésitez pas à me contacter.
+
+Rémy Mallard
+remy.mallard@wanadoo.fr
+

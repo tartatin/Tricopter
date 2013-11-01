@@ -1,0 +1,7 @@
+# Projet msvc
+*.sdf
+*.suo
+*.vcxproj.user
+
+Debug/
+Release/

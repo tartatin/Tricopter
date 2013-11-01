@@ -1,0 +1,32 @@
+[Event_000000]
+Active=1
+Group=Modem Olitec
+RXData=ATI2
+RXPort=0
+TXData='Modem Test OK'#13
+TXPort=0
+TXFormat=ASCII
+[Event_000001]
+Active=1
+Group=Modem Olitec
+RXData=ATI
+RXPort=0
+TXData='V3.02'#13'OK'#13
+TXPort=0
+TXFormat=ASCII
+[Event_000002]
+Active=1
+Group=Groupe_01
+RXData=
+RXPort=0
+TXData=
+TXPort=0
+TXFormat=ASCII
+[Event_000003]
+Active=0
+Group=Modem Olitec
+RXData=
+RXPort=0
+TXData=
+TXPort=0
+TXFormat=ASCII
