@@ -55,7 +55,12 @@ namespace SimplestCmd
         static byte idPlot = 0x09;
 
         /*******************************************************************/
+        const byte plotAccelerationId = 0x01;
+        const byte plotAttitudeId = 0x02;
+
+        /*******************************************************************/
         static PlotRecorder plotAcceleration;
+        static PlotRecorder plotAttitude;
 
         /*******************************************************************/
         static float _servoAngle = 0.0f;
@@ -424,7 +429,8 @@ namespace SimplestCmd
 
             switch (id)
             {
-                case 1: plotAcceleration.addPoint(T, lValues); break;
+                case plotAccelerationId: plotAcceleration.addPoint(T, lValues); break;
+                case plotAttitudeId: plotAttitude.addPoint(T, lValues); break;
             }
         }
 
@@ -607,6 +613,7 @@ namespace SimplestCmd
 
             com = new SerialCommunication();
             plotAcceleration = new PlotRecorder("plot_acceleration.csv");
+            plotAttitude = new PlotRecorder("plot_attitude.csv");
 
             // Affichage des paramètres du port com
             showComParams();
