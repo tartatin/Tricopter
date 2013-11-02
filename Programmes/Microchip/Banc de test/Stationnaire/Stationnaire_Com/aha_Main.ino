@@ -39,14 +39,15 @@ void quickStop()
 /*****************************************************************/
 void loop() 
 {    
-    static uint32_t lLast = millis();
-    uint32_t lNow = millis();
-    //if (lNow - lLast > 10000)
-    //    quickStop();
-  
     // Lecture des commandes et arrêt d'urgence
     while (receiveMsg())
         treatMessage();
+        
+    static uint32_t lLast = millis();
+    uint32_t lNow = millis();
+    if (lNow - lLast < 100)
+        return;
+    lLast = lNow;
   
     // Calcul des commandes moteurs :
     // 1. Lecture des valeurs de l'accéléromètre
@@ -57,5 +58,7 @@ void loop()
     
     getMotorsCorrection();
     updateMotorsCmd();
+    
+    printTextf("Targets: %d | %d | %d\n", g_MotorsTarget[0], g_MotorsTarget[1], g_MotorsTarget[2]);
 }
 

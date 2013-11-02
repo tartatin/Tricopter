@@ -210,11 +210,11 @@ bool treatMessage()
     // Poussée
     else if (IS_MSG(SET_THRUST_MSGID))
     {
-        CHECK_SIZE(sizeof(uint16_t));
+        CHECK_SIZE(sizeof(int16_t));
         
         // Set de la valeur
-        uint16_t lValue = UINT16(0);
-        thresholdRangeUInt16(&lValue, 0, 2000);
+        int16_t lValue = INT16(0);
+        thresholdRangeInt16(&lValue, 0, 2000);
         setMeanForce(lValue);
         
         // Get de la valeur pour retour

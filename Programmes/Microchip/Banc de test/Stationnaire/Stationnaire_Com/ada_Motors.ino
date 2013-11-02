@@ -65,12 +65,16 @@ void stopMotors()
     Motor2.writeMicroseconds(lValue);
     Motor3.writeMicroseconds(lValue);
    
+    if (g_MotorsState == true)
+        printText("Extinction.\n");
     g_MotorsState = false;
 }
 
 /*****************************************************************/
 void startMotors()
 {
+    if (g_MotorsState == false)
+        printText("Allumage.\n");
     g_MotorsState = true;
 }
 

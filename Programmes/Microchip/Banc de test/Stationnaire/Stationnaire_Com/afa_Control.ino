@@ -33,7 +33,7 @@ void updateMotorsCmd()
 /*****************************************************************/
 void getMotorsCorrection()
 {
-    int16_t lCoeff = 38; // 10000 cN.cm / 260 unité d'angle
+    int16_t lCoeff = 10; // 10000 cN.cm / 260 unité d'angle
     int16_t lArmSin120 = (g_ArmsLength * 100) / 115;
     
     int16_t OverX = (g_Raw_Rotation[0] * lCoeff) / g_ArmsLength;

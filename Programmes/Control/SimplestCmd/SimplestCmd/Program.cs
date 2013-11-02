@@ -67,7 +67,7 @@ namespace SimplestCmd
 
         /*******************************************************************/
         static Int16 _servoAngle = 0;
-        static UInt16 _flightThrust = 0;
+        static Int16 _flightThrust = 0;
         static Int16 _flightP = 0;
         static Int16 _flightI = 0;
         static Int16 _flightD = 0;
@@ -115,7 +115,7 @@ namespace SimplestCmd
             sendCmd(idThrust, rawValue(_flightThrust));
         }
 
-        static UInt16 flightThrust
+        static Int16 flightThrust
         {
             get { return _flightThrust; }
             set 
@@ -213,14 +213,14 @@ namespace SimplestCmd
             Console.WriteLine();
             Console.WriteLine(">>> Chargement des paramètres de vol");
 
-            UInt16 _flightThrustBak = _flightThrust;
+            Int16 _flightThrustBak = _flightThrust;
             Int16 _flightPBak = _flightP;
             Int16 _flightIBak = _flightI;
             Int16 _flightDBak = _flightD;
             Int16 _servoAngleBak = _servoAngle;
 
             StreamReader stream = new StreamReader("params.txt");
-            _flightThrust = Convert.ToUInt16(stream.ReadLine());
+            _flightThrust = Convert.ToInt16(stream.ReadLine());
             _flightP = Convert.ToInt16(stream.ReadLine());
             _flightI = Convert.ToInt16(stream.ReadLine());
             _flightD = Convert.ToInt16(stream.ReadLine());
@@ -353,7 +353,6 @@ namespace SimplestCmd
             Console.WriteLine(">>> Démarrage des moteurs.");
             if (secondChance(5) == false)
                 return;
-            Console.WriteLine("Allumage.");
             sendCmd(idSetEngineState, 0xAA);
         }
 
@@ -384,7 +383,7 @@ namespace SimplestCmd
         {
             switch (pVar)
             {
-                case FlightVariable.Thrust: flightThrust += (UInt16)pValue; break;
+                case FlightVariable.Thrust: flightThrust += pValue; break;
                 case FlightVariable.P: flightP += pValue; break;
                 case FlightVariable.I: flightI += pValue; break;
                 case FlightVariable.D: flightD += pValue; break;
@@ -396,7 +395,7 @@ namespace SimplestCmd
         {
             switch (pVar)
             {
-                case FlightVariable.Thrust: return (Int16)1;
+                case FlightVariable.Thrust: return (Int16)10;
                 case FlightVariable.P: return (Int16)1;
                 case FlightVariable.I: return (Int16)1;
                 case FlightVariable.D: return (Int16)1;
