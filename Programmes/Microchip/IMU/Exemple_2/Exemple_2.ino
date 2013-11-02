@@ -90,7 +90,7 @@ void getGyroscopeData(int * result)
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(38400);
   Wire.begin();
   initAcc();
   initGyro();
@@ -104,7 +104,7 @@ void loop()
   getAccelerometerData(acc);
   getGyroscopeData(gyro);
   
-  sprintf(str, "### %08d,%08d,%08d,%08d,%08d,%08d,%08d\n", acc[0], acc[1], acc[2], gyro[0], gyro[1], gyro[2], gyro[3]);  
+  sprintf(str, "### %d,%d,%d,%d,%d,%d,%d\n", acc[0], acc[1], acc[2], gyro[0], gyro[1], gyro[2], gyro[3]);  
   Serial.println(str);
   
   delay(100);

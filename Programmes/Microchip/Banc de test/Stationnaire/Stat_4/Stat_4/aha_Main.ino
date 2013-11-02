@@ -22,9 +22,10 @@ void setup()
     setupVAMeter();
   
     // Moteurs & servo
+    printText("+ servo...\n");
+    setupServo();
     printText("+ moteurs...\n");
     setupMotors();
-    setupServo();
   
     // Stabilisateur
     printText("+ contrôle de vol...\n");
@@ -59,7 +60,8 @@ void printStatus()
     lLast = lNow;
   
     sendPlot(3, 1, l_Now, g_Raw_Acceleration);
-    sendPlot(3, 2, l_Now, g_MotorsValue);
+    sendPlot(3, 2, l_Now, g_Raw_RotationRate);
+    // sendPlot(3, 3, l_Now, g_MotorsValue);
   
     /*sendPlot(3, 1, l_Now, g_P_Acceleration);
     sendPlot(3, 2, l_Now, g_I_Acceleration);
