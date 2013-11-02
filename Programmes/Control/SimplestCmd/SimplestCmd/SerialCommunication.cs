@@ -284,30 +284,30 @@ namespace SimplestCmd
             }
         }
 
-        private void sendByte(byte c)
+        private void sendByte(byte c, bool escape)
         {
-            string s = "";
+            List<byte> lBytes = new List<byte>();
 
-            if ((c == startCharValue) || (c == stopCharValue) || (c == escapeCharValue))
+            if (((c == startCharValue) || (c == stopCharValue) || (c == escapeCharValue)) && (escape == true))
             {
                 for (int i = 0; i < RedundancyCount; ++i)
-                    s += escapeCharValue;
+                    lBytes.Add(escapeCharValue);
             }
 
             for (int i = 0; i < RedundancyCount; ++i)
-                s += c;
+                lBytes.Add(c);
 
-            serialPort.Write(s);
+            serialPort.Write(lBytes.ToArray(), 0, lBytes.Count);
         }
 
         private void sendMessage(byte[] msg)
         {
-            sendByte(startCharValue);
+            sendByte(startCharValue, false);
             for (int i = 0; i < msg.Length; ++i)
             {
-                sendByte(msg[i]);
+                sendByte(msg[i], true);
             }
-            sendByte(stopCharValue);
+            sendByte(stopCharValue, false);
         }
 
         private void sendAllMessages()
