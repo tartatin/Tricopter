@@ -53,21 +53,24 @@ namespace SimplestCmd
         static byte idPrintFloat = 0x06;
         static byte idPrintString = 0x07;
         static byte idPlot = 0x09;
+        static byte idPrintInt = 0x0A;
 
         /*******************************************************************/
         const byte plotAccelerationId = 0x01;
         const byte plotAttitudeId = 0x02;
+        const byte plotMotorsTargetId = 0x03;
 
         /*******************************************************************/
         static PlotRecorder plotAcceleration;
         static PlotRecorder plotAttitude;
+        static PlotRecorder plotMotorsTarget;
 
         /*******************************************************************/
-        static float _servoAngle = 0.0f;
-        static float _flightThrust = 0.0f;
-        static float _flightP = 0.0f;
-        static float _flightI = 0.0f;
-        static float _flightD = 0.0f;
+        static Int16 _servoAngle = 0;
+        static UInt16 _flightThrust = 0;
+        static Int16 _flightP = 0;
+        static Int16 _flightI = 0;
+        static Int16 _flightD = 0;
 
         /*******************************************************************/
         static FlightVariable _flightVariable = FlightVariable.None;
@@ -109,10 +112,10 @@ namespace SimplestCmd
         /*******************************************************************/
         static void sendThrust()
         {
-            sendCmd(idThrust, rawFloat(_flightThrust));
+            sendCmd(idThrust, rawValue(_flightThrust));
         }
 
-        static float flightThrust
+        static UInt16 flightThrust
         {
             get { return _flightThrust; }
             set 
@@ -126,9 +129,9 @@ namespace SimplestCmd
         /*******************************************************************/
         static void sendPIDValues()
         {
-            byte[] P = rawFloat(_flightP);
-            byte[] I = rawFloat(_flightI);
-            byte[] D = rawFloat(_flightD);
+            byte[] P = rawValue(_flightP);
+            byte[] I = rawValue(_flightI);
+            byte[] D = rawValue(_flightD);
 
             byte[] args = new byte[P.Length + I.Length + D.Length];
             Array.Copy(P, 0, args, 0, P.Length);
@@ -138,7 +141,7 @@ namespace SimplestCmd
             sendCmd(idPID, args);
         }
         
-        static float flightP
+        static Int16 flightP
         {
             get { return _flightP; }
             set 
@@ -149,7 +152,7 @@ namespace SimplestCmd
             }
         }
 
-        static float flightI
+        static Int16 flightI
         {
             get { return _flightI; }
             set 
@@ -160,7 +163,7 @@ namespace SimplestCmd
             }
         }
 
-        static float flightD
+        static Int16 flightD
         {
             get { return _flightD; }
             set 
@@ -174,10 +177,10 @@ namespace SimplestCmd
         /*******************************************************************/
         static void sendServoAngle()
         {
-            sendCmd(idServo, rawFloat(_servoAngle));
+            sendCmd(idServo, rawValue(_servoAngle));
         }
 
-        static float servoAngle
+        static Int16 servoAngle
         {
             get { return _servoAngle; }
             set
@@ -210,18 +213,18 @@ namespace SimplestCmd
             Console.WriteLine();
             Console.WriteLine(">>> Chargement des paramètres de vol");
 
-            float _flightThrustBak = _flightThrust;
-            float _flightPBak = _flightP;
-            float _flightIBak = _flightI;
-            float _flightDBak = _flightD;
-            float _servoAngleBak = _servoAngle;
+            UInt16 _flightThrustBak = _flightThrust;
+            Int16 _flightPBak = _flightP;
+            Int16 _flightIBak = _flightI;
+            Int16 _flightDBak = _flightD;
+            Int16 _servoAngleBak = _servoAngle;
 
             StreamReader stream = new StreamReader("params.txt");
-            _flightThrust = Convert.ToSingle(stream.ReadLine());
-            _flightP = Convert.ToSingle(stream.ReadLine());
-            _flightI = Convert.ToSingle(stream.ReadLine());
-            _flightD = Convert.ToSingle(stream.ReadLine());
-            _servoAngle = Convert.ToSingle(stream.ReadLine());
+            _flightThrust = Convert.ToUInt16(stream.ReadLine());
+            _flightP = Convert.ToInt16(stream.ReadLine());
+            _flightI = Convert.ToInt16(stream.ReadLine());
+            _flightD = Convert.ToInt16(stream.ReadLine());
+            _servoAngle = Convert.ToInt16(stream.ReadLine());
             stream.Close();
 
             showParams();
@@ -285,7 +288,27 @@ namespace SimplestCmd
         }
 
         /*******************************************************************/
-        static byte[] rawFloat(float pValue)
+        static byte[] rawValue(float pValue)
+        {
+            return BitConverter.GetBytes(pValue);
+        }
+
+        static byte[] rawValue(Int16 pValue)
+        {
+            return BitConverter.GetBytes(pValue);
+        }
+
+        static byte[] rawValue(UInt16 pValue)
+        {
+            return BitConverter.GetBytes(pValue);
+        }
+
+        static byte[] rawValue(SByte pValue)
+        {
+            return BitConverter.GetBytes(pValue);
+        }
+
+        static byte[] rawValue(Byte pValue)
         {
             return BitConverter.GetBytes(pValue);
         }
@@ -357,11 +380,11 @@ namespace SimplestCmd
         }
 
         /*******************************************************************/
-        static void add(FlightVariable pVar, float pValue)
+        static void add(FlightVariable pVar, Int16 pValue)
         {
             switch (pVar)
             {
-                case FlightVariable.Thrust: flightThrust += pValue; break;
+                case FlightVariable.Thrust: flightThrust += (UInt16)pValue; break;
                 case FlightVariable.P: flightP += pValue; break;
                 case FlightVariable.I: flightI += pValue; break;
                 case FlightVariable.D: flightD += pValue; break;
@@ -369,15 +392,15 @@ namespace SimplestCmd
         }
 
         /*******************************************************************/
-        static float default_var_step(FlightVariable pVar)
+        static Int16 default_var_step(FlightVariable pVar)
         {
             switch (pVar)
             {
-                case FlightVariable.Thrust: return 0.1f;
-                case FlightVariable.P: return 0.1f;
-                case FlightVariable.I: return 0.1f;
-                case FlightVariable.D: return 0.1f;
-                default: return 0.0f;
+                case FlightVariable.Thrust: return (Int16)1;
+                case FlightVariable.P: return (Int16)1;
+                case FlightVariable.I: return (Int16)1;
+                case FlightVariable.D: return (Int16)1;
+                default: return (Int16)0;
             }
         }
 
@@ -389,7 +412,7 @@ namespace SimplestCmd
 
         static void decrease(FlightVariable pVar)
         {
-            add(pVar, -default_var_step(pVar));
+            add(pVar, (Int16) (- default_var_step(pVar)));
         }
 
         /*******************************************************************/
@@ -431,6 +454,7 @@ namespace SimplestCmd
             {
                 case plotAccelerationId: plotAcceleration.addPoint(T, lValues); break;
                 case plotAttitudeId: plotAttitude.addPoint(T, lValues); break;
+                case plotMotorsTargetId: plotMotorsTarget.addPoint(T, lValues); break;
             }
         }
 
@@ -438,6 +462,13 @@ namespace SimplestCmd
         static void handlePrintFloat(byte[] args)
         {
             float lValue = BitConverter.ToSingle(args, 0);
+            Console.WriteLine(String.Format("{0}", lValue));
+        }
+
+        /*******************************************************************/
+        static void handlePrintInt(byte[] args)
+        {
+            int lValue = (int)BitConverter.ToInt16(args, 0);
             Console.WriteLine(String.Format("{0}", lValue));
         }
 
@@ -465,6 +496,8 @@ namespace SimplestCmd
                 handlePrintFloat(lParams);
             else if (lId == idPrintString)
                 handlePrintString(lParams);
+            else if (lId == idPrintInt)
+                handlePrintInt(lParams);
         }
 
         /*******************************************************************/
@@ -537,7 +570,7 @@ namespace SimplestCmd
                 "Arrêt d'urgence."));
 
             // Arrêt normal
-            HandleKeyMethod lNormalStopDel = delegate(ConsoleKey pKey) { };
+            HandleKeyMethod lNormalStopDel = delegate(ConsoleKey pKey) { stop(); };
             _handledKeys.Add(new HandledKey(
                 ConsoleKey.Escape,
                 lNormalStopDel,
@@ -614,6 +647,7 @@ namespace SimplestCmd
             com = new SerialCommunication();
             plotAcceleration = new PlotRecorder("plot_acceleration.csv");
             plotAttitude = new PlotRecorder("plot_attitude.csv");
+            plotMotorsTarget = new PlotRecorder("plot_motorstarget.csv");
 
             // Affichage des paramètres du port com
             showComParams();

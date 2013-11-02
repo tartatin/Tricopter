@@ -30,6 +30,15 @@ namespace SimplestCmd
             stream = new StreamWriter(lFilename, true);
         }
 
+        public void addPoint(float X, List<int> Values)
+        {
+            String line = String.Format("{0}", X);
+            for (int i = 0; i < Values.Count; ++i)
+                line += String.Format(";{0}", Values[i]);
+            stream.WriteLine(line);
+            stream.Flush();
+        }
+
         public void addPoint(float X, List<float> Values)
         {
             String line = String.Format("{0}", X);
