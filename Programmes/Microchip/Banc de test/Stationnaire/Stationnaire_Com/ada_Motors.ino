@@ -33,8 +33,8 @@ void setupMotors()
 {
     // Moteurs
     Motor1.attach(9);
-    Motor2.attach(11);
-    Motor3.attach(10);
+    Motor2.attach(10);
+    Motor3.attach(11);
     
     Motor1.writeMicroseconds(900);
     Motor2.writeMicroseconds(900);
@@ -53,13 +53,13 @@ void stopMotors()
     // Arrêt total des moteurs
     int16_t lValue = 900;
     
-    g_MotorsTarget[0] = (float) lValue;
-    g_MotorsTarget[1] = (float) lValue;
-    g_MotorsTarget[2] = (float) lValue;
+    g_MotorsTarget[0] = lValue;
+    g_MotorsTarget[1] = lValue;
+    g_MotorsTarget[2] = lValue;
     
-    g_MotorsValue[0] = (float) lValue;
-    g_MotorsValue[1] = (float) lValue;
-    g_MotorsValue[2] = (float) lValue;
+    g_MotorsValue[0] = lValue;
+    g_MotorsValue[1] = lValue;
+    g_MotorsValue[2] = lValue;
     
     Motor1.writeMicroseconds(lValue);
     Motor2.writeMicroseconds(lValue);

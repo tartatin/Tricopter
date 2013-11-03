@@ -39,8 +39,8 @@ void getMotorsCorrection()
     int16_t OverX = (g_Raw_Rotation[0] * lCoeff) / g_ArmsLength;
     int16_t OverY = (g_Raw_Rotation[1] * lCoeff) / lArmSin120;
     
-    g_MotorsTarget[0] = g_MeanForce - OverX;
-    g_MotorsTarget[1] = g_MeanForce + OverX/2 - OverY;
-    g_MotorsTarget[2] = g_MeanForce + OverX/2 + OverY;
+    g_MotorsTarget[0] = g_MeanForce - OverX;              // Moteur #1
+    g_MotorsTarget[1] = g_MeanForce + OverX/2 + OverY;    // Moteur #2
+    g_MotorsTarget[2] = g_MeanForce + OverX/2 - OverY;    // Moteur #3
 }
 
