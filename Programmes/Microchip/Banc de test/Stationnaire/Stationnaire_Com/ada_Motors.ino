@@ -92,7 +92,7 @@ int16_t getMotorCmdFromForce(int16_t p_Force)
 }
 
 /*****************************************************************/
-void setMotorsCmd(int16_t *p_Cmd)
+void setMotorsCmd(int16_t *p_Cmd_In_cN)
 {
     if (g_MotorsState == false)
     {
@@ -101,13 +101,20 @@ void setMotorsCmd(int16_t *p_Cmd)
     else
     {
         int16_t lCmd;
-        lCmd = getMotorCmdFromForce(p_Cmd[0]);
+        
+        // Moteur principal. On prend en compte son inclinaison pour assurer une force en Z égale à celle demandée.
+        // L'inclinaison provoquera un effort tangentiel.
+        float lRadAngle = (float)getServoAngle() * 3.14159f / 180.0f;
+        float lForce = cos(abs(lRadAngle)) * (float)p_Cmd_In_cN[0];
+        int16_t lIntForce = (int16_t)lForce;
+        lCmd = getMotorCmdFromForce(lIntForce);
         Motor1.writeMicroseconds(lCmd);
         
-        lCmd = getMotorCmdFromForce(p_Cmd[1]);
+        // Moteurs arrières.
+        lCmd = getMotorCmdFromForce(p_Cmd_In_cN[1]);
         Motor2.writeMicroseconds(lCmd);
         
-        lCmd = getMotorCmdFromForce(p_Cmd[2]);
+        lCmd = getMotorCmdFromForce(p_Cmd_In_cN[2]);
         Motor3.writeMicroseconds(lCmd);
     }
 }
