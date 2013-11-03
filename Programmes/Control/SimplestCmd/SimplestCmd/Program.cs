@@ -14,7 +14,8 @@ namespace SimplestCmd
         Thrust,
         P,
         I,
-        D
+        D,
+        Servo
     }
 
     /*******************************************************************/
@@ -120,7 +121,7 @@ namespace SimplestCmd
             get { return _flightThrust; }
             set 
             {
-                _flightThrust = value;
+                _flightThrust = Math.Max(value, (Int16)0);
                 sendThrust();
                 Console.WriteLine(String.Format("{0}", value)); 
             }
@@ -384,6 +385,7 @@ namespace SimplestCmd
             switch (pVar)
             {
                 case FlightVariable.Thrust: flightThrust += pValue; break;
+                case FlightVariable.Servo: servoAngle += pValue; break;
                 case FlightVariable.P: flightP += pValue; break;
                 case FlightVariable.I: flightI += pValue; break;
                 case FlightVariable.D: flightD += pValue; break;
@@ -396,6 +398,7 @@ namespace SimplestCmd
             switch (pVar)
             {
                 case FlightVariable.Thrust: return (Int16)10;
+                case FlightVariable.Servo: return (Int16)1;
                 case FlightVariable.P: return (Int16)1;
                 case FlightVariable.I: return (Int16)1;
                 case FlightVariable.D: return (Int16)1;
@@ -587,16 +590,21 @@ namespace SimplestCmd
 
             _handledKeys.Add(new HandledKey(
                 ConsoleKey.F2,
+                delegate(ConsoleKey pKey) { flightVariable = FlightVariable.Servo; },
+                "Réglage de l'orientation du moteur #1."));
+
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F5,
                 delegate(ConsoleKey pKey) { flightVariable = FlightVariable.P; },
                 "Réglage du paramètre P (proportionnel)."));
 
             _handledKeys.Add(new HandledKey(
-                ConsoleKey.F3,
+                ConsoleKey.F6,
                 delegate(ConsoleKey pKey) { flightVariable = FlightVariable.I; },
                 "Réglage du paramètre I (intégrateur)."));
 
             _handledKeys.Add(new HandledKey(
-                ConsoleKey.F4,
+                ConsoleKey.F7,
                 delegate(ConsoleKey pKey) { flightVariable = FlightVariable.D; },
                 "Réglage du paramètre D (dérivée)."));
 
