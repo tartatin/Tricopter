@@ -88,6 +88,7 @@ namespace SimplestCmd
 
         static void WriteLine()
         {
+            Console.ResetColor();
             Console.WriteLine();
         }
 
@@ -112,7 +113,7 @@ namespace SimplestCmd
                     lTextColor = ConsoleColor.Green;
                     lBackgroundColor = ConsoleColor.Black;
                     break;
-
+                    
                 case LineType.Warning:
                     lTextColor = ConsoleColor.Yellow;
                     lBackgroundColor = ConsoleColor.Black;
