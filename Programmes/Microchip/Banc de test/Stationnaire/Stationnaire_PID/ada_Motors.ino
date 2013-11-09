@@ -79,16 +79,34 @@ void startMotors()
 }
 
 /*****************************************************************/
-// force en cN
-int16_t getMotorCmdFromForce(int16_t p_Force)
+int16_t getMotorCmdFromForce(float p_Force)
 {
-    thresholdRangeInt16(&p_Force, 0, 2000);
+    thresholdRangeFloat(&p_Force, 0.0f, 20.0f);
   
     // D'après courbes empiriques
-    int16_t lValue = (16 * p_Force) / 17;
-    lValue += 1233;
-    thresholdRangeInt16(&lValue, 1230, 1650);
-    return lValue;
+    float lValue = 94.5f * p_Force + 1233.0f;
+    int16_t lIntValue = (int16_t) lValue;
+    thresholdRangeInt16(&lIntValue, 1230, 1650);
+    
+    return lIntValue;
+}
+
+/*****************************************************************/
+void setMotorsForces(float* pForces)
+{
+    g_MotorsTarget[0] = getMotorCmdFromForce(pForces[0]);
+    g_MotorsTarget[1] = getMotorCmdFromForce(pForces[1]);
+    g_MotorsTarget[2] = getMotorCmdFromForce(pForces[2]);
+}
+
+/*****************************************************************/
+void updateMotorsCmd()
+{
+    g_MotorsValue[0] = g_MotorsTarget[0];
+    g_MotorsValue[1] = g_MotorsTarget[1];
+    g_MotorsValue[2] = g_MotorsTarget[2];
+    
+    setMotorsCmd(g_MotorsValue);
 }
 
 /*****************************************************************/
@@ -100,14 +118,8 @@ void setMotorsCmd(int16_t *p_Cmd)
     }
     else
     {
-        int16_t lCmd;
-        lCmd = getMotorCmdFromForce(p_Cmd[0]);
-        Motor1.writeMicroseconds(lCmd);
-        
-        lCmd = getMotorCmdFromForce(p_Cmd[1]);
-        Motor2.writeMicroseconds(lCmd);
-        
-        lCmd = getMotorCmdFromForce(p_Cmd[2]);
-        Motor3.writeMicroseconds(lCmd);
+        Motor1.writeMicroseconds((int) p_Cmd[0]);
+        Motor2.writeMicroseconds((int) p_Cmd[1]);
+        Motor3.writeMicroseconds((int) p_Cmd[2]);
     }
 }

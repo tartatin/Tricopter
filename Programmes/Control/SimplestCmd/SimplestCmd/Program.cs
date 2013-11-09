@@ -68,10 +68,10 @@ namespace SimplestCmd
 
         /*******************************************************************/
         static Int16 _servoAngle = 0;
-        static Int16 _flightThrust = 0;
-        static Int16 _flightP = 0;
-        static Int16 _flightI = 0;
-        static Int16 _flightD = 0;
+        static float _flightThrust = 0;
+        static float _flightP = 0;
+        static float _flightI = 30.0f;
+        static float _flightD = 0;
 
         /*******************************************************************/
         static FlightVariable _flightVariable = FlightVariable.None;
@@ -170,12 +170,12 @@ namespace SimplestCmd
             sendCmd(idThrust, rawValue(_flightThrust));
         }
 
-        static Int16 flightThrust
+        static float flightThrust
         {
             get { return _flightThrust; }
             set 
             {
-                _flightThrust = Math.Max(value, (Int16)0);
+                _flightThrust = Math.Max(value, 0.0f);
                 sendThrust();
                 WriteLine(String.Format("{0}", value), LineType.Local); 
             }
@@ -186,17 +186,17 @@ namespace SimplestCmd
         {
             byte[] P = rawValue(_flightP);
             byte[] I = rawValue(_flightI);
-            byte[] D = rawValue(_flightD);
+            //byte[] D = rawValue(_flightD);
 
-            byte[] args = new byte[P.Length + I.Length + D.Length];
+            byte[] args = new byte[P.Length + I.Length/* + D.Length*/];
             Array.Copy(P, 0, args, 0, P.Length);
             Array.Copy(I, 0, args, P.Length, I.Length);
-            Array.Copy(D, 0, args, P.Length + I.Length, D.Length);
+            //Array.Copy(D, 0, args, P.Length + I.Length, D.Length);
 
             sendCmd(idPID, args);
         }
-        
-        static Int16 flightP
+
+        static float flightP
         {
             get { return _flightP; }
             set 
@@ -207,7 +207,7 @@ namespace SimplestCmd
             }
         }
 
-        static Int16 flightI
+        static float flightI
         {
             get { return _flightI; }
             set 
@@ -218,14 +218,15 @@ namespace SimplestCmd
             }
         }
 
-        static Int16 flightD
+        static float flightD
         {
             get { return _flightD; }
             set 
             { 
                 _flightD = value;
-                sendPIDValues();
-                WriteLine(String.Format("{0}", value), LineType.Local); 
+                //sendPIDValues();
+                //WriteLine(String.Format("{0}", value), LineType.Local); 
+                WriteLine("Variable non utilisée actuellement.", LineType.Warning);
             }
         }
 
@@ -268,17 +269,17 @@ namespace SimplestCmd
             WriteLine();
             WriteLine("Chargement des paramètres de vol", LineType.Title);
 
-            Int16 _flightThrustBak = _flightThrust;
-            Int16 _flightPBak = _flightP;
-            Int16 _flightIBak = _flightI;
-            Int16 _flightDBak = _flightD;
+            float _flightThrustBak = _flightThrust;
+            float _flightPBak = _flightP;
+            float _flightIBak = _flightI;
+            float _flightDBak = _flightD;
             Int16 _servoAngleBak = _servoAngle;
 
             StreamReader stream = new StreamReader("params.txt");
-            _flightThrust = Convert.ToInt16(stream.ReadLine());
-            _flightP = Convert.ToInt16(stream.ReadLine());
-            _flightI = Convert.ToInt16(stream.ReadLine());
-            _flightD = Convert.ToInt16(stream.ReadLine());
+            _flightThrust = Convert.ToSingle(stream.ReadLine());
+            _flightP = Convert.ToSingle(stream.ReadLine());
+            _flightI = Convert.ToSingle(stream.ReadLine());
+            _flightD = Convert.ToSingle(stream.ReadLine());
             _servoAngle = Convert.ToInt16(stream.ReadLine());
             stream.Close();
 
@@ -434,12 +435,12 @@ namespace SimplestCmd
         }
 
         /*******************************************************************/
-        static void add(FlightVariable pVar, Int16 pValue)
+        static void add(FlightVariable pVar, float pValue)
         {
             switch (pVar)
             {
                 case FlightVariable.Thrust: flightThrust += pValue; break;
-                case FlightVariable.Servo: servoAngle += pValue; break;
+                case FlightVariable.Servo: servoAngle += (Int16)pValue; break;
                 case FlightVariable.P: flightP += pValue; break;
                 case FlightVariable.I: flightI += pValue; break;
                 case FlightVariable.D: flightD += pValue; break;
@@ -447,16 +448,16 @@ namespace SimplestCmd
         }
 
         /*******************************************************************/
-        static Int16 default_var_step(FlightVariable pVar)
+        static float default_var_step(FlightVariable pVar)
         {
             switch (pVar)
             {
-                case FlightVariable.Thrust: return (Int16)10;
-                case FlightVariable.Servo: return (Int16)1;
-                case FlightVariable.P: return (Int16)1;
-                case FlightVariable.I: return (Int16)1;
-                case FlightVariable.D: return (Int16)1;
-                default: return (Int16)0;
+                case FlightVariable.Thrust: return 0.1f;
+                case FlightVariable.Servo: return 1;
+                case FlightVariable.P: return 0.1f;
+                case FlightVariable.I: return 0.1f;
+                case FlightVariable.D: return 0.1f;
+                default: return 0;
             }
         }
 
@@ -468,7 +469,7 @@ namespace SimplestCmd
 
         static void decrease(FlightVariable pVar)
         {
-            add(pVar, (Int16) (- default_var_step(pVar)));
+            add(pVar, (- default_var_step(pVar)));
         }
 
         /*******************************************************************/
@@ -544,7 +545,7 @@ namespace SimplestCmd
 
             byte lId = msg[0];
             byte[] lParams = new byte[msg.Length-1];
-            Array.Copy(msg, 1, lParams, 0, lParams.Length-1);
+            Array.Copy(msg, 1, lParams, 0, lParams.Length);
 
             if (lId == idPlot)
                 handlePlot(lParams);

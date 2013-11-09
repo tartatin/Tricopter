@@ -102,6 +102,11 @@ void sendCommand(uint8_t pCmdId, uint8_t *pArgs, uint8_t pSize)
 }
 
 /*****************************************************************/
+void printFloat(float pValue)
+{
+    sendCommand(PRINT_FLOAT_MSGID, (uint8_t*) &pValue, sizeof(float));
+}
+
 void printInt16(int16_t pValue)
 {
     sendCommand(PRINT_INT_MSGID, (uint8_t*) &pValue, sizeof(int16_t));
@@ -164,6 +169,7 @@ void sendPlot3D(uint8_t pPlotID, float pTime, float pV1, float pV2, float pV3)
 #define IS_MSG(y) (gMsgBuffer[0] == y)
 #define CHECK_SIZE(s) {if(gMsgSize != (s+1)) {gDropCount++; return false;}}
 
+#define FLOAT_PTR(offset) ((float*) &gMsgBuffer[offset+1])
 #define UINT32_PTR(offset) ((uint32_t*) &gMsgBuffer[offset+1])
 #define INT32_PTR(offset) ((int32_t*) &gMsgBuffer[offset+1])
 #define UINT16_PTR(offset) ((uint16_t*) &gMsgBuffer[offset+1])
@@ -172,6 +178,7 @@ void sendPlot3D(uint8_t pPlotID, float pTime, float pV1, float pV2, float pV3)
 #define INT8_PTR(offset) ((int8_t*) &gMsgBuffer[offset+1])
 #define BOOL_PTR(offset) ((bool*) &gMsgBuffer[offset+1])
 
+#define FLOAT(offset) *FLOAT_PTR(offset)
 #define UINT32(offset) *UINT32_PTR(offset)
 #define INT32(offset) *INT32_PTR(offset)
 #define UINT16(offset) *UINT16_PTR(offset)
@@ -210,16 +217,17 @@ bool treatMessage()
     // Poussée
     else if (IS_MSG(SET_THRUST_MSGID))
     {
-        CHECK_SIZE(sizeof(int16_t));
+        CHECK_SIZE(sizeof(float));
         
         // Set de la valeur
-        int16_t lValue = INT16(0);
-        thresholdRangeInt16(&lValue, 0, 2000);
+        float lValue = FLOAT(0);
+        thresholdRangeFloat(&lValue, 0.0f, 20.0f);
         setMeanForce(lValue);
         
         // Get de la valeur pour retour
         lValue = getMeanForce();
-        printTextf("Thrust: %d\n", lValue);
+        int16_t lIntValue = (int16_t)(lValue * 100.0f);
+        printTextf("Thrust (x 100): %d\n", lIntValue);
     }
     
     // Servo
@@ -230,6 +238,19 @@ bool treatMessage()
         
         int16_t lValue = getServoAngle();
         printTextf("Servo: %d\n", lValue);
+    }
+    
+    // PID
+    else if (IS_MSG(SET_PID_MSGID))
+    {
+        CHECK_SIZE(2*sizeof(float));
+        
+        // Set de la valeur
+        float Kp = FLOAT(0*sizeof(float));
+        float Ki = FLOAT(1*sizeof(float));
+        setPIDCoeffs( Kp, Ki );
+                      
+       printTextf("Kp: %d, Ki: %d\n", (int16_t)(Kp), (int16_t)Ki);
     }
     
     /************************** Autres ************************/

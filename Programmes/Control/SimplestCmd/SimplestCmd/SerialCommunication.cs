@@ -23,7 +23,7 @@ namespace SimplestCmd
         private ConcurrentQueue<byte[]> sentMsg;
 
         // valeurs générales
-        private int comPort = 4;
+        private int comPort = 3;
         private int comBaudrate = 38400;
         private Parity comParity = Parity.None;
         private int comDataBits = 8;
@@ -355,8 +355,10 @@ namespace SimplestCmd
                 try
                 {
                     // Lecture et ajout au buffer général
-                    string newData = serialPort.ReadExisting();
-                    add_back(ref lBuffer, toByte(newData));
+                    byte[] newData = new byte[serialPort.BytesToRead];
+                    serialPort.Read(newData, 0, newData.Length);
+                    //string newData = serialPort.ReadExisting();
+                    add_back(ref lBuffer, newData);
 
                     // Traitement des données reçues
                     handleReceived(ref lBuffer);
