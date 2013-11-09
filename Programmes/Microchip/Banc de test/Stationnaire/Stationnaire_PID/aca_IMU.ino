@@ -97,4 +97,7 @@ void getGyroscopeData()
     g_Raw_Rotation[0] = ((int16_t)buff[3] << 8) | (int16_t)buff[2];
     g_Raw_Rotation[1] = ((int16_t)buff[5] << 8) | (int16_t)buff[4];
     g_Raw_Rotation[2] = ((int16_t)buff[7] << 8) | (int16_t)buff[6];
+    
+    g_Raw_Rotation[0] += -17;
+    g_Raw_Rotation[1] += +15;
 }

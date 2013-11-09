@@ -11,19 +11,19 @@ void setup()
     printText("Initialisation...");
     
     // Capteurs
-    printText("+ capteurs...\n");
+    printText("+ capteurs...");
     setupI2C();
     setupIMU();
     setupVAMeter();
   
     // Moteurs & servo
-    printText("+ servo...\n");
+    printText("+ servo...");
     setupServo();
-    printText("+ moteurs...\n");
+    printText("+ moteurs...");
     setupMotors();
   
     // Fin du setup
-    printText("Prêt à décoller.\n");
+    printText("Prêt à décoller.");
 }
 
 /*****************************************************************/
@@ -49,6 +49,14 @@ void loop()
     if (lDelta < 100)
         return;
     lLast = lNow;
+    
+    static byte slLoopCount = 0;
+    if (slLoopCount % 20 == 0)
+    {
+        updateVAMeasures();
+        printTextf("Voltage (mV): %d", (int16_t)(g_Voltage * 1000.0f));
+    }
+    ++slLoopCount;
   
     // Calcul des commandes moteurs :
     // 1. Lecture des valeurs de l'accéléromètre
@@ -78,6 +86,6 @@ void loop()
     slTmpFloat[2] = (float)g_MotorsTarget[2];
     sendPlot(3, 3, (float)lNow * 0.001f, slTmpFloat);
     
-    printTextf("%d | %d | %d\n", g_MotorsTarget[0], g_MotorsTarget[1], g_MotorsTarget[2]);
+    // printTextf("%d | %d | %d", g_MotorsTarget[0], g_MotorsTarget[1], g_MotorsTarget[2]);
 }
 

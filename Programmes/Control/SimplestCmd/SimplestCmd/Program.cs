@@ -453,7 +453,7 @@ namespace SimplestCmd
             switch (pVar)
             {
                 case FlightVariable.Thrust: return 0.1f;
-                case FlightVariable.Servo: return 1;
+                case FlightVariable.Servo: return 1.0f;
                 case FlightVariable.P: return 0.1f;
                 case FlightVariable.I: return 0.1f;
                 case FlightVariable.D: return 0.1f;

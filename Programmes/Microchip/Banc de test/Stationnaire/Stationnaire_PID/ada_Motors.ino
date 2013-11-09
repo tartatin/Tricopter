@@ -79,24 +79,31 @@ void startMotors()
 }
 
 /*****************************************************************/
-int16_t getMotorCmdFromForce(float p_Force)
+int16_t setMotorsTargets(float* p_Forces)
 {
-    thresholdRangeFloat(&p_Force, 0.0f, 20.0f);
+    float lValue;
+    int16_t lIntValue;
   
     // D'après courbes empiriques
-    float lValue = 94.5f * p_Force + 1233.0f;
-    int16_t lIntValue = (int16_t) lValue;
-    thresholdRangeInt16(&lIntValue, 1230, 1650);
+    // Moteur #1
+    lValue = 174.1f * p_Forces[0] + 1226.0f;
+    lIntValue = (int16_t) lValue;
+    thresholdRangeInt16(&lIntValue, 1230, 1700);
+    g_MotorsTarget[0] = lIntValue;
+    
+    // Moteur #2
+    lValue = 115.0f * p_Forces[1] + 1220.0f;
+    lIntValue = (int16_t) lValue;
+    thresholdRangeInt16(&lIntValue, 1230, 1700);
+    g_MotorsTarget[1] = lIntValue;
+    
+    // Moteur #3
+    lValue = 93.7f * p_Forces[2] + 1229.0f;
+    lIntValue = (int16_t) lValue;
+    thresholdRangeInt16(&lIntValue, 1230, 1700);
+    g_MotorsTarget[2] = lIntValue;
     
     return lIntValue;
-}
-
-/*****************************************************************/
-void setMotorsForces(float* pForces)
-{
-    g_MotorsTarget[0] = getMotorCmdFromForce(pForces[0]);
-    g_MotorsTarget[1] = getMotorCmdFromForce(pForces[1]);
-    g_MotorsTarget[2] = getMotorCmdFromForce(pForces[2]);
 }
 
 /*****************************************************************/

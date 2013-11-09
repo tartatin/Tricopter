@@ -80,7 +80,7 @@ void updatePID()
     g_FloatBuffer[2] = g_MeanForce + OverX/2 + OverY;
     
     // Application de la réaction
-    setMotorsForces(g_FloatBuffer);
+    setMotorsTargets(g_FloatBuffer);
     
     // Stockage des valeurs actuelles
     g_Previous_Rotation[0] = g_Raw_Rotation[0];

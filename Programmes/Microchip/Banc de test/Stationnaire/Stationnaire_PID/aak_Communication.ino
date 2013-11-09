@@ -42,7 +42,7 @@ void setupCom()
     Serial.begin(38400);
     Serial.setTimeout(1);
     
-    printText("Communication... done.\n");
+    printText("Communication... done.");
 }
 
 /*****************************************************************/
@@ -227,7 +227,7 @@ bool treatMessage()
         // Get de la valeur pour retour
         lValue = getMeanForce();
         int16_t lIntValue = (int16_t)(lValue * 100.0f);
-        printTextf("Thrust (x 100): %d\n", lIntValue);
+        printTextf("Thrust (x 100): %d", lIntValue);
     }
     
     // Servo
@@ -237,7 +237,7 @@ bool treatMessage()
         setServoAngle(INT16(0));
         
         int16_t lValue = getServoAngle();
-        printTextf("Servo: %d\n", lValue);
+        printTextf("Servo: %d", lValue);
     }
     
     // PID
@@ -250,20 +250,20 @@ bool treatMessage()
         float Ki = FLOAT(1*sizeof(float));
         setPIDCoeffs( Kp, Ki );
                       
-       printTextf("Kp: %d, Ki: %d\n", (int16_t)(Kp), (int16_t)Ki);
+       printTextf("Kp: %d, Ki: %d", (int16_t)(Kp), (int16_t)Ki);
     }
     
     /************************** Autres ************************/
     // No-op
     else if (IS_MSG(NOOP_MSGID))
     {
-        printText("NOOP_MSGID\n");
+        printText("NOOP_MSGID");
     }
     
     // Ping
     else if (IS_MSG(PING_MSGID))
     {
-        printText("PING_MSGID\n");
+        printText("PING_MSGID");
     }
     
     // Un message reçu
