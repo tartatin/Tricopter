@@ -21,9 +21,9 @@ int16_t g_Raw_Acceleration[3]; // Accélération instantannée, en unités léga
 #define G_TO_READ 8 // 2 bytes for each axis x, y, z + 1 pour la temperature
 
 // offsets are chip specific. 
-int16_t g_offx = 120;
-int16_t g_offy = 20;
-int16_t g_offz = 93;
+int16_t g_offx = 6;
+int16_t g_offy = 0;
+int16_t g_offz = 6;
 
 /*****************************************************************/
 void setupIMU()
@@ -76,7 +76,6 @@ void initGyro()
   i2cWriteTo(GYRO, G_INT_CFG, 0x00);
 }
 
-
 void getGyroscopeData()
 {
     /**************************************
@@ -94,7 +93,7 @@ void getGyroscopeData()
     
     i2cReadFrom(GYRO, regAddress, G_TO_READ, buff); //read the gyro data from the ITG3200
     
-    g_Raw_Rotation[0] = ((int16_t)buff[3] << 8) | (int16_t)buff[2];
-    g_Raw_Rotation[1] = ((int16_t)buff[5] << 8) | (int16_t)buff[4];
-    g_Raw_Rotation[2] = ((int16_t)buff[7] << 8) | (int16_t)buff[6];
+    g_Raw_Rotation[0] = (((int16_t)buff[3] << 8) | (int16_t)buff[2]) - 20;
+    g_Raw_Rotation[1] = (((int16_t)buff[5] << 8) | (int16_t)buff[4]) + 9;
+    g_Raw_Rotation[2] = (((int16_t)buff[7] << 8) | (int16_t)buff[6]);
 }

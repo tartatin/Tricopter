@@ -14,7 +14,8 @@ namespace SimplestCmd
         Thrust,
         P,
         I,
-        D
+        D,
+        Servo
     }
 
     /*******************************************************************/
@@ -77,6 +78,60 @@ namespace SimplestCmd
         static bool _changingCom = false;
 
         /*******************************************************************/
+        enum LineType {
+            Title,
+            Local,
+            Remote,
+            Warning,
+            Error
+        }
+
+        static void WriteLine()
+        {
+            Console.ResetColor();
+            Console.WriteLine();
+        }
+
+        static void WriteLine(string pLine, LineType pType)
+        {
+            ConsoleColor lTextColor = ConsoleColor.Gray;
+            ConsoleColor lBackgroundColor = ConsoleColor.Black;
+
+            switch (pType)
+            {
+                case LineType.Title:
+                    lTextColor = ConsoleColor.Black;
+                    lBackgroundColor = ConsoleColor.Gray;
+                    break;
+
+                case LineType.Local:
+                    lTextColor = ConsoleColor.Gray;
+                    lBackgroundColor = ConsoleColor.Black;
+                    break;
+
+                case LineType.Remote:
+                    lTextColor = ConsoleColor.Green;
+                    lBackgroundColor = ConsoleColor.Black;
+                    break;
+                    
+                case LineType.Warning:
+                    lTextColor = ConsoleColor.Yellow;
+                    lBackgroundColor = ConsoleColor.Black;
+                    break;
+
+                case LineType.Error:
+                    lTextColor = ConsoleColor.White;
+                    lBackgroundColor = ConsoleColor.Red;
+                    break;
+            }
+
+            Console.ForegroundColor = lTextColor;
+            Console.BackgroundColor = lBackgroundColor;
+
+            Console.WriteLine(pLine);
+        }
+
+        /*******************************************************************/
         static void setComPort(int port)
         {
             if (_changingCom == false)
@@ -104,8 +159,8 @@ namespace SimplestCmd
             set 
             {
                 _flightVariable = value;
-                Console.WriteLine();
-                Console.WriteLine(">>> " + Enum.GetName(typeof(FlightVariable), _flightVariable));
+                WriteLine();
+                WriteLine(Enum.GetName(typeof(FlightVariable), _flightVariable), LineType.Title);
             }
         }
 
@@ -120,9 +175,9 @@ namespace SimplestCmd
             get { return _flightThrust; }
             set 
             {
-                _flightThrust = value;
+                _flightThrust = Math.Max(value, (Int16)0);
                 sendThrust();
-                Console.WriteLine(String.Format("{0}", value)); 
+                WriteLine(String.Format("{0}", value), LineType.Local); 
             }
         }
 
@@ -148,7 +203,7 @@ namespace SimplestCmd
             { 
                 _flightP = value;
                 sendPIDValues();
-                Console.WriteLine(String.Format("{0}", value)); 
+                WriteLine(String.Format("{0}", value), LineType.Local); 
             }
         }
 
@@ -159,7 +214,7 @@ namespace SimplestCmd
             { 
                 _flightI = value;
                 sendPIDValues();
-                Console.WriteLine(String.Format("{0}", value)); 
+                WriteLine(String.Format("{0}", value), LineType.Local); 
             }
         }
 
@@ -170,7 +225,7 @@ namespace SimplestCmd
             { 
                 _flightD = value;
                 sendPIDValues();
-                Console.WriteLine(String.Format("{0}", value)); 
+                WriteLine(String.Format("{0}", value), LineType.Local); 
             }
         }
 
@@ -187,15 +242,15 @@ namespace SimplestCmd
             {
                 _servoAngle = value;
                 sendServoAngle();
-                Console.WriteLine(String.Format("{0}", value));
+                WriteLine(String.Format("{0}", value), LineType.Local);
             }
         }
 
         /*******************************************************************/
         static void saveParams()
         {
-            Console.WriteLine();
-            Console.WriteLine(">>> Enregistrement des paramètres de vol");
+            WriteLine();
+            WriteLine("Enregistrement des paramètres de vol", LineType.Title);
             showParams();
 
             StreamWriter stream = new StreamWriter("params.txt");
@@ -210,8 +265,8 @@ namespace SimplestCmd
 
         static void loadParams()
         {
-            Console.WriteLine();
-            Console.WriteLine(">>> Chargement des paramètres de vol");
+            WriteLine();
+            WriteLine("Chargement des paramètres de vol", LineType.Title);
 
             Int16 _flightThrustBak = _flightThrust;
             Int16 _flightPBak = _flightP;
@@ -228,7 +283,7 @@ namespace SimplestCmd
             stream.Close();
 
             showParams();
-            Console.WriteLine();
+            WriteLine();
             if (secondChance(8) == false)
             {
                 _flightThrust = _flightThrustBak;
@@ -247,13 +302,13 @@ namespace SimplestCmd
         {
             if (pShowTitle)
             {
-                Console.WriteLine();
-                Console.WriteLine(">>> Paramètres de vol");
+                WriteLine();
+                WriteLine("Paramètres de vol", LineType.Title);
             }
 
-            Console.WriteLine(String.Format("Poussée : {0}", _flightThrust));
-            Console.WriteLine(String.Format("PID : {0}, {1}, {2}", _flightP, _flightI, _flightD));
-            Console.WriteLine(String.Format("Angle du servomoteur : {0}", _servoAngle));
+            WriteLine(String.Format("Poussée : {0}", _flightThrust), LineType.Local);
+            WriteLine(String.Format("PID : {0}, {1}, {2}", _flightP, _flightI, _flightD), LineType.Local);
+            WriteLine(String.Format("Angle du servomoteur : {0}", _servoAngle), LineType.Local);
         }
 
         /*******************************************************************/
@@ -325,20 +380,20 @@ namespace SimplestCmd
                 if (delta.Seconds != prevTime)
                 {
                     prevTime = delta.Seconds;
-                    Console.WriteLine(String.Format("{0} s...", duration-prevTime));
+                    WriteLine(String.Format("{0} s...", duration-prevTime), LineType.Warning);
                     Console.Beep(5000, 500);
                 }
 
                 if (delta.Seconds >= duration)
                 {
-                    Console.WriteLine("Go !");
+                    WriteLine("Go !", LineType.Warning);
                     Console.Beep(6000, 1000);
                     return true;
                 }
 
                 if (Console.KeyAvailable)
                 {
-                    Console.WriteLine("Annulé !");
+                    WriteLine("Annulé !", LineType.Warning);
                     Console.Beep(800, 300);
                     Console.ReadKey(true);
                     return false;
@@ -349,8 +404,8 @@ namespace SimplestCmd
         /*******************************************************************/
         static void start()
         {
-            Console.WriteLine();
-            Console.WriteLine(">>> Démarrage des moteurs.");
+            WriteLine();
+            WriteLine("Démarrage des moteurs.", LineType.Title);
             if (secondChance(5) == false)
                 return;
             sendCmd(idSetEngineState, 0xAA);
@@ -364,9 +419,9 @@ namespace SimplestCmd
                 sendCmd(idDeadStop);
                 System.Threading.Thread.Sleep(16);
             }
-            Console.WriteLine();
-            Console.WriteLine(">>> Arrêt d'urgence.");
-            Console.WriteLine(">>> Plus aucune commande ne sera traitée.");
+            WriteLine();
+            WriteLine("Arrêt d'urgence.", LineType.Title);
+            WriteLine("Plus aucune commande ne sera traitée.", LineType.Warning);
         }
 
         static void stop()
@@ -374,8 +429,8 @@ namespace SimplestCmd
             connect();
             for(int i = 0; i < 3; ++i)
                 sendCmd(idSetEngineState, 0x00);
-            Console.WriteLine();
-            Console.WriteLine(">>> Arrêt des moteurs.");
+            WriteLine();
+            WriteLine("Arrêt des moteurs.", LineType.Title);
         }
 
         /*******************************************************************/
@@ -384,6 +439,7 @@ namespace SimplestCmd
             switch (pVar)
             {
                 case FlightVariable.Thrust: flightThrust += pValue; break;
+                case FlightVariable.Servo: servoAngle += pValue; break;
                 case FlightVariable.P: flightP += pValue; break;
                 case FlightVariable.I: flightI += pValue; break;
                 case FlightVariable.D: flightD += pValue; break;
@@ -396,6 +452,7 @@ namespace SimplestCmd
             switch (pVar)
             {
                 case FlightVariable.Thrust: return (Int16)10;
+                case FlightVariable.Servo: return (Int16)1;
                 case FlightVariable.P: return (Int16)1;
                 case FlightVariable.I: return (Int16)1;
                 case FlightVariable.D: return (Int16)1;
@@ -461,21 +518,21 @@ namespace SimplestCmd
         static void handlePrintFloat(byte[] args)
         {
             float lValue = BitConverter.ToSingle(args, 0);
-            Console.WriteLine(String.Format("{0}", lValue));
+            WriteLine(String.Format("{0}", lValue), LineType.Remote);
         }
 
         /*******************************************************************/
         static void handlePrintInt(byte[] args)
         {
             int lValue = (int)BitConverter.ToInt16(args, 0);
-            Console.WriteLine(String.Format("{0}", lValue));
+            WriteLine(String.Format("{0}", lValue), LineType.Remote);
         }
 
         /*******************************************************************/
         static void handlePrintString(byte[] args)
         {
             String lText = System.Text.Encoding.ASCII.GetString(args);
-            Console.WriteLine(lText);
+            WriteLine(lText, LineType.Remote);
         }
 
         /*******************************************************************/
@@ -504,16 +561,16 @@ namespace SimplestCmd
         {
             if (pTitle)
             {
-                Console.WriteLine(">>> Paramètres COM");
-                Console.WriteLine();
+                WriteLine("Paramètres COM", LineType.Title);
+                WriteLine();
             }
 
-            Console.WriteLine(String.Format("Port : {0}", com.ComPort));
-            Console.WriteLine(String.Format("Baudrate : {0}", com.ComBaudrate));
-            Console.WriteLine(String.Format("Parity : {0}", Enum.GetName(typeof(Parity), com.ComParity)));
-            Console.WriteLine(String.Format("Data Bits : {0}", com.ComDataBits));
-            Console.WriteLine(String.Format("Stop Bits : {0}", Enum.GetName(typeof(StopBits), com.ComStopBits)));
-            Console.WriteLine(String.Format("Handshake : {0}", Enum.GetName(typeof(Handshake), com.ComHandshake)));
+            WriteLine(String.Format("Port : {0}", com.ComPort), LineType.Local);
+            WriteLine(String.Format("Baudrate : {0}", com.ComBaudrate), LineType.Local);
+            WriteLine(String.Format("Parity : {0}", Enum.GetName(typeof(Parity), com.ComParity)), LineType.Local);
+            WriteLine(String.Format("Data Bits : {0}", com.ComDataBits), LineType.Local);
+            WriteLine(String.Format("Stop Bits : {0}", Enum.GetName(typeof(StopBits), com.ComStopBits)), LineType.Local);
+            WriteLine(String.Format("Handshake : {0}", Enum.GetName(typeof(Handshake), com.ComHandshake)), LineType.Local);
         }
 
         /*******************************************************************/
@@ -550,8 +607,8 @@ namespace SimplestCmd
                 ConsoleKey.F12,
                 delegate(ConsoleKey pKey)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine(">>> Connexion.");
+                    WriteLine();
+                    WriteLine("Connexion.", LineType.Title);
                     connect();
                 },
                 "Connexion à l'hélicoptère."));
@@ -587,16 +644,21 @@ namespace SimplestCmd
 
             _handledKeys.Add(new HandledKey(
                 ConsoleKey.F2,
+                delegate(ConsoleKey pKey) { flightVariable = FlightVariable.Servo; },
+                "Réglage de l'orientation du moteur #1."));
+
+            _handledKeys.Add(new HandledKey(
+                ConsoleKey.F5,
                 delegate(ConsoleKey pKey) { flightVariable = FlightVariable.P; },
                 "Réglage du paramètre P (proportionnel)."));
 
             _handledKeys.Add(new HandledKey(
-                ConsoleKey.F3,
+                ConsoleKey.F6,
                 delegate(ConsoleKey pKey) { flightVariable = FlightVariable.I; },
                 "Réglage du paramètre I (intégrateur)."));
 
             _handledKeys.Add(new HandledKey(
-                ConsoleKey.F4,
+                ConsoleKey.F7,
                 delegate(ConsoleKey pKey) { flightVariable = FlightVariable.D; },
                 "Réglage du paramètre D (dérivée)."));
 
@@ -626,15 +688,15 @@ namespace SimplestCmd
         /*******************************************************************/
         static void ShowHandledKeys()
         {
-            Console.WriteLine(">>> Liste des commandes");
-            Console.WriteLine();
+            WriteLine("Liste des commandes", LineType.Title);
+            WriteLine();
 
             foreach (HandledKey lHandler in _handledKeys)
             {
-                Console.WriteLine(string.Format("{0} : {1}", lHandler.Key, lHandler.Name));
+                WriteLine(string.Format("{0} : {1}", lHandler.Key, lHandler.Name), LineType.Local);
             }
 
-            Console.WriteLine();
+            WriteLine();
         }
 
         /*******************************************************************/
